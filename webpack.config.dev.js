@@ -4,6 +4,7 @@ const common = require("./webpack.config.js");
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
     mode: "development",
@@ -33,7 +34,13 @@ module.exports = merge(common, {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    "style-loader",
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: './',
+                            hmr: true,
+                        }
+                    },
                     {
                         loader: "css-loader",
                         options: {
@@ -56,5 +63,9 @@ module.exports = merge(common, {
             hash: false,
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "css/[name].css",
+            chunkFilename: "css/[id].css",
+        }),
     ],
 });

@@ -4,6 +4,7 @@ const path = require("path");
 
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
     mode: "production",
@@ -32,7 +33,12 @@ module.exports = merge(common, {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    "style-loader",
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../',
+                        }
+                    },
                     {
                         loader: "css-loader",
                         options: {
@@ -48,7 +54,13 @@ module.exports = merge(common, {
             },
         ],
     },
-    plugins: [new CleanWebpackPlugin()],
+    plugins: [
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "css/[name].[hash].css",
+            chunkFilename: "css/[id].[hash].css",
+        }),
+    ],
     externals: {
         react: {
             root: "React",
