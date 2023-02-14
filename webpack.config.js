@@ -64,7 +64,7 @@ module.exports = {
                         options: {
                             // 启用 css modules, css模块化, 所有类名都默认为当前组件, 或者使用 :global 声明全局样式, 参考 AntDesignPro 的样式引用
                             modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]', // 指定样式名
+                                localIdentName: '[name]__[local]___[hash:base64:5]', // 指定样式名
                                 exportGlobals: true, // 注意 :global 声明全局样式需要该属性
                             },
                         }
