@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client';
+import Icon from '@/components/Icon';
 
 const Demo = () => {
     return (
-        <h1>Hello</h1>
+        <h1><Icon /></h1>
     );
 };
 
