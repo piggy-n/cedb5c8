@@ -20,34 +20,6 @@ module.exports = merge(common, {
         minimize: true,
         minimizer: [new TerserPlugin()],
     },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    "css-loader"
-                ],
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            // 启用 css modules, css模块化, 所有类名都默认为当前组件, 或者使用 :global 声明全局样式, 参考 AntDesignPro 的样式引用
-                            modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]', // 指定样式名
-                                exportGlobals: true, // 注意 :global 声明全局样式需要该属性
-                            },
-                        }
-                    },
-                    "sass-loader",
-                ],
-            },
-        ],
-    },
     plugins: [new CleanWebpackPlugin()],
     externals: {
         react: {

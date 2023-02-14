@@ -1,4 +1,4 @@
-import s from './styles/icon.module.scss';
+import s from './styles/icon.scss';
 
 const Icon = () => {
     return (
