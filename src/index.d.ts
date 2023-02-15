@@ -89,6 +89,7 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
 /**
  * @description Player组件属性
  * @param {string} url 视频源
+ * @param {boolean} isLive 是否直播
  * @param {boolean} controllable 是否显示控制栏
  * @param {boolean} fullscreen 是否有全屏功能
  * @param {boolean} recording 是否有录制功能
@@ -98,6 +99,7 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
  */
 export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
     url?: string;
+    isLive?: boolean;
     controllable?: boolean;
     fullscreen?: boolean;
     recording?: boolean;

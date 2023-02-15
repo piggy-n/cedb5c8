@@ -7,6 +7,7 @@ import { randomString } from '@/utils/methods/randomString';
 import { usePlayerStore } from '@/utils/hooks/usePlayerStore';
 import FlvPlayer from '@/utils/players/flvPlayer';
 import WsPlayer from '@/utils/players/wsPlayer';
+import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/usePlayerContext';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     {
@@ -23,12 +24,26 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer());
 
     return (
-        <div
-            id={`player-${uuid}`}
-            ref={videoContainerEleRef}
-            {...videoContainerEleOpts}
-            className={c(s.container, videoContainerEleOpts?.className)}
-        />
+        <PlayerContext.Provider value={{
+            ...playerContextDefaultValue,
+            uuid,
+            playerStore: store,
+            playerStoreDispatch: dispatch,
+            videoEle: videoEleRef.current,
+            videoContainerEle: videoContainerEleRef.current,
+            wsPlayer: wsPlayerRef.current,
+            flvPlayer: flvPlayerRef.current,
+            ...rest,
+        }}>
+            <div
+                id={`player-${uuid}`}
+                ref={videoContainerEleRef}
+                {...videoContainerEleOpts}
+                className={c(s.container, videoContainerEleOpts?.className)}
+            >
+
+            </div>
+        </PlayerContext.Provider>
     );
 };
 
