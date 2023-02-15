@@ -1,0 +1,18 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include globalStyle();
+  @include ps(relative);
+  @include fr(center);
+  @include wh(100%, 100%);
+  overflow: hidden;
+  user-select: none;
+  background-color: #545454CC;
+
+  & > video {
+    @include ps(absolute, 0, auto, auto, 0);
+    @include wh(100%, 100%);
+    pointer-events: none;
+    object-fit: fill;
+  }
+}
