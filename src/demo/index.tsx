@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import Player from '@/kernel/Player/Player';
+import Player from '@/kernel/Player';
 
 const Demo = () => {
     return (
