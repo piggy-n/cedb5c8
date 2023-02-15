@@ -10,7 +10,6 @@ class FlvPlayer {
 
     constructor(options: Options) {
         this.dispatch = options.dispatch;
-        this.dispatch({});
     }
 }
 
