@@ -28,14 +28,14 @@ export type VideoElementSize = {
  * @param {number} networkState 网络状态
  * @param {number} readyState 就绪状态
  */
-export type VideoElementAttributes = {
+export type VideoElementAttributes<T = VideoElementSize> = {
     playing: boolean;
     currentTime: number;
     totalTime: number;
     bufferedTime: number;
     ended: boolean;
     error: number | null;
-    videoSize: VideoSize;
+    videoSize: T;
     networkState: number;
     readyState: number;
 }
@@ -80,6 +80,9 @@ export type VideoCallBack<T = noArgVoid, U = isArgVoid, K = VideoElementAttribut
 
 /**
  * @description PlayerRef
+ * @param VideoElementAttributes video元素属性
+ * @param PlayerMethods player组件方法
+ * @param video video元素
  */
 export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVideoElement | null };
 
@@ -93,12 +96,12 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
  * @param {HTMLAttributes<HTMLDivElement>} videoContainerEleOpts video容器元素(div)属性
  * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性
  */
-export type PlayerProps = {
+export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
     url?: string;
     controllable?: boolean;
     fullscreen?: boolean;
     recording?: boolean;
     screenshot?: boolean;
-    videoContainerEleOpts?: HTMLAttributes<HTMLDivElement>;
-    videoEleOpts?: VideoHTMLAttributes<HTMLVideoElement>;
+    videoContainerEleOpts?: T;
+    videoEleOpts?: U;
 }
