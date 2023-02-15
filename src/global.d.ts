@@ -8,6 +8,11 @@ declare module '*.scss' {
     export default styles;
 }
 
+declare module '*.png' {
+    const src: string;
+    export default src;
+}
+
 declare module 'mp4box' {
     export default class Mp4box {
         constructor();

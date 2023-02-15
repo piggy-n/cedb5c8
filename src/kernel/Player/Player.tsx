@@ -4,10 +4,11 @@ import c from 'classnames';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
 import { randomString } from '@/utils/methods/randomString';
-import { usePlayerStore } from '@/utils/hooks/usePlayerStore';
+import { usePlayerStore } from '@/utils/hooks/data/usePlayerStore';
 import FlvPlayer from '@/utils/players/flvPlayer';
 import WsPlayer from '@/utils/players/wsPlayer';
-import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/usePlayerContext';
+import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
+import Video from '@/kernel/Player/components/Video';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     {
@@ -41,7 +42,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
                 {...videoContainerEleOpts}
                 className={c(s.container, videoContainerEleOpts?.className)}
             >
-
+                <Video ref={videoEleRef} />
             </div>
         </PlayerContext.Provider>
     );
