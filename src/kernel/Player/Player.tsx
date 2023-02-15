@@ -21,8 +21,8 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const [store, dispatch] = usePlayerStore();
     const videoEleRef = useRef<HTMLVideoElement | null>(null);
     const videoContainerEleRef = useRef<HTMLDivElement | null>(null);
-    const wsPlayerRef = useRef<WsPlayer>(new WsPlayer());
-    const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer());
+    const wsPlayerRef = useRef<WsPlayer>(new WsPlayer({ dispatch }));
+    const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer({ dispatch }));
 
     return (
         <PlayerContext.Provider value={{
