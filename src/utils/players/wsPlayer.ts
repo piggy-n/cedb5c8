@@ -11,6 +11,10 @@ class WsPlayer {
     constructor(options: Options) {
         this.dispatch = options.dispatch;
     }
+
+    test() {
+        this.dispatch({});
+    }
 }
 
 export default WsPlayer;

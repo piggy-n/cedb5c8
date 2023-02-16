@@ -19,9 +19,10 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
 ) => {
     const [uuid] = useState(randomString());
     const [store, dispatch] = usePlayerStore();
+
     const videoEleRef = useRef<HTMLVideoElement | null>(null);
     const videoContainerEleRef = useRef<HTMLDivElement | null>(null);
-
+    console.log(ref);
     return (
         <PlayerContext.Provider value={{
             ...playerContextDefaultValue,

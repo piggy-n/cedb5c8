@@ -1,8 +1,27 @@
-import type { VideoHTMLAttributes, HTMLAttributes } from 'react';
+import type {
+    VideoHTMLAttributes,
+    HTMLAttributes,
+    ForwardRefExoticComponent,
+    RefAttributes
+} from 'react';
 
 export type noArgVoid = () => void;
 
 export type isArgVoid<T> = (arg: T) => void;
+
+/**
+ * @description 设备信息选项，可通过设备id获取视频流url，优先级：deviceOpts < url
+ * @param {string} deviceId - 设备id 必填
+ * @param {string} urlPrefix - 视频流url前缀，开发环境测试用，生产环境下无效 eg: 'ws://192.168.9.148' or 'wss://lzz.enbo12119.com'
+ * @param {string} streamType - 视频流类型, 1:主码流, 2:辅码流 default: 1
+ * @param {string} channelType - 视频通道类型, 1:可见光, 2:热红外 default: 1
+ */
+export type DeviceOpts = {
+    deviceId: string;
+    urlPrefix?: string;
+    streamType?: 1 | 2;
+    channelType?: 1 | 2;
+}
 
 /**
  * @description video元素尺寸
@@ -89,6 +108,7 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
 /**
  * @description Player组件属性
  * @param {string} url 视频源
+ * @param {DeviceOpts} deviceOpts 设备信息选项
  * @param {boolean} isLive 是否直播
  * @param {boolean} controllable 是否显示控制栏
  * @param {boolean} fullscreen 是否有全屏功能
@@ -99,6 +119,7 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
  */
 export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
     url?: string;
+    deviceOpts?: DeviceOpts;
     isLive?: boolean;
     controllable?: boolean;
     fullscreen?: boolean;
@@ -107,3 +128,9 @@ export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttribu
     videoContainerEleOpts?: T;
     videoEleOpts?: U;
 }
+
+type PlayerComponent = ForwardRefExoticComponent<PlayerProps & RefAttributes<PlayerRef>>;
+
+declare const Player: PlayerComponent;
+export default Player;
+export { Player };
