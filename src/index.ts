@@ -1,4 +1,1 @@
-import Icon from '@/components/Icon';
-
-export { Icon };
-export default Icon;
+export { default as Player } from './kernel/Player';
