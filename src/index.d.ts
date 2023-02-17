@@ -18,7 +18,7 @@ export type noArgVoid = () => void;
 export type isArgVoid<T> = (arg: T) => void;
 
 /**
- * @description: 视频类型 default: 'live'
+ * @description: 视频类型
  * live: 实时视频
  * record: 录像
  * stream-record: 流录像
@@ -35,8 +35,8 @@ export type VideoType = 'live' | 'record' | 'stream-record';
 export type DeviceOpts = {
     deviceId: string;
     urlPrefix?: string;
-    streamType?: 1 | 2;
-    channelType?: 1 | 2;
+    streamType?: "1" | "2";
+    channelType?: "1" | "2";
 }
 
 /**

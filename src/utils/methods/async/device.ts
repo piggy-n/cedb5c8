@@ -10,6 +10,10 @@ export type StreamItem = {
     channelCode: string,
 }
 
+/**
+ * 根据设备id获取视频流list
+ * @param deviceOpts
+ */
 export const obtainDeviceStream = async (deviceOpts: DeviceOpts) => {
     const { deviceId, urlPrefix } = deviceOpts;
     const isDevEnv = locationHost.includes('localhost:');
