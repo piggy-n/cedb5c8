@@ -18,7 +18,7 @@ const useVideoUrl = (
 
                 return dispatch({
                     url,
-                    videoType: videoType || (isLive ? 'live' : 'record'),
+                    videoType: videoType ?? (isLive ? 'live' : 'record'),
                 });
             }
 
@@ -37,7 +37,7 @@ const useVideoUrl = (
         [
             url,
             videoType,
-            deviceOpts,
+            deviceOpts?.deviceId,
         ]
     );
 };

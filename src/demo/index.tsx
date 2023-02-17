@@ -15,6 +15,7 @@ const Demo = () => {
                 <div style={{ width: '480px', height: '270px' }}>
                     {/*<Player url={url} />*/}
                     <Player
+                        // url={url}
                         deviceOpts={{
                             deviceId: '1622468092196032514',
                             streamType: '2',
