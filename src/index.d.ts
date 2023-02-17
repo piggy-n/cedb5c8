@@ -130,8 +130,8 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
  * @param {ControlsOpts | false} controlsOpts player控制栏选项 default: { fullscreen: true, recording: false, screenshot: true }, false: 不显示控制栏
  * @param {DeviceOpts} deviceOpts 设备信息选项，可通过设备id获取视频流url，优先级：deviceOpts < url
  * @param {string} url 视频源
- * @param {HTMLAttributes<HTMLDivElement>} videoContainerEleOpts video容器元素(div)属性
- * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性
+ * @param {HTMLAttributes<HTMLDivElement>} videoContainerEleOpts video容器元素(div)属性选项
+ * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性选项
  * @param {VideoType} videoType 视频类型 default: 'live'
  */
 export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {

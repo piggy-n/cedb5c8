@@ -4,10 +4,10 @@ import c from 'classnames';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
 import { randomString } from '@/utils/methods/randomString';
-import { usePlayerStore } from '@/utils/hooks/data/usePlayerStore';
 import FlvPlayer from '@/utils/players/flvPlayer';
 import WsPlayer from '@/utils/players/wsPlayer';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
+import { usePlayerStore } from '@/utils/hooks';
 import Video from '@/kernel/Player/components/Video';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (

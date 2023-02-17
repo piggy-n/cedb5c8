@@ -28,7 +28,7 @@ export interface PlayerStoreState {
 
 export const initialState: PlayerStoreState = {};
 
-export const usePlayerStore = () => {
+const usePlayerStore = () => {
     const reducer = (
         state: PlayerStoreState,
         payload: Partial<PlayerStoreState>
@@ -38,3 +38,5 @@ export const usePlayerStore = () => {
 
     return [playerStore, playerStoreDispatch] as const;
 };
+
+export default usePlayerStore;
