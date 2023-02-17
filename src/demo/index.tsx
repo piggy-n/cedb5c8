@@ -5,21 +5,29 @@ import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
     const [, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
+    const [device, setDevice] = useState<any>({
+        deviceId: '1622468092196032514',
+        streamType: '1',
+    });
 
     return (
         <>
             <button onClick={() => setUrl(randomString())}>
                 设url random
             </button>
+            <button onClick={() => setDevice({
+                deviceId: '1622468092196032514',
+                streamType: Math.random() > 0.5 ? '1' : '2',
+                channelType: Math.random() > 0.5 ? '1' : '2',
+            })}>
+                设deviceOpts
+            </button>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
                     {/*<Player url={url} />*/}
                     <Player
                         // url={url}
-                        deviceOpts={{
-                            deviceId: '1622468092196032514',
-                            streamType: '2',
-                        }} />
+                        deviceOpts={device} />
                 </div>
                 <br />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}

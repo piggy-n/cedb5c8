@@ -11,6 +11,13 @@ const useVideoUrl = (
     videoType?: VideoType,
     deviceOpts?: DeviceOpts,
 ) => {
+    const {
+        deviceId,
+        urlPrefix,
+        streamType = '1',
+        channelType = '1'
+    } = deviceOpts || {};
+
     useAsyncEffect(
         async () => {
             if (url) {
@@ -22,8 +29,7 @@ const useVideoUrl = (
                 });
             }
 
-            if (isObject(deviceOpts) && deviceOpts.deviceId) {
-                const { streamType = '1', channelType = '1' } = deviceOpts;
+            if (isObject(deviceOpts) && deviceId) {
                 const streamList = await obtainDeviceStream(deviceOpts);
                 const streamInfo = streamList.find(item => item.streamTypeCode === streamType && item.channelCode === channelType);
                 const streamUrl = streamInfo?.url ?? '';
@@ -37,7 +43,10 @@ const useVideoUrl = (
         [
             url,
             videoType,
-            deviceOpts?.deviceId,
+            deviceId,
+            urlPrefix,
+            streamType,
+            channelType,
         ]
     );
 };
