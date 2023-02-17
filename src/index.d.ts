@@ -10,6 +10,14 @@ export type noArgVoid = () => void;
 export type isArgVoid<T> = (arg: T) => void;
 
 /**
+ * @description: 视频类型 default: 'live'
+ * live: 实时视频
+ * record: 录像
+ * stream-record: 流录像
+ */
+export type VideoType = 'live' | 'record' | 'stream-record';
+
+/**
  * @description 设备信息选项，可通过设备id获取视频流url，优先级：deviceOpts < url
  * @param {string} deviceId - 设备id 必填
  * @param {string} urlPrefix - 视频流url前缀，开发环境测试用，生产环境下无效 eg: 'ws://192.168.9.148' or 'wss://lzz.enbo12119.com'
@@ -108,19 +116,19 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
 /**
  * @description Player组件属性
  * @param {string} url 视频源
- * @param {DeviceOpts} deviceOpts 设备信息选项
- * @param {boolean} isLive 是否直播
- * @param {boolean} controllable 是否显示控制栏
- * @param {boolean} fullscreen 是否有全屏功能
- * @param {boolean} recording 是否有录制功能
- * @param {boolean} screenshot 是否有截图功能
+ * @param {VideoType} videoType 视频类型 default: 'live'
+ * @param {DeviceOpts} deviceOpts 设备信息选项，可通过设备id获取视频流url，优先级：deviceOpts < url
+ * @param {boolean} controllable 是否显示控制栏 default: true
+ * @param {boolean} fullscreen 是否有全屏功能 default: true
+ * @param {boolean} recording 是否有录制功能 default: false
+ * @param {boolean} screenshot 是否有截图功能 default: true
  * @param {HTMLAttributes<HTMLDivElement>} videoContainerEleOpts video容器元素(div)属性
  * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性
  */
 export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
     url?: string;
+    videoType?: VideoType;
     deviceOpts?: DeviceOpts;
-    isLive?: boolean;
     controllable?: boolean;
     fullscreen?: boolean;
     recording?: boolean;
@@ -129,8 +137,6 @@ export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttribu
     videoEleOpts?: U;
 }
 
-type PlayerComponent = ForwardRefExoticComponent<PlayerProps & RefAttributes<PlayerRef>>;
-
-declare const Player: PlayerComponent;
+declare const Player: ForwardRefExoticComponent<PlayerProps & RefAttributes<PlayerRef>>;
 export default Player;
 export { Player };
