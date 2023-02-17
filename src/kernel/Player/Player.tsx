@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import s from './styles/player.scss';
 import c from 'classnames';
 import type { ForwardRefRenderFunction } from 'react';
@@ -7,7 +7,7 @@ import { randomString } from '@/utils/methods/randomString';
 import FlvPlayer from '@/utils/players/flvPlayer';
 import WsPlayer from '@/utils/players/wsPlayer';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { usePlayerStore, useVideoListener } from '@/utils/hooks';
+import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hooks';
 import Video from '@/kernel/Player/components/Video';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
@@ -24,6 +24,16 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const videoContainerEleRef = useRef<HTMLDivElement | null>(null);
 
     const videoEleAttributes = useVideoListener(videoEleRef.current);
+    const playerMethods = usePlayerMethods();
+
+    useImperativeHandle(
+        ref,
+        () => ({
+            video: videoEleRef.current,
+            ...videoEleAttributes,
+            ...playerMethods,
+        }),
+    );
 
     return (
         <PlayerContext.Provider value={{
