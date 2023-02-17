@@ -1,14 +1,13 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import s from './styles/player.scss';
+import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hooks';
+import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
 import c from 'classnames';
+import s from './styles/player.scss';
+import Video from '@/kernel/Player/components/Video';
+import { randomString } from '@/utils/methods/randomString';
+import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
-import { randomString } from '@/utils/methods/randomString';
-import FlvPlayer from '@/utils/players/flvPlayer';
-import WsPlayer from '@/utils/players/wsPlayer';
-import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hooks';
-import Video from '@/kernel/Player/components/Video';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     {
