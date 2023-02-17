@@ -8,8 +8,20 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     _,
     videoEleRef
 ) => {
-    const { url, videoEleOpts, videoType, deviceOpts } = useContext(PlayerContext);
-    useVideoUrl(url, videoType, deviceOpts).then(r => console.log(r));
+    const {
+        url,
+        videoEleOpts,
+        videoType,
+        deviceOpts,
+        playerStoreDispatch,
+    } = useContext(PlayerContext);
+
+    useVideoUrl(
+        playerStoreDispatch,
+        url,
+        videoType,
+        deviceOpts
+    );
 
     return (
         url
