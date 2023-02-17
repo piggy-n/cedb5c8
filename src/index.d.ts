@@ -32,6 +32,18 @@ export type DeviceOpts = {
 }
 
 /**
+ * @description: player控制栏选项
+ * @param {boolean} fullscreen 是否有全屏功能 default: true
+ * @param {boolean} recording 是否有录制功能 default: false
+ * @param {boolean} screenshot 是否有截图功能 default: true
+ */
+export type ControlsOpts = {
+    fullscreen?: boolean;
+    recording?: boolean;
+    screenshot?: boolean;
+}
+
+/**
  * @description video元素尺寸
  * @interface VideoElementSize
  * @param {number} videoWidth 视频宽度
@@ -115,26 +127,20 @@ export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVi
 
 /**
  * @description Player组件属性
- * @param {string} url 视频源
- * @param {VideoType} videoType 视频类型 default: 'live'
+ * @param {ControlsOpts | false} controlsOpts player控制栏选项 default: { fullscreen: true, recording: false, screenshot: true }, false: 不显示控制栏
  * @param {DeviceOpts} deviceOpts 设备信息选项，可通过设备id获取视频流url，优先级：deviceOpts < url
- * @param {boolean} controllable 是否显示控制栏 default: true
- * @param {boolean} fullscreen 是否有全屏功能 default: true
- * @param {boolean} recording 是否有录制功能 default: false
- * @param {boolean} screenshot 是否有截图功能 default: true
+ * @param {string} url 视频源
  * @param {HTMLAttributes<HTMLDivElement>} videoContainerEleOpts video容器元素(div)属性
  * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性
+ * @param {VideoType} videoType 视频类型 default: 'live'
  */
 export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
-    url?: string;
-    videoType?: VideoType;
+    controlsOpts?: ControlsOpts | false;
     deviceOpts?: DeviceOpts;
-    controllable?: boolean;
-    fullscreen?: boolean;
-    recording?: boolean;
-    screenshot?: boolean;
+    url?: string;
     videoContainerEleOpts?: T;
     videoEleOpts?: U;
+    videoType?: VideoType;
 }
 
 declare const Player: ForwardRefExoticComponent<PlayerProps & RefAttributes<PlayerRef>>;

@@ -22,9 +22,11 @@ export const playerContextDefaultValue: Partial<PlayerContextType> = {
     playerStore: initialState,
     videoEle: null,
     videoContainerEle: null,
-    controllable: true,
-    fullscreen: true,
-    screenshot: true,
+    controlsOpts: {
+        fullscreen: true,
+        recording: false,
+        screenshot: true,
+    },
 };
 
 export const PlayerContext = createContext<PlayerContextType>(<PlayerContextType>playerContextDefaultValue);
