@@ -5,6 +5,14 @@ import type {
     RefAttributes
 } from 'react';
 
+export type Response = {
+    msg: string;
+    code: number;
+    success: boolean;
+    data: unknown;
+    list: unknown;
+}
+
 export type noArgVoid = () => void;
 
 export type isArgVoid<T> = (arg: T) => void;

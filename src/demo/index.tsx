@@ -16,7 +16,7 @@ const Demo = () => {
                     <Player url={url} />
                 </div>
                 <br />
-                <Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />
+                {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
         </>
     );
