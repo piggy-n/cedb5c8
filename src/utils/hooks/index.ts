@@ -3,6 +3,7 @@ import useWindowClient from '@/utils/hooks/common/useWindowClient';
 import usePlayerStore from '@/utils/hooks/data/usePlayerStore';
 import useVideoListener from '@/utils/hooks/video/useVideoListener';
 import useVideoUrl from '@/utils/hooks/video/useVideoUrl';
+import useVideoPlayer from '@/utils/hooks/video/useVideoPlayer';
 import usePlayerMethods from '@/utils/hooks/player/usePlayerMethods';
 
 export {
@@ -11,5 +12,6 @@ export {
     usePlayerStore,
     useVideoListener,
     useVideoUrl,
+    useVideoPlayer,
     usePlayerMethods,
 };
