@@ -28,16 +28,14 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     );
 
     return (
-        storeUrl
-            ? <video
-                ref={videoEleRef}
-                muted
-                autoPlay
-                poster={defaultPoster}
-                crossOrigin={'anonymous'}
-                {...videoEleOpts}
-            />
-            : null
+        <video
+            ref={videoEleRef}
+            muted
+            autoPlay
+            poster={storeUrl ? defaultPoster : undefined}
+            crossOrigin={'anonymous'}
+            {...videoEleOpts}
+        />
     );
 };
 
