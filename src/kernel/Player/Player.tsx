@@ -4,7 +4,7 @@ import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/use
 import c from 'classnames';
 import s from './styles/player.scss';
 import Video from '@/kernel/Player/components/Video';
-import { randomString } from '@/utils/methods/randomString';
+import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';

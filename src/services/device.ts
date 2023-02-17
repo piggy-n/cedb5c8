@@ -1,5 +1,5 @@
 import type { Response } from '@/index.d';
-import request from '@/utils/methods/request';
+import request from '@/utils/methods/common/request';
 import { prefix } from '@/services/config';
 
 /**
