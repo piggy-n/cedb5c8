@@ -3,8 +3,7 @@ import { initialState } from '@/utils/hooks/data/usePlayerStore';
 import type WsPlayer from '@/utils/players/wsPlayer';
 import type FlvPlayer from '@/utils/players/flvPlayer';
 import type { Dispatch } from 'react';
-import type { PlayerProps } from '@/index.d';
-// import type { UseVideo } from '@/utils/hooks/useVideo';
+import type { PlayerProps, VideoEleAttributes } from '@/index.d';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 
 export interface PlayerContextType extends PlayerProps {
@@ -13,8 +12,8 @@ export interface PlayerContextType extends PlayerProps {
     playerStoreDispatch: Dispatch<PlayerStoreState>;
     wsPlayer: WsPlayer;
     flvPlayer: FlvPlayer;
-    // videoProperties: UseVideo;
     videoEle: HTMLVideoElement | null;
+    videoEleAttributes: VideoEleAttributes;
     videoContainerEle: HTMLDivElement | null;
 }
 

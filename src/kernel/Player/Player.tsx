@@ -7,7 +7,7 @@ import { randomString } from '@/utils/methods/randomString';
 import FlvPlayer from '@/utils/players/flvPlayer';
 import WsPlayer from '@/utils/players/wsPlayer';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { usePlayerStore } from '@/utils/hooks';
+import { usePlayerStore, useVideoListener } from '@/utils/hooks';
 import Video from '@/kernel/Player/components/Video';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
@@ -22,7 +22,9 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
 
     const videoEleRef = useRef<HTMLVideoElement | null>(null);
     const videoContainerEleRef = useRef<HTMLDivElement | null>(null);
-    console.log(ref);
+
+    const videoEleAttributes = useVideoListener(videoEleRef.current);
+
     return (
         <PlayerContext.Provider value={{
             ...playerContextDefaultValue,
@@ -30,6 +32,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
             playerStore: store,
             playerStoreDispatch: dispatch,
             videoEle: videoEleRef.current,
+            videoEleAttributes,
             videoContainerEle: videoContainerEleRef.current,
             wsPlayer: new WsPlayer({ dispatch }),
             flvPlayer: new FlvPlayer({ dispatch }),

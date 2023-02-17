@@ -56,7 +56,7 @@ export type VideoElementSize = {
 
 /**
  * @description video元素属性
- * @interface VideoElementAttributes
+ * @interface VideoEleAttributes
  * @param {boolean} playing 是否播放
  * @param {number} currentTime 当前时刻
  * @param {number} totalTime 总时长
@@ -67,7 +67,7 @@ export type VideoElementSize = {
  * @param {number} networkState 网络状态
  * @param {number} readyState 就绪状态
  */
-export type VideoElementAttributes<T = VideoElementSize> = {
+export type VideoEleAttributes<T = VideoElementSize> = {
     playing: boolean;
     currentTime: number;
     totalTime: number;
