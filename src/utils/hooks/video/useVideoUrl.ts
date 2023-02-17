@@ -16,17 +16,17 @@ const useVideoUrl = (
             if (url) {
                 const isLive = /^ws:\/\/|^wss:\/\//.test(url) && /live.mp4$/.test(url);
 
-                dispatch({
+                return dispatch({
                     url,
                     videoType: videoType || (isLive ? 'live' : 'record'),
                 });
             }
 
-            if (isObject(deviceOpts) && deviceOpts?.deviceId) {
+            if (isObject(deviceOpts) && deviceOpts.deviceId) {
                 const { streamType = '1', channelType = '1' } = deviceOpts;
                 const streamList = await obtainDeviceStream(deviceOpts);
                 const streamInfo = streamList.find(item => item.streamTypeCode === streamType && item.channelCode === channelType);
-                const streamUrl = streamInfo?.url || '';
+                const streamUrl = streamInfo?.url ?? '';
 
                 dispatch({
                     url: streamUrl,

@@ -1,30 +1,34 @@
 import { forwardRef, useContext } from 'react';
+import { useVideoUrl } from '@/utils/hooks';
 import defaultPoster from '@/assets/images/snap.png';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import type { ForwardRefRenderFunction } from 'react';
-import useVideoUrl from '@/utils/hooks/video/useVideoUrl';
 
 const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     _,
     videoEleRef
 ) => {
     const {
-        url,
-        videoEleOpts,
-        videoType,
         deviceOpts,
+        videoEleOpts,
+        url: propsUrl, // url from props
+        videoType: propsVideoType, // videoType from props
+        playerStore: {
+            url: storeUrl, // url from store
+            // videoType: storeVideoType, // videoType from store
+        },
         playerStoreDispatch,
     } = useContext(PlayerContext);
 
     useVideoUrl(
         playerStoreDispatch,
-        url,
-        videoType,
+        propsUrl,
+        propsVideoType,
         deviceOpts
     );
 
     return (
-        url
+        storeUrl
             ? <video
                 ref={videoEleRef}
                 muted
