@@ -1,19 +1,19 @@
-import { forwardRef, useContext, useEffect } from 'react';
+import { forwardRef, useContext } from 'react';
 import defaultPoster from '@/assets/images/snap.png';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import type { ForwardRefRenderFunction } from 'react';
-import { obtainDeviceStream } from '@/services/device';
+import { obtainDeviceStream } from '@/utils/methods/async/device';
+import { useAsyncEffect } from 'ahooks';
 
 const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     _,
     videoEleRef
 ) => {
     const { url, videoEleOpts } = useContext(PlayerContext);
-
-    useEffect(() => {
-        obtainDeviceStream({ id: '1622468092196032514' }).then(res => {
-            console.log(res);
-        });
+    // 1622468092196032514
+    useAsyncEffect(async () => {
+        const aa = await obtainDeviceStream({ deviceId: '1622468092196032514',urlPrefix:'wss://lzz' });
+        console.log(aa);
     }, []);
 
     return (
