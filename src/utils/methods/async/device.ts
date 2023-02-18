@@ -26,7 +26,7 @@ export const obtainDeviceStream = async (deviceOpts: DeviceOpts) => {
             streamList.forEach((item: StreamItem) => {
                 if (item.url) {
                     item.url = isDevEnv
-                        ? `${urlPrefix ? urlPrefix : devLocationPrefix}${item.url}${token}`
+                        ? `${urlPrefix ?? devLocationPrefix}${item.url}${token}`
                         : `${wsPrefix}${locationHost}${item.url}${token}`;
                 }
             });
