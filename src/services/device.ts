@@ -6,7 +6,7 @@ import { requestPrefix } from '@/services/config';
  * 获取设备流
  * @param id
  */
-export const getDeviceStream: (params: {
+export const getDeviceStreamList: (params: {
     id: string;
 }) => Promise<Response | undefined> = (
     {

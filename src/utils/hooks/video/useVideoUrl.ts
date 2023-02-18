@@ -1,6 +1,6 @@
 import { useAsyncEffect } from 'ahooks';
 import { isObject } from 'ahooks/es/utils';
-import { obtainDeviceStream } from '@/utils/methods/async/device';
+import { obtainDeviceStreamList } from '@/utils/methods/async/device';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 import type { Dispatch } from 'react';
 import type { DeviceOpts, VideoType } from '@/index.d';
@@ -30,7 +30,7 @@ const useVideoUrl = (
             }
 
             if (isObject(deviceOpts) && deviceId) {
-                const streamList = await obtainDeviceStream(deviceOpts);
+                const streamList = await obtainDeviceStreamList(deviceOpts);
                 const streamInfo = streamList.find(item => item.streamTypeCode === streamType && item.channelCode === channelType);
                 const streamUrl = streamInfo?.url ?? '';
 

@@ -1,4 +1,4 @@
-import { getDeviceStream } from '@/services/device';
+import { getDeviceStreamList } from '@/services/device';
 import { devLocationPrefix, locationHost, token, wsPrefix } from '@/services/config';
 import type { DeviceOpts } from '@/index.d';
 
@@ -14,11 +14,11 @@ export type StreamItem = {
  * 根据设备id获取视频流list
  * @param deviceOpts
  */
-export const obtainDeviceStream = async (deviceOpts: DeviceOpts) => {
+export const obtainDeviceStreamList = async (deviceOpts: DeviceOpts) => {
     const { deviceId, urlPrefix } = deviceOpts;
     const isDevEnv = locationHost.includes('localhost:');
 
-    return await getDeviceStream({ id: deviceId })
+    return await getDeviceStreamList({ id: deviceId })
         .then(res => {
             if (!res?.success) return [];
 
