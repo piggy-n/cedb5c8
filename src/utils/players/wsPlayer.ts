@@ -15,9 +15,10 @@ class WsPlayer {
         this.dispatch = options.dispatch;
     }
 
-    test() {
-        console.log(this.uuid);
-        this.dispatch({});
+    public init(ele: HTMLVideoElement) {
+    }
+
+    public destroy() {
     }
 }
 

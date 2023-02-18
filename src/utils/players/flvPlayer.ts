@@ -49,21 +49,26 @@ class flvPlayer {
     }
 
     public start(url: string) {
-        if (flvjs.isSupported() && this.ele) {
+        if (
+            flvjs.isSupported() &&
+            this.ele &&
+            this.errorHandler &&
+            this.successHandler
+        ) {
             this.player = flvjs.createPlayer(
                 {
+                    url,
                     type: 'mp4',
                     isLive: false,
                     hasVideo: true,
                     hasAudio: false,
-                    url,
                 },
             );
 
             this.player.attachMediaElement(this.ele);
             this.player.load();
-            this.player.on(flvjs.Events.ERROR, this.errorHandler!);
-            this.ele.addEventListener('canplay', this.successHandler!);
+            this.player.on(flvjs.Events.ERROR, this.errorHandler);
+            this.ele.addEventListener('canplay', this.successHandler);
         }
     }
 
