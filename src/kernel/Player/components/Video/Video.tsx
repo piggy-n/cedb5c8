@@ -6,7 +6,7 @@ import type { ForwardRefRenderFunction } from 'react';
 
 const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     _,
-    videoEleRef
+    ref
 ) => {
     const {
         deviceOpts,
@@ -29,7 +29,7 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
 
     return (
         <video
-            ref={videoEleRef}
+            ref={ref}
             muted
             autoPlay
             poster={storeUrl ? defaultPoster : undefined}

@@ -87,8 +87,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
 
     useEffect(
         () => {
-            if (!videoEle) return;
-            console.log('useVideoListener: videoEle', videoEle);
+            if (!videoEle) return forceUpdate();
+
             videoEle.addEventListener('canplay', canPlayHandler);
             videoEle.addEventListener('progress', progressHandler);
             videoEle.addEventListener('play', playOrPauseHandler);
