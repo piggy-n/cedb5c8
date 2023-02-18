@@ -7,6 +7,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = merge(common, {
     mode: "production",
+    devtool: "",
     entry: {
         index: "./src/index",
     },
