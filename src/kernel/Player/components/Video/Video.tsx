@@ -1,5 +1,5 @@
 import { forwardRef, useContext } from 'react';
-import { useVideoUrl } from '@/utils/hooks';
+import { useVideoPlayer, useVideoUrl } from '@/utils/hooks';
 import defaultPoster from '@/assets/images/snap.png';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import type { ForwardRefRenderFunction } from 'react';
@@ -9,15 +9,18 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     ref
 ) => {
     const {
+        videoEle,
         deviceOpts,
         videoEleOpts,
+        wsPlayer,
+        flvPlayer,
+        playerStoreDispatch,
         url: propsUrl, // url from props
         videoType: propsVideoType, // videoType from props
         playerStore: {
-            url: storeUrl, // url from store
-            // videoType: storeVideoType, // videoType from store
+            url: storeUrl = '', // url from store
+            videoType: storeVideoType = 'live', // videoType from store
         },
-        playerStoreDispatch,
     } = useContext(PlayerContext);
 
     useVideoUrl(
@@ -25,6 +28,15 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
         propsUrl,
         propsVideoType,
         deviceOpts
+    );
+
+    useVideoPlayer(
+        videoEle,
+        storeUrl,
+        storeVideoType,
+        playerStoreDispatch,
+        wsPlayer,
+        flvPlayer
     );
 
     return (
