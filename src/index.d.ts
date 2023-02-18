@@ -66,6 +66,7 @@ export type VideoElementSize = {
  * @description video元素属性
  * @interface VideoEleAttributes
  * @param {boolean} playing 是否播放
+ * @param {boolean} buffering 是否缓冲
  * @param {number} currentTime 当前时刻
  * @param {number} totalTime 总时长
  * @param {number} bufferedTime 缓存时长
@@ -77,6 +78,7 @@ export type VideoElementSize = {
  */
 export type VideoEleAttributes<T = VideoElementSize> = {
     playing: boolean;
+    buffering: boolean;
     currentTime: number;
     totalTime: number;
     bufferedTime: number;

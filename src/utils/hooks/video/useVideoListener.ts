@@ -1,7 +1,7 @@
-import type { VideoEleAttributes } from '@/index.d';
 import { useLatest } from 'ahooks';
 import { useMandatoryUpdate } from '@/utils/hooks';
 import { useEffect, useMemo, useRef } from 'react';
+import type { VideoEleAttributes } from '@/index.d';
 
 const useVideoListener = (ele: HTMLVideoElement | null) => {
     const forceUpdate = useMandatoryUpdate();
@@ -11,6 +11,7 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
     const videoListenerIntervalRef = useRef<NodeJS.Timer | null>(null);
     const videoEleAttributesRef = useRef<VideoEleAttributes>({
         playing: false,
+        buffering: false,
         currentTime: 0,
         totalTime: 0,
         bufferedTime: 0,
@@ -27,16 +28,6 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
     const setVideoEleAttributesHandler = <T extends Partial<VideoEleAttributes>>(val: T) => {
         videoEleAttributesRef.current = { ...videoEleAttributesRef.current, ...val };
     };
-
-    // const changePlayStatusHandler = () => {
-    //     if (!videoEle) return;
-    //
-    //     if (videoEleAttributesRef.current.playing) {
-    //         videoEle.pause();
-    //     } else {
-    //         videoEle.play();
-    //     }
-    // };
 
     const canPlayHandler = () => {
         if (!videoEle) return;
@@ -82,10 +73,22 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
         });
     };
 
+    const waitingHandler = () => {
+        setVideoEleAttributesHandler({
+            buffering: true
+        });
+    };
+
+    const playingHandler = () => {
+        setVideoEleAttributesHandler({
+            buffering: false
+        });
+    };
+
     useEffect(
         () => {
             if (!videoEle) return;
-
+            console.log('useVideoListener: videoEle', videoEle);
             videoEle.addEventListener('canplay', canPlayHandler);
             videoEle.addEventListener('progress', progressHandler);
             videoEle.addEventListener('play', playOrPauseHandler);
@@ -93,6 +96,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
             videoEle.addEventListener('timeupdate', playOrPauseHandler);
             videoEle.addEventListener('ended', endedHandler);
             videoEle.addEventListener('error', errorHandler);
+            videoEle.addEventListener('waiting', waitingHandler);
+            videoEle.addEventListener('playing', playingHandler);
 
             videoListenerIntervalRef.current && clearInterval(videoListenerIntervalRef.current);
             videoListenerIntervalRef.current = setInterval(
@@ -123,6 +128,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
                 videoEle.removeEventListener('timeupdate', playOrPauseHandler);
                 videoEle.removeEventListener('ended', endedHandler);
                 videoEle.removeEventListener('error', errorHandler);
+                videoEle.removeEventListener('waiting', waitingHandler);
+                videoEle.removeEventListener('playing', playingHandler);
                 videoListenerIntervalRef.current && clearInterval(videoListenerIntervalRef.current);
             };
         },
