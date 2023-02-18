@@ -28,9 +28,9 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     useImperativeHandle(
         ref,
         () => ({
-            video: videoEleRef.current,
-            ...videoEleAttributes,
             ...playerMethods,
+            attributes: videoEleAttributes,
+            video: videoEleRef.current,
         }),
     );
 

@@ -35,8 +35,8 @@ export type VideoType = 'live' | 'record' | 'stream-record';
 export type DeviceOpts = {
     deviceId: string;
     urlPrefix?: string;
-    streamType?: "1" | "2";
-    channelType?: "1" | "2";
+    streamType?: '1' | '2';
+    channelType?: '1' | '2';
 }
 
 /**
@@ -133,7 +133,9 @@ export type VideoCallBack<T = noArgVoid, U = isArgVoid, K = VideoElementAttribut
  * @param PlayerMethods player组件方法
  * @param video video元素
  */
-export type PlayerRef = VideoElementAttributes & PlayerMethods & { video: HTMLVideoElement | null };
+export type PlayerRef = PlayerMethods
+    & { attributes: VideoElementAttributes }
+    & { video: HTMLVideoElement | null };
 
 /**
  * @description Player组件属性
