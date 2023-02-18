@@ -15,9 +15,21 @@ const useVideoPlayer = (
     useEffect(
         () => {
             if (!ele) return;
+            flvPlayer.init(ele);
+
+            return () => {
+                flvPlayer.destroy();
+            };
+        },
+        [ele]
+    );
+
+    useEffect(
+        () => {
+            flvPlayer.stop();
+            flvPlayer.start(url);
         },
         [
-            ele,
             url,
             videoType,
         ]

@@ -21,6 +21,8 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
 
     const videoEleRef = useRef<HTMLVideoElement | null>(null);
     const videoContainerEleRef = useRef<HTMLDivElement | null>(null);
+    const wsPlayerRef = useRef<WsPlayer>(new WsPlayer({ uuid, dispatch }));
+    const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer({ uuid, dispatch }));
 
     const videoEleAttributes = useVideoListener(videoEleRef.current);
     const playerMethods = usePlayerMethods();
@@ -43,8 +45,8 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
             videoEleAttributes,
             videoEle: videoEleRef.current,
             videoContainerEle: videoContainerEleRef.current,
-            wsPlayer: new WsPlayer({ dispatch }),
-            flvPlayer: new FlvPlayer({ dispatch }),
+            wsPlayer: wsPlayerRef.current,
+            flvPlayer: flvPlayerRef.current,
             ...rest,
         }}>
             <div

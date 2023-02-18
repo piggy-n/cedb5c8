@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
-    const [, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
+    const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
     const [device, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',
@@ -12,7 +12,9 @@ const Demo = () => {
 
     return (
         <>
-            <button onClick={() => setUrl(randomString())}>
+            <button onClick={() => setUrl(
+                Math.random() > 0.5 ? 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4' : 'https://www.w3schools.com/html/mov_bbb.mp4',
+            )}>
                 设url random
             </button>
             <button onClick={() => setDevice({
@@ -24,10 +26,10 @@ const Demo = () => {
             </button>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
-                    {/*<Player url={url} />*/}
-                    <Player
-                        // url={url}
-                        deviceOpts={device} />
+                    <Player url={url} />
+                    {/*<Player*/}
+                    {/*    // url={url}*/}
+                    {/*    deviceOpts={device} />*/}
                 </div>
                 <br />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
