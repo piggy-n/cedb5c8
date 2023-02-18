@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { WsPlayer, FlvPlayer } from '@/utils/players';
+import type { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { Dispatch } from 'react';
 import type { VideoType } from '@/index.d';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';

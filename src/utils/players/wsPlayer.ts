@@ -16,9 +16,12 @@ class WsPlayer {
     }
 
     public init(ele: HTMLVideoElement) {
+        console.log(this.uuid, ele);
+        this.dispatch({});
     }
 
     public destroy() {
+        this.dispatch({});
     }
 }
 

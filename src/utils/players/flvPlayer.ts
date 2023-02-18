@@ -23,13 +23,15 @@ class flvPlayer {
         this.errorTimes = 0;
     }
 
-    private bindFunc(obj: this, func: Function) {
+    private bindFunc(obj: this, func: any) {
         return function () {
             func.apply(obj, arguments as any);
         };
     }
 
     private error() {
+        this.dispatch({});
+        console.log(this.uuid);
     }
 
     private static success() {

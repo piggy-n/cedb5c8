@@ -1,11 +1,11 @@
 import { createRoot } from 'react-dom/client';
 import Player from '@/kernel/Player';
 import { useState } from 'react';
-import { randomString } from '@/utils/methods/common/randomString';
+// import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
     const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
-    const [device, setDevice] = useState<any>({
+    const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',
     });
