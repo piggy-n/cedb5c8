@@ -1,5 +1,5 @@
 import flvjs from 'flv.js';
-import { tip } from '@/components/Tip';
+import { removeTip, tip } from '@/components/Tip';
 import type { Dispatch } from 'react';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 
@@ -127,6 +127,11 @@ class flvPlayer {
     }
 
     public stop() {
+        removeTip({
+            uuid: this.uuid,
+            eleId: 'player'
+        });
+
         if (this.player) {
             this.player.unload();
             this.player.detachMediaElement();
