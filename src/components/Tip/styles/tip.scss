@@ -1,0 +1,35 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include style(14px, #EFF2F6);
+  @include wh(100%, 30px);
+  @include ps(absolute, 0, auto, auto, 50%);
+  @include fr(center);
+  transform: translateX(-50%);
+  animation: show 0.3s ease;
+
+  @keyframes show {
+    from {
+      top: -30px;
+    }
+    to {
+      top: 0;
+    }
+  }
+}
+
+.success {
+  background-color: #009E00C1;
+}
+
+.warn {
+  background-color: #9E841DC1;
+}
+
+.info {
+  background-color: #1E6079C1;
+}
+
+.error {
+  background-color: #EB0500C1;
+}
