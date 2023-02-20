@@ -15,7 +15,7 @@ const useVideoPlayer = (
     useEffect(
         () => {
             if (!ele) return;
-            wsPlayer.init(ele);
+            // wsPlayer.init(ele);
             flvPlayer.init(ele);
 
             return () => {

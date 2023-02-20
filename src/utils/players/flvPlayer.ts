@@ -42,11 +42,7 @@ class flvPlayer {
         this.dispatch({});
     }
 
-    private error(errorType: string) {
-        if (errorType === flvjs.ErrorTypes.MEDIA_ERROR) {
-            return this.closeVideo();
-        }
-
+    private error() {
         if (this.errorTimes <= 3) {
             this.errorTimeout && clearTimeout(this.errorTimeout);
             this.errorTimeout = setTimeout(
@@ -63,9 +59,10 @@ class flvPlayer {
                         uuid: this.uuid,
                         type: 'error',
                     });
+
                     this.reload();
                 },
-                5000
+                3500
             );
         }
     }
@@ -98,7 +95,11 @@ class flvPlayer {
     }
 
     public reload() {
-
+        if (this.player) {
+            this.player.unload();
+            this.player.load();
+            this.player.play();
+        }
     }
 
     public start(url: string) {
@@ -120,22 +121,26 @@ class flvPlayer {
 
             this.player.attachMediaElement(this.ele);
             this.player.load();
-            this.player.on(flvjs.Events.ERROR, this.errorHandler);
+            this.ele.addEventListener('error', this.errorHandler);
             this.ele.addEventListener('canplay', this.successHandler);
         }
     }
 
     public stop() {
         if (this.player) {
-            this.player.off(flvjs.Events.ERROR, this.errorHandler!);
             this.player.unload();
             this.player.detachMediaElement();
             this.player.destroy();
             this.player = undefined;
         }
 
-        if (this.ele) {
-            this.ele.removeEventListener('canplay', this.successHandler!);
+        if (
+            this.ele &&
+            this.errorHandler &&
+            this.successHandler
+        ) {
+            this.ele.removeEventListener('error', this.errorHandler);
+            this.ele.removeEventListener('canplay', this.successHandler);
         }
 
         if (this.errorTimes) {
