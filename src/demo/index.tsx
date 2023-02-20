@@ -13,7 +13,9 @@ const Demo = () => {
     return (
         <>
             <button onClick={() => setUrl(
-                Math.random() > 0.5 ? 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4' : 'https://www.w3schools.com/html/mov_bbb.mp4',
+                Math.random() > 0.5
+                    ? 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4'
+                    : 'https://osstest-enbo.oss-cn-shanghai.aliyuncs.com/alarm/file/2023/02/20/13_105008_105108.mp4?Expires=1834541575&OSSAccessKeyId=LTAI5tDjcMGsJKeq9L3PautV&Signature=fl%2BEsqO%2BsInyoc6fq9AtUCWXF88%3D',
             )}>
                 设url random
             </button>

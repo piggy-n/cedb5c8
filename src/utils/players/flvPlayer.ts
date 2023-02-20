@@ -80,6 +80,10 @@ class flvPlayer {
                 type: 'success',
             });
         }
+
+        this.dispatch({
+            mime: 'H.264',
+        });
     }
 
     public play() {
