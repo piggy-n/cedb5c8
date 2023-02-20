@@ -1,3 +1,3 @@
-import { tip } from './Tip';
+import { tip, createTip, removeTip } from './Tip';
 
-export { tip };
+export { tip, createTip, removeTip };

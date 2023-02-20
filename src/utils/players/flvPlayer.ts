@@ -1,4 +1,5 @@
 import flvjs from 'flv.js';
+import { tip } from '@/components/Tip';
 import type { Dispatch } from 'react';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 
@@ -29,13 +30,59 @@ class flvPlayer {
         };
     }
 
-    private error() {
+    private closeVideo() {
+        this.stop();
+        tip({
+            msg: '视频加载失败',
+            eleId: 'player',
+            uuid: this.uuid,
+            type: 'error',
+        });
+
         this.dispatch({});
-        console.log(this.uuid);
     }
 
-    private static success() {
-        console.log('success');
+    private error(errorType: string) {
+        if (errorType === flvjs.ErrorTypes.MEDIA_ERROR) {
+            return this.closeVideo();
+        }
+
+        if (this.errorTimes <= 3) {
+            this.errorTimeout && clearTimeout(this.errorTimeout);
+            this.errorTimeout = setTimeout(
+                () => {
+                    this.errorTimes++;
+
+                    if (this.errorTimes > 3) {
+                        return this.closeVideo();
+                    }
+
+                    tip({
+                        msg: `视频加载错误，正在进行第 ${this.errorTimes} 次重连`,
+                        eleId: 'player',
+                        uuid: this.uuid,
+                        type: 'error',
+                    });
+                    this.reload();
+                },
+                5000
+            );
+        }
+    }
+
+    private success() {
+        if (this.errorTimes) {
+            this.errorTimes = 0;
+            this.errorTimeout && clearTimeout(this.errorTimeout);
+            this.errorTimeout = undefined;
+
+            tip({
+                msg: '视频重连成功',
+                eleId: 'player',
+                uuid: this.uuid,
+                type: 'success',
+            });
+        }
     }
 
     public play() {
@@ -48,6 +95,10 @@ class flvPlayer {
         if (this.player) {
             this.player.pause();
         }
+    }
+
+    public reload() {
+
     }
 
     public start(url: string) {
@@ -100,7 +151,7 @@ class flvPlayer {
     public init(ele: HTMLVideoElement) {
         this.ele = ele;
         this.errorHandler = this.bindFunc(this, this.error);
-        this.successHandler = this.bindFunc(this, flvPlayer.success);
+        this.successHandler = this.bindFunc(this, this.success);
     }
 
     public destroy() {

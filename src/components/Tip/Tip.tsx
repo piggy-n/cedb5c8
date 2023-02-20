@@ -50,7 +50,7 @@ const Tip: FC<TipProps> = (
     );
 };
 
-const crateTip = (option: TipProps) => {
+export const createTip = (option: TipProps) => {
     const { eleId, uuid } = option;
     const tip = document.querySelector(`#tip-${uuid}`);
 
@@ -67,7 +67,7 @@ const crateTip = (option: TipProps) => {
     }
 };
 
-const removeTip = (option: { uuid: string; eleId: string; }) => {
+export const removeTip = (option: { uuid: string; eleId: string; }) => {
     const { eleId, uuid } = option;
     const tip = document.querySelector(`#tip-${uuid}`);
 
@@ -83,5 +83,5 @@ const removeTip = (option: { uuid: string; eleId: string; }) => {
 export const tip = (option: TipProps) => {
     const { eleId, uuid } = option;
     removeTip({ eleId, uuid });
-    crateTip(option);
+    createTip(option);
 };
