@@ -1,6 +1,6 @@
 import s from './styles/wrapper.scss';
 import { useRafInterval } from 'ahooks';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
@@ -24,6 +24,8 @@ const Wrapper = () => {
             mouseIsOnControls,
         }
     } = useContext(ControlsContext);
+
+    const [inactivityKey, setInactivityKey] = useState(0);
 
     const clickCountRef = useRef(0);
     const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -62,13 +64,7 @@ const Wrapper = () => {
 
             inactivityTimeoutRef.current && clearTimeout(inactivityTimeoutRef.current);
             inactivityTimeoutRef.current = setTimeout(
-                () => {
-                    if (!mouseIsMoving && !mouseIsOnControls) {
-                        controlsStoreDispatch({
-                            showControls: false,
-                        });
-                    }
-                },
+                () => setInactivityKey(inactivityKey + 1),
                 5000,
             );
         }
@@ -80,6 +76,17 @@ const Wrapper = () => {
         {
             immediate: true,
         }
+    );
+
+    useEffect(
+        () => {
+            if (!mouseIsMoving && !mouseIsOnControls) {
+                controlsStoreDispatch({
+                    showControls: false,
+                });
+            }
+        },
+        [inactivityKey]
     );
 
     return (
