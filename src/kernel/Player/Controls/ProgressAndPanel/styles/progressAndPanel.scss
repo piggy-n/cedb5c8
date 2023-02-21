@@ -1,4 +1,8 @@
 @import "src/assets/styles/mixin.scss";
 
 .container {
+  @include ps(absolute, auto, auto, 0, 50%);
+  width: 100%;
+  transform: translateX(-50%);
+  z-index: 3;
 }

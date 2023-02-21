@@ -9,14 +9,14 @@ interface Options {
 }
 
 class flvPlayer {
-    private readonly uuid: string;
-    private readonly dispatch: Dispatch<Partial<PlayerStoreState>>;
     public player?: flvjs.Player;
     private ele?: HTMLVideoElement;
     private errorTimes: number;
     private errorTimeout?: NodeJS.Timeout;
     private errorHandler?: () => void;
     private successHandler?: () => void;
+    private readonly uuid: string;
+    private readonly dispatch: Dispatch<Partial<PlayerStoreState>>;
 
     constructor(options: Options) {
         this.uuid = options.uuid;
