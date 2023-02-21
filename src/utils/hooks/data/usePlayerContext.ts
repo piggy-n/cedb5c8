@@ -9,7 +9,7 @@ import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 export interface PlayerContextType extends PlayerProps {
     uuid: string;
     playerStore: PlayerStoreState;
-    playerStoreDispatch: Dispatch<PlayerStoreState>;
+    playerStoreDispatch: Dispatch<Partial<PlayerStoreState>>;
     wsPlayer: WsPlayer;
     flvPlayer: FlvPlayer;
     videoEle: HTMLVideoElement | null;

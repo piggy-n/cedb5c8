@@ -5,12 +5,12 @@ import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 
 interface Options {
     uuid: string;
-    dispatch: Dispatch<PlayerStoreState>;
+    dispatch: Dispatch<Partial<PlayerStoreState>>;
 }
 
 class flvPlayer {
     private readonly uuid: string;
-    private readonly dispatch: Dispatch<PlayerStoreState>;
+    private readonly dispatch: Dispatch<Partial<PlayerStoreState>>;
     private player?: flvjs.Player;
     private ele?: HTMLVideoElement;
     private errorTimes: number;

@@ -3,12 +3,12 @@ import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
 
 interface Options {
     uuid: string;
-    dispatch: Dispatch<PlayerStoreState>;
+    dispatch: Dispatch<Partial<PlayerStoreState>>;
 }
 
 class WsPlayer {
     private readonly uuid: string;
-    private readonly dispatch: Dispatch<PlayerStoreState>;
+    private readonly dispatch: Dispatch<Partial<PlayerStoreState>>;
 
     constructor(options: Options) {
         this.uuid = options.uuid;

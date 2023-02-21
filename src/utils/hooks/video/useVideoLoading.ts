@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 
 const useVideoLoading = (
     ele: HTMLVideoElement | null,
-    dispatch: Dispatch<PlayerStoreState>,
+    dispatch: Dispatch<Partial<PlayerStoreState>>,
     buffering: boolean,
     playing: boolean,
     networkState: number,

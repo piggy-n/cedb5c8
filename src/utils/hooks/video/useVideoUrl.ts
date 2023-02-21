@@ -6,7 +6,7 @@ import type { Dispatch } from 'react';
 import type { DeviceOpts, VideoType } from '@/index.d';
 
 const useVideoUrl = (
-    dispatch: Dispatch<PlayerStoreState>,
+    dispatch: Dispatch<Partial<PlayerStoreState>>,
     url?: string,
     videoType?: VideoType,
     deviceOpts?: DeviceOpts,

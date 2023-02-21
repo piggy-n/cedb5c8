@@ -8,7 +8,7 @@ const useVideoPlayer = (
     ele: HTMLVideoElement | null,
     url: string,
     videoType: VideoType,
-    dispatch: Dispatch<PlayerStoreState>,
+    dispatch: Dispatch<Partial<PlayerStoreState>>,
     wsPlayer: WsPlayer,
     flvPlayer: FlvPlayer,
 ) => {

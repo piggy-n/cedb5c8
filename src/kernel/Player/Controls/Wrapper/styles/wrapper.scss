@@ -1,0 +1,8 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include wh(100%, calc(100% - 40px));
+  @include ps(absolute, 0, auto, auto, 0);
+  outline: none;
+  z-index: 2;
+}
