@@ -5,6 +5,8 @@ import { useVideoLoading } from '@/utils/hooks';
 
 const Loading = () => {
     const {
+        videoEle,
+        playerStoreDispatch,
         playerStore: {
             loading,
             buffering,
@@ -14,8 +16,6 @@ const Loading = () => {
             networkState,
             readyState,
         },
-        playerStoreDispatch,
-        videoEle,
     } = useContext(PlayerContext);
 
     useVideoLoading(

@@ -5,6 +5,7 @@ import c from 'classnames';
 import s from './styles/player.scss';
 import Video from '@/kernel/Player/components/Video';
 import Loading from '@/kernel/Player/components/Loading';
+import Controls from '@/kernel/Player/components/Controls';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
@@ -58,6 +59,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
             >
                 <Video ref={videoEleRef} />
                 <Loading />
+                <Controls />
             </div>
         </PlayerContext.Provider>
     );
