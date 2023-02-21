@@ -6,6 +6,7 @@ import type { ControlsStoreState } from '@/utils/hooks/data/useControlsStore';
 export interface ControlsContextType {
     controlsStore: ControlsStoreState;
     controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>;
+    changePlayStatusHandler: () => void;
 }
 
 export const controlsContextDefaultValue: Partial<ControlsContextType> = {

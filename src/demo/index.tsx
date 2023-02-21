@@ -4,7 +4,7 @@ import { useState } from 'react';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
-    const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bbb.mp4');
+    const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bb.mp4');
     const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',

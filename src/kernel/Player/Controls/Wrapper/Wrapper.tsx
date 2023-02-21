@@ -3,16 +3,15 @@ import { useContext } from 'react';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 
 const Wrapper = () => {
-    const { controlsStoreDispatch: dispatch } = useContext(ControlsContext);
-
-    const clickHandler = () => {
-        console.log('click');
-    };
+    const {
+        controlsStoreDispatch: dispatch,
+        changePlayStatusHandler
+    } = useContext(ControlsContext);
 
     return (
         <div
             className={s.container}
-            onClick={clickHandler}
+            onClick={changePlayStatusHandler}
             onMouseMove={() => dispatch({
                 mouseIsMoving: true,
                 mouseIsOnControls: false,

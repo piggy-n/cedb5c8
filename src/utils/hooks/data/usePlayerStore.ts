@@ -4,6 +4,7 @@ import type { VideoType } from '@/index.d';
 /**
  * @description PlayerStoreState
  * @param {boolean} buffering - 视频是否在缓冲中
+ * @param {boolean} canplay - 视频是否可以播放
  * @param {boolean} isFullScreen - 播放器是否全屏
  * @param {boolean} isError - 视频是否出错
  * @param {VideoType} videoType - 视频类型
@@ -17,6 +18,7 @@ import type { VideoType } from '@/index.d';
  */
 export interface PlayerStoreState {
     buffering?: boolean;
+    canplay?: boolean;
     isFullscreen?: boolean;
     isError?: boolean;
     videoType?: VideoType;

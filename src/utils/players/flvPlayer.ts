@@ -11,7 +11,7 @@ interface Options {
 class flvPlayer {
     private readonly uuid: string;
     private readonly dispatch: Dispatch<Partial<PlayerStoreState>>;
-    private player?: flvjs.Player;
+    public player?: flvjs.Player;
     private ele?: HTMLVideoElement;
     private errorTimes: number;
     private errorTimeout?: NodeJS.Timeout;
@@ -31,21 +31,26 @@ class flvPlayer {
     }
 
     private closeVideo() {
+        this.dispatch({
+            videoLoadFailedVal: Date.now()
+        });
+
         this.stop();
+
         tip({
             msg: '视频加载失败',
             eleId: 'player',
             uuid: this.uuid,
             type: 'error',
         });
-
-        this.dispatch({
-            loading: false,
-            videoLoadFailedVal: Date.now()
-        });
     }
 
     private error() {
+        this.dispatch({
+            canplay: false,
+            videoLoadErrorVal: Date.now()
+        });
+
         this.errorTimeout && clearTimeout(this.errorTimeout);
         this.errorTimeout = setTimeout(
             () => {
@@ -63,15 +68,16 @@ class flvPlayer {
                 });
 
                 this.reload();
-                this.dispatch({
-                    videoLoadErrorVal: Date.now()
-                });
             },
             3500
         );
     }
 
     private success() {
+        this.dispatch({
+            canplay: true,
+        });
+
         if (this.errorTimes) {
             this.errorTimes = 0;
             this.errorTimeout && clearTimeout(this.errorTimeout);
@@ -93,6 +99,10 @@ class flvPlayer {
     }
 
     public pause() {
+        this.dispatch({
+            loading: false,
+        });
+
         if (this.player) {
             this.player.pause();
         }
@@ -113,6 +123,11 @@ class flvPlayer {
             this.errorHandler &&
             this.successHandler
         ) {
+            this.dispatch({
+                loading: true,
+                canplay: false,
+            });
+
             this.player = flvjs.createPlayer(
                 {
                     url,
@@ -131,6 +146,11 @@ class flvPlayer {
     }
 
     public stop() {
+        this.dispatch({
+            loading: false,
+            canplay: false,
+        });
+
         removeTip({
             uuid: this.uuid,
             eleId: 'player'

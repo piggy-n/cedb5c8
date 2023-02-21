@@ -13,23 +13,35 @@ import ProgressAndPanel from '@/kernel/Player/Controls/ProgressAndPanel';
 
 const Controls = () => {
     const {
+        flvPlayer,
         controlsOpts,
         playerStore: {
-            url,
-            resizing
+            url = '',
+            canplay,
+            resizing,
+            videoType,
         },
         videoEleAttributes: {
             ended,
+            playing,
         }
     } = useContext(PlayerContext);
 
     const [store, dispatch] = useControlsStore();
+
+    const changePlayStatusHandler = () => {
+        if (videoType === 'record') {
+            if (canplay) return playing ? flvPlayer.pause() : flvPlayer.play();
+            return flvPlayer.player ? flvPlayer.stop() : flvPlayer.start(url);
+        }
+    };
 
     return (
         <ControlsContext.Provider value={{
             ...controlsContextDefaultValue,
             controlsStore: store,
             controlsStoreDispatch: dispatch,
+            changePlayStatusHandler,
         }}>
             {
                 !!controlsOpts && !!url
