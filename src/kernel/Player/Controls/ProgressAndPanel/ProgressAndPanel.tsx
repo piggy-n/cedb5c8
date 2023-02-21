@@ -1,11 +1,21 @@
+import c from 'classnames';
 import s from './styles/progressAndPanel.scss';
 import { useContext } from 'react';
+import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
-import Progress from '@/kernel/Player/Controls/ProgressAndPanel/Progress';
-import Panel from '@/kernel/Player/Controls/ProgressAndPanel/Panel';
 
 const ProgressAndPanel = () => {
-    const { controlsStoreDispatch } = useContext(ControlsContext);
+    const {
+        playerStore: {
+            videoType
+        }
+    } = useContext(PlayerContext);
+    const {
+        controlsStoreDispatch,
+        controlsStore: {
+            showControls,
+        }
+    } = useContext(ControlsContext);
 
     return (
         <div
@@ -13,8 +23,16 @@ const ProgressAndPanel = () => {
             onMouseEnter={() => controlsStoreDispatch({ mouseIsOnControls: true })}
             onMouseLeave={() => controlsStoreDispatch({ mouseIsOnControls: false })}
         >
-            <Progress />
-            <Panel />
+            {
+                videoType === 'record'
+                    ? <div className={c(s.progress, { [s.show]: showControls })}>
+
+                    </div>
+                    : null
+            }
+            <div className={c(s.panel, { [s.show]: showControls })}>
+
+            </div>
         </div>
     );
 };

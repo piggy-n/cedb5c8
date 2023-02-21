@@ -14,7 +14,7 @@ const Wrapper = () => {
         },
         videoEleAttributes: {
             ended,
-        },
+        }
     } = useContext(PlayerContext);
     const {
         controlsStoreDispatch,
@@ -22,7 +22,7 @@ const Wrapper = () => {
         controlsStore: {
             mouseIsMoving,
             mouseIsOnControls,
-        },
+        }
     } = useContext(ControlsContext);
 
     const clickCountRef = useRef(0);

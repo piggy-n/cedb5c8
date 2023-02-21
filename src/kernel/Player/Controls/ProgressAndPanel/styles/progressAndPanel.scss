@@ -5,4 +5,37 @@
   width: 100%;
   transform: translateX(-50%);
   z-index: 3;
+
+  .progress {
+    @include ps(relative);
+    transition: all 0.5s;
+    width: 100%;
+    opacity: 0;
+  }
+
+  .panel {
+    @include ps(relative);
+    @include wh(100%, 40px);
+    @include fr(flex-start);
+    transition: all 0.5s;
+    color: #EEEEEE;
+    opacity: 0;
+
+    &:hover {
+      cursor: default;
+    }
+
+    &:after {
+      @include wh(100%, 100%);
+      @include ps(absolute, auto, auto, 0, 50%);
+      content: '';
+      z-index: -1;
+      transform: translateX(-50%);
+      background: linear-gradient(to top, #0000007F, transparent);
+    }
+  }
+
+  .show {
+    opacity: 1;
+  }
 }
