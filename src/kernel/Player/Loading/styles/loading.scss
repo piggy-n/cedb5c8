@@ -10,15 +10,6 @@
   }
 
   svg {
-    animation: loading 1.5s linear infinite;
-  }
-
-  @keyframes loading {
-    from {
-      transform: rotateZ(0);
-    }
-    to {
-      transform: rotateZ(360deg);
-    }
+    animation: loadingAni 1.5s linear infinite;
   }
 }

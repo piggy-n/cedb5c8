@@ -6,16 +6,7 @@
   @include ps(absolute, 0, auto, auto, 50%);
   @include fr(center);
   transform: translateX(-50%);
-  animation: show 0.3s ease;
-
-  @keyframes show {
-    from {
-      top: -30px;
-    }
-    to {
-      top: 0;
-    }
-  }
+  animation: showTipAni 0.3s ease;
 }
 
 .success {

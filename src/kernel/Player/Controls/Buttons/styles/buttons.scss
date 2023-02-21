@@ -1,4 +1,12 @@
 @import "src/assets/styles/mixin.scss";
 
 .container {
+  @include ps(absolute, 50%, auto, auto, 50%);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+
+  svg {
+    animation: scaleAni 0.5s ease;
+  }
 }
