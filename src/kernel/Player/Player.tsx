@@ -3,9 +3,9 @@ import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hook
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
 import c from 'classnames';
 import s from './styles/player.scss';
-import Video from '@/kernel/Player/components/Video';
-import Loading from '@/kernel/Player/components/Loading';
-import Controls from '@/kernel/Player/components/Controls';
+import Video from '@/kernel/Player/Video';
+import Loading from '@/kernel/Player/Loading';
+import Controls from '@/kernel/Player/Controls';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
