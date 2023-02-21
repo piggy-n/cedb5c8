@@ -39,7 +39,10 @@ class flvPlayer {
             type: 'error',
         });
 
-        this.dispatch({});
+        this.dispatch({
+            loading: false,
+            videoLoadFailedVal: Date.now()
+        });
     }
 
     private error() {
@@ -60,6 +63,9 @@ class flvPlayer {
                 });
 
                 this.reload();
+                this.dispatch({
+                    videoLoadErrorVal: Date.now()
+                });
             },
             3500
         );
@@ -78,10 +84,6 @@ class flvPlayer {
                 type: 'success',
             });
         }
-
-        this.dispatch({
-            mime: 'H.264',
-        });
     }
 
     public play() {

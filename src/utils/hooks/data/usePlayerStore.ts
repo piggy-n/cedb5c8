@@ -13,6 +13,8 @@ import type { VideoType } from '@/index.d';
  * @param {boolean} showControls - 是否显示控制栏
  * @param {number} transmissionRate - 视频传输速率
  * @param {string} url - 视频url
+ * @param {number} videoLoadErrorVal - 视频加载错误值，用于触发回调
+ * @param {number} videoLoadFailedVal - 视频加载失败值，用于触发回调
  */
 export interface PlayerStoreState {
     buffering?: boolean;
@@ -25,6 +27,8 @@ export interface PlayerStoreState {
     showControls?: boolean;
     transmissionRate?: number;
     url?: string;
+    videoLoadErrorVal?: number;
+    videoLoadFailedVal?: number;
 }
 
 export const initialState: PlayerStoreState = {};

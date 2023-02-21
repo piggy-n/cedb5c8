@@ -4,6 +4,7 @@ import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/use
 import c from 'classnames';
 import s from './styles/player.scss';
 import Video from '@/kernel/Player/components/Video';
+import Loading from '@/kernel/Player/components/Loading';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
@@ -56,6 +57,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
                 className={c(s.container, videoContainerEleOpts?.className)}
             >
                 <Video ref={videoEleRef} />
+                <Loading />
             </div>
         </PlayerContext.Provider>
     );
