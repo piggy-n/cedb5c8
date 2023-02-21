@@ -10,7 +10,6 @@ import type { VideoType } from '@/index.d';
  * @param {boolean} loading - 视频是否在加载中
  * @param {string} mime - 视频mime类型
  * @param {boolean} resizing - video元素大小是否正在调整
- * @param {boolean} showControls - 是否显示控制栏
  * @param {number} transmissionRate - 视频传输速率
  * @param {string} url - 视频url
  * @param {number} videoLoadErrorVal - 视频加载错误值，用于触发回调
@@ -24,7 +23,6 @@ export interface PlayerStoreState {
     loading?: boolean;
     mime?: string;
     resizing?: boolean;
-    showControls?: boolean;
     transmissionRate?: number;
     url?: string;
     videoLoadErrorVal?: number;
