@@ -30,6 +30,12 @@ const Controls = () => {
     const [store, dispatch] = useControlsStore();
 
     const changePlayStatusHandler = () => {
+        if (ended) {
+            dispatch({
+                showControls: !resizing,
+            });
+        }
+
         if (videoType === 'record') {
             if (canplay) return playing
                 ? flvPlayer.pause()
@@ -39,6 +45,7 @@ const Controls = () => {
                 ? flvPlayer.stop()
                 : flvPlayer.start(url);
         }
+        // todo other video type
     };
 
     return (

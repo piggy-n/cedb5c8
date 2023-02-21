@@ -5,7 +5,7 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 
 const Wrapper = () => {
-    const { videoContainerEle, playerStoreDispatch, } = useContext(PlayerContext);
+    const { videoContainerEle, playerStoreDispatch } = useContext(PlayerContext);
     const { controlsStoreDispatch, changePlayStatusHandler } = useContext(ControlsContext);
 
     const clickCountRef = useRef(0);
