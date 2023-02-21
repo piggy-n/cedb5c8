@@ -1,13 +1,31 @@
 import s from './styles/loading.scss';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { useContext } from 'react';
+import { useVideoLoading } from '@/utils/hooks';
 
 const Loading = () => {
     const {
         playerStore: {
-            loading
-        }
+            loading,
+            buffering,
+        },
+        videoEleAttributes: {
+            playing,
+            networkState,
+            readyState,
+        },
+        playerStoreDispatch,
+        videoEle,
     } = useContext(PlayerContext);
+
+    useVideoLoading(
+        videoEle,
+        playerStoreDispatch,
+        !!buffering,
+        playing,
+        networkState,
+        readyState,
+    );
 
     return (
         loading
