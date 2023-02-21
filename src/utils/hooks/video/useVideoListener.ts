@@ -16,7 +16,6 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
         totalTime: 0,
         bufferedTime: 0,
         ended: false,
-        error: null,
         networkState: 0,
         readyState: 0,
         videoSize: {
@@ -67,12 +66,6 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
         });
     };
 
-    const errorHandler = () => {
-        setVideoEleAttributesHandler({
-            error: Date.now(),
-        });
-    };
-
     const waitingHandler = () => {
         setVideoEleAttributesHandler({
             buffering: true
@@ -95,7 +88,6 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
             videoEle.addEventListener('pause', playOrPauseHandler);
             videoEle.addEventListener('timeupdate', playOrPauseHandler);
             videoEle.addEventListener('ended', endedHandler);
-            videoEle.addEventListener('error', errorHandler);
             videoEle.addEventListener('waiting', waitingHandler);
             videoEle.addEventListener('playing', playingHandler);
 
@@ -127,7 +119,6 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
                 videoEle.removeEventListener('pause', playOrPauseHandler);
                 videoEle.removeEventListener('timeupdate', playOrPauseHandler);
                 videoEle.removeEventListener('ended', endedHandler);
-                videoEle.removeEventListener('error', errorHandler);
                 videoEle.removeEventListener('waiting', waitingHandler);
                 videoEle.removeEventListener('playing', playingHandler);
                 videoListenerIntervalRef.current && clearInterval(videoListenerIntervalRef.current);

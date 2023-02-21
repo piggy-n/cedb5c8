@@ -71,7 +71,6 @@ export type VideoElementSize = {
  * @param {number} totalTime 总时长
  * @param {number} bufferedTime 缓存时长
  * @param {boolean} ended 是否结束
- * @param {number | null} error 错误
  * @param {VideoSize} videoSize 视频尺寸
  * @param {number} networkState 网络状态
  * @param {number} readyState 就绪状态
@@ -83,7 +82,6 @@ export type VideoEleAttributes<T = VideoElementSize> = {
     totalTime: number;
     bufferedTime: number;
     ended: boolean;
-    error: number | null;
     videoSize: T;
     networkState: number;
     readyState: number;

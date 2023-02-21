@@ -43,28 +43,26 @@ class flvPlayer {
     }
 
     private error() {
-        if (this.errorTimes <= 3) {
-            this.errorTimeout && clearTimeout(this.errorTimeout);
-            this.errorTimeout = setTimeout(
-                () => {
-                    this.errorTimes++;
+        this.errorTimeout && clearTimeout(this.errorTimeout);
+        this.errorTimeout = setTimeout(
+            () => {
+                this.errorTimes++;
 
-                    if (this.errorTimes > 3) {
-                        return this.closeVideo();
-                    }
+                if (this.errorTimes > 3) {
+                    return this.closeVideo();
+                }
 
-                    tip({
-                        msg: `视频加载错误，正在进行第 ${this.errorTimes} 次重连`,
-                        eleId: 'player',
-                        uuid: this.uuid,
-                        type: 'error',
-                    });
+                tip({
+                    msg: `视频加载错误，正在进行第 ${this.errorTimes} 次重连`,
+                    eleId: 'player',
+                    uuid: this.uuid,
+                    type: 'error',
+                });
 
-                    this.reload();
-                },
-                3500
-            );
-        }
+                this.reload();
+            },
+            3500
+        );
     }
 
     private success() {
