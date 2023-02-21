@@ -27,12 +27,11 @@ const Loading = () => {
         readyState,
     );
 
+    if (!loading) return null;
     return (
-        loading
-            ? <div className={s.container}>
-                <p>正在加载中...</p>
-            </div>
-            : null
+        <div className={s.container}>
+            <p>正在加载中...</p>
+        </div>
     );
 };
 

@@ -48,6 +48,7 @@ const Controls = () => {
         // todo other video type
     };
 
+    if (!(!!controlsOpts && !!url)) return null;
     return (
         <ControlsContext.Provider value={{
             ...controlsContextDefaultValue,
@@ -55,19 +56,15 @@ const Controls = () => {
             controlsStoreDispatch: dispatch,
             changePlayStatusHandler,
         }}>
-            {
-                !!controlsOpts && !!url
-                    ? <div
-                        className={c(s.container, { [s.mask]: ended })}
-                        onMouseEnter={() => dispatch({ showControls: !resizing && !ended })}
-                        onMouseLeave={() => dispatch({ showControls: false })}
-                    >
-                        <Wrapper />
-                        <Buttons />
-                        <ProgressAndPanel />
-                    </div>
-                    : null
-            }
+            <div
+                className={c(s.container, { [s.mask]: ended })}
+                onMouseEnter={() => dispatch({ showControls: !resizing && !ended })}
+                onMouseLeave={() => dispatch({ showControls: false })}
+            >
+                <Wrapper />
+                <Buttons />
+                <ProgressAndPanel />
+            </div>
         </ControlsContext.Provider>
     );
 };
