@@ -31,8 +31,13 @@ const Controls = () => {
 
     const changePlayStatusHandler = () => {
         if (videoType === 'record') {
-            if (canplay) return playing ? flvPlayer.pause() : flvPlayer.play();
-            return flvPlayer.player ? flvPlayer.stop() : flvPlayer.start(url);
+            if (canplay) return playing
+                ? flvPlayer.pause()
+                : flvPlayer.play();
+
+            return flvPlayer.player
+                ? flvPlayer.stop()
+                : flvPlayer.start(url);
         }
     };
 
