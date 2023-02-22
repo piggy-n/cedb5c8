@@ -38,7 +38,7 @@ const useVideoUrl = () => {
             urlPrefix,
             streamType,
             channelType,
-        ]
+        ],
     );
 };
 

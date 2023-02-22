@@ -10,7 +10,7 @@ const useVideoLoading = () => {
             playing,
             networkState,
             readyState,
-        }
+        },
     } = useContext(PlayerContext);
 
     const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -26,15 +26,15 @@ const useVideoLoading = () => {
             if (inBuffer) {
                 loadingTimeoutRef.current = setTimeout(
                     () => playerStoreDispatch({
-                        loading: true
+                        loading: true,
                     }),
-                    750
+                    750,
                 );
             }
 
             if (inPlay || inReady) {
                 playerStoreDispatch({
-                    loading: false
+                    loading: false,
                 });
             }
         },
@@ -42,8 +42,8 @@ const useVideoLoading = () => {
             playing,
             buffering,
             networkState,
-            readyState
-        ]
+            readyState,
+        ],
     );
 };
 

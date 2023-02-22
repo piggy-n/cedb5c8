@@ -6,8 +6,8 @@ import { useVideoLoading } from '@/utils/hooks';
 const Loading = () => {
     const {
         playerStore: {
-            loading
-        }
+            loading,
+        },
     } = useContext(PlayerContext);
 
     useVideoLoading();

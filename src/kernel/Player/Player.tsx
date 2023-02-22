@@ -16,7 +16,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
         videoContainerEleOpts,
         ...rest
     },
-    ref
+    ref,
 ) => {
     const [uuid] = useState(randomString());
     const [store, dispatch] = usePlayerStore();

@@ -33,7 +33,7 @@ const useA = (
         200,
         {
             immediate: true,
-        }
+        },
     );
 
     useEffect(
@@ -44,7 +44,7 @@ const useA = (
                 });
             }
         },
-        [inactivityKey]
+        [inactivityKey],
     );
 };
 

@@ -9,7 +9,7 @@ const useVideoPlayer = () => {
         playerStore: {
             url = '',
             videoType = 'live',
-        }
+        },
     } = useContext(PlayerContext);
 
     useEffect(
@@ -23,7 +23,7 @@ const useVideoPlayer = () => {
                 flvPlayer.destroy();
             };
         },
-        [videoEle]
+        [videoEle],
     );
 
     useEffect(
@@ -34,7 +34,7 @@ const useVideoPlayer = () => {
         [
             url,
             videoType,
-        ]
+        ],
     );
 };
 

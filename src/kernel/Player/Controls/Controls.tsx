@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import {
     ControlsContext,
-    controlsContextDefaultValue
+    controlsContextDefaultValue,
 } from '@/utils/hooks/data/useControlsContext';
 import { useControlsStore } from '@/utils/hooks';
 import c from 'classnames';
@@ -25,7 +25,7 @@ const Controls = () => {
         videoEleAttributes: {
             ended,
             playing,
-        }
+        },
     } = useContext(PlayerContext);
 
     const [store, dispatch] = useControlsStore();

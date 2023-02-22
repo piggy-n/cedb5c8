@@ -20,7 +20,7 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
         readyState: 0,
         videoSize: {
             videoWidth: 0,
-            videoHeight: 0
+            videoHeight: 0,
         },
     });
 
@@ -35,7 +35,7 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
             totalTime: videoEle.duration,
             videoSize: {
                 videoWidth: videoEle.videoWidth,
-                videoHeight: videoEle.videoHeight
+                videoHeight: videoEle.videoHeight,
             },
         });
     };
@@ -68,13 +68,13 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
 
     const waitingHandler = () => {
         setVideoEleAttributesHandler({
-            buffering: true
+            buffering: true,
         });
     };
 
     const playingHandler = () => {
         setVideoEleAttributesHandler({
-            buffering: false
+            buffering: false,
         });
     };
 
@@ -105,11 +105,11 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
                         readyState: videoEle.readyState,
                         videoSize: {
                             videoWidth: videoEle.videoWidth,
-                            videoHeight: videoEle.videoHeight
+                            videoHeight: videoEle.videoHeight,
                         },
                     });
                 },
-                1
+                1,
             );
 
             return () => {
@@ -124,12 +124,12 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
                 videoListenerIntervalRef.current && clearInterval(videoListenerIntervalRef.current);
             };
         },
-        [videoEle]
+        [videoEle],
     );
 
     return useMemo(
         () => videoEleAttributesRef.current,
-        [videoEleAttributesRef.current]
+        [videoEleAttributesRef.current],
     );
 };
 

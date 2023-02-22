@@ -36,7 +36,7 @@ export const initialState: PlayerStoreState = {};
 const usePlayerStore = () => {
     const reducer = (
         state: PlayerStoreState,
-        payload: Partial<PlayerStoreState>
+        payload: Partial<PlayerStoreState>,
     ) => ({ ...state, ...payload });
 
     const [playerStore, playerStoreDispatch] = useReducer(reducer, initialState);

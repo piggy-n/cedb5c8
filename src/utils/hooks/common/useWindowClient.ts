@@ -17,7 +17,7 @@ const useWindowClient = (): useWindowSizeType => {
                 setWindowDistance(() => ({
                         clientX: e.clientX,
                         clientY: e.clientY,
-                    })
+                    }),
                 );
             }
 
@@ -25,7 +25,7 @@ const useWindowClient = (): useWindowSizeType => {
 
             return () => removeEventListener('mousemove', handle);
         },
-        []
+        [],
     );
 
     return { ...windowDistance };

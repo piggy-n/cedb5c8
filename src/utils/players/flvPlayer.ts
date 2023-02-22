@@ -32,7 +32,7 @@ class flvPlayer {
 
     private closeVideo() {
         this.dispatch({
-            videoLoadFailedVal: Date.now()
+            videoLoadFailedVal: Date.now(),
         });
 
         this.stop();
@@ -48,7 +48,7 @@ class flvPlayer {
     private error() {
         this.dispatch({
             canplay: false,
-            videoLoadErrorVal: Date.now()
+            videoLoadErrorVal: Date.now(),
         });
 
         this.errorTimeout && clearTimeout(this.errorTimeout);
@@ -69,7 +69,7 @@ class flvPlayer {
 
                 this.reload();
             },
-            3500
+            3500,
         );
     }
 
@@ -153,7 +153,7 @@ class flvPlayer {
 
         removeTip({
             uuid: this.uuid,
-            eleId: 'player'
+            eleId: 'player',
         });
 
         if (this.player) {

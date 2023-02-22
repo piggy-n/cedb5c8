@@ -33,7 +33,7 @@ export const initialState: ControlsStoreState = {
 const useControlsStore = () => {
     const reducer = (
         state: ControlsStoreState,
-        payload: Partial<ControlsStoreState>
+        payload: Partial<ControlsStoreState>,
     ) => ({ ...state, ...payload });
 
     const [controlsStore, controlsStoreDispatch] = useReducer(reducer, initialState);

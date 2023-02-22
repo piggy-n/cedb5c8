@@ -30,7 +30,7 @@ const usePlayerMethods = () => {
             setPlayProgress,
             setVideoSrc,
         }),
-        []
+        [],
     );
 };
 
