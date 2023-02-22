@@ -25,11 +25,16 @@ const useVideoUrl = () => {
                 const streamInfo = streamList.find(item => item.streamTypeCode === streamType && item.channelCode === channelType);
                 const streamUrl = streamInfo?.url ?? '';
 
-                playerStoreDispatch({
+                return playerStoreDispatch({
                     url: streamUrl,
                     videoType: videoType === 'stream-record' ? 'stream-record' : 'live',
                 });
             }
+
+            return playerStoreDispatch({
+                url: '',
+                videoType: 'live',
+            });
         },
         [
             url,

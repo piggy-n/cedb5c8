@@ -19,6 +19,9 @@ const Demo = () => {
             )}>
                 设url random
             </button>
+            <button onClick={() => setUrl('')}>
+                设url 空
+            </button>
             <button onClick={() => setDevice({
                 deviceId: '1622468092196032514',
                 streamType: Math.random() > 0.5 ? '1' : '2',

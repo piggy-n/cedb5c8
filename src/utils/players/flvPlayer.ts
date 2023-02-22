@@ -117,6 +117,7 @@ class flvPlayer {
     }
 
     public start(url: string) {
+        if (!url) return this.stop();
         if (
             flvjs.isSupported() &&
             this.ele &&
