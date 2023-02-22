@@ -1,28 +1,31 @@
-import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
-import type { Dispatch } from 'react';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
+import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 
-const useVideoLoading = (
-    ele: HTMLVideoElement | null,
-    dispatch: Dispatch<Partial<PlayerStoreState>>,
-    buffering: boolean,
-    playing: boolean,
-    networkState: number,
-    readyState: number,
-) => {
+const useVideoLoading = () => {
+    const {
+        videoEle,
+        playerStoreDispatch,
+        videoEleAttributes: {
+            buffering,
+            playing,
+            networkState,
+            readyState,
+        }
+    } = useContext(PlayerContext);
+
     const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(
         () => {
             const inBuffer = playing && buffering;
-            const inReady = !ele?.autoplay && readyState === 4;
+            const inReady = !videoEle?.autoplay && readyState === 4;
             const inPlay = playing && [1, 2].includes(networkState) && [3, 4].includes(readyState);
 
             loadingTimeoutRef.current && clearTimeout(loadingTimeoutRef.current);
 
             if (inBuffer) {
                 loadingTimeoutRef.current = setTimeout(
-                    () => dispatch({
+                    () => playerStoreDispatch({
                         loading: true
                     }),
                     750
@@ -30,7 +33,7 @@ const useVideoLoading = (
             }
 
             if (inPlay || inReady) {
-                dispatch({
+                playerStoreDispatch({
                     loading: false
                 });
             }

@@ -5,27 +5,12 @@ import { useVideoLoading } from '@/utils/hooks';
 
 const Loading = () => {
     const {
-        videoEle,
-        playerStoreDispatch,
         playerStore: {
-            loading,
-            buffering,
-        },
-        videoEleAttributes: {
-            playing,
-            networkState,
-            readyState,
-        },
+            loading
+        }
     } = useContext(PlayerContext);
 
-    useVideoLoading(
-        videoEle,
-        playerStoreDispatch,
-        !!buffering,
-        playing,
-        networkState,
-        readyState,
-    );
+    useVideoLoading();
 
     if (!loading) return null;
     return (
