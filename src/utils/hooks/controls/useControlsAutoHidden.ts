@@ -54,6 +54,10 @@ const useControlsAutoHidden = () => {
                     showControls: false,
                 });
             }
+
+            return () => {
+                hiddenTimeoutRef.current && clearTimeout(hiddenTimeoutRef.current);
+            };
         },
         [hiddenKey],
     );

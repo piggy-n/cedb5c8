@@ -24,6 +24,7 @@ const Controls = () => {
     } = useContext(PlayerContext);
 
     const [store, dispatch] = useControlsStore();
+
     const { changePlayStatusHandler } = useControlsMethods(dispatch); // 控制面板的方法
 
     if (!(!!controlsOpts && !!url)) return null;
