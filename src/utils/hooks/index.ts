@@ -6,7 +6,9 @@ import useVideoListener from '@/utils/hooks/video/useVideoListener';
 import useVideoUrl from '@/utils/hooks/video/useVideoUrl';
 import useVideoPlayer from '@/utils/hooks/video/useVideoPlayer';
 import useVideoLoading from '@/utils/hooks/video/useVideoLoading';
-import usePlayerMethods from '@/utils/hooks/player/usePlayerMethods';
+import useControlsAutoHidden from '@/utils/hooks/controls/useControlsAutoHidden';
+import usePlayerMethods from '@/utils/hooks/method/usePlayerMethods';
+import useControlsMethods from '@/utils/hooks/method/useControlsMethods';
 
 export {
     useMandatoryUpdate,
@@ -17,5 +19,7 @@ export {
     useVideoUrl,
     useVideoPlayer,
     useVideoLoading,
+    useControlsAutoHidden,
     usePlayerMethods,
+    useControlsMethods,
 };

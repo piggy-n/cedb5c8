@@ -1,5 +1,6 @@
 import s from './styles/wrapper.scss';
 import { useContext, useRef } from 'react';
+import { useControlsAutoHidden } from '@/utils/hooks';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
@@ -34,6 +35,8 @@ const Wrapper = () => {
             250,
         );
     };
+
+    useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
 
     return (
         <div
