@@ -1,29 +1,29 @@
-import { useEffect } from 'react';
-import type { WsPlayer, FlvPlayer } from '@/utils/players';
-import type { Dispatch } from 'react';
-import type { VideoType } from '@/index.d';
-import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
+import { useContext, useEffect } from 'react';
+import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 
-const useVideoPlayer = (
-    ele: HTMLVideoElement | null,
-    url: string,
-    videoType: VideoType,
-    dispatch: Dispatch<Partial<PlayerStoreState>>,
-    wsPlayer: WsPlayer,
-    flvPlayer: FlvPlayer,
-) => {
+const useVideoPlayer = () => {
+    const {
+        videoEle,
+        wsPlayer,
+        flvPlayer,
+        playerStore: {
+            url = '',
+            videoType = 'live',
+        }
+    } = useContext(PlayerContext);
+
     useEffect(
         () => {
-            if (!ele) return;
+            if (!videoEle) return;
             // wsPlayer.init(ele);
-            flvPlayer.init(ele);
+            flvPlayer.init(videoEle);
 
             return () => {
                 wsPlayer.destroy();
                 flvPlayer.destroy();
             };
         },
-        [ele]
+        [videoEle]
     );
 
     useEffect(

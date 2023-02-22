@@ -1,29 +1,20 @@
 import { useAsyncEffect } from 'ahooks';
 import { isObject } from 'ahooks/es/utils';
 import { obtainDeviceStreamList } from '@/utils/methods/async/device';
-import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
-import type { Dispatch } from 'react';
-import type { DeviceOpts, VideoType } from '@/index.d';
+import { useContext } from 'react';
+import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 
-const useVideoUrl = (
-    dispatch: Dispatch<Partial<PlayerStoreState>>,
-    url?: string,
-    videoType?: VideoType,
-    deviceOpts?: DeviceOpts,
-) => {
-    const {
-        deviceId,
-        urlPrefix,
-        streamType = '1',
-        channelType = '1'
-    } = deviceOpts || {};
+const useVideoUrl = () => {
+    const { url, videoType, playerStoreDispatch, deviceOpts } = useContext(PlayerContext);
+
+    const { deviceId, urlPrefix, streamType = '1', channelType = '1' } = deviceOpts || {};
 
     useAsyncEffect(
         async () => {
             if (url) {
                 const isLive = /^ws:\/\/|^wss:\/\//.test(url) && /live.mp4$/.test(url);
 
-                return dispatch({
+                return playerStoreDispatch({
                     url,
                     videoType: videoType ?? (isLive ? 'live' : 'record'),
                 });
@@ -34,7 +25,7 @@ const useVideoUrl = (
                 const streamInfo = streamList.find(item => item.streamTypeCode === streamType && item.channelCode === channelType);
                 const streamUrl = streamInfo?.url ?? '';
 
-                dispatch({
+                playerStoreDispatch({
                     url: streamUrl,
                     videoType: videoType === 'stream-record' ? 'stream-record' : 'live',
                 });

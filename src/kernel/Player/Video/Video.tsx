@@ -8,43 +8,18 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     _,
     ref
 ) => {
-    const {
-        videoEle,
-        deviceOpts,
-        videoEleOpts,
-        wsPlayer,
-        flvPlayer,
-        playerStoreDispatch,
-        url: propsUrl, // url from props
-        videoType: propsVideoType, // videoType from props
-        playerStore: {
-            url: storeUrl = '', // url from store
-            videoType: storeVideoType = 'live', // videoType from store
-        },
-    } = useContext(PlayerContext);
+    const { videoEleOpts } = useContext(PlayerContext);
 
-    useVideoUrl(
-        playerStoreDispatch,
-        propsUrl,
-        propsVideoType,
-        deviceOpts
-    );
+    useVideoUrl();
 
-    useVideoPlayer(
-        videoEle,
-        storeUrl,
-        storeVideoType,
-        playerStoreDispatch,
-        wsPlayer,
-        flvPlayer
-    );
+    useVideoPlayer();
 
     return (
         <video
             ref={ref}
             muted
             autoPlay
-            poster={storeUrl ? defaultPoster : undefined}
+            poster={defaultPoster}
             crossOrigin={'anonymous'}
             {...videoEleOpts}
         />
