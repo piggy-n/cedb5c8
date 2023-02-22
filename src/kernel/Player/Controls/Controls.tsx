@@ -10,6 +10,7 @@ import s from './styles/controls.scss';
 import Wrapper from '@/kernel/Player/Controls/Wrapper';
 import Buttons from '@/kernel/Player/Controls/Buttons';
 import ProgressAndPanel from '@/kernel/Player/Controls/ProgressAndPanel';
+import useA from '@/utils/hooks/video/useA';
 
 const Controls = () => {
     const {
@@ -47,6 +48,14 @@ const Controls = () => {
         }
         // todo other video type
     };
+
+    useA(
+        ended,
+        !!resizing,
+        store.mouseIsMoving,
+        store.mouseIsOnControls,
+        dispatch,
+    );
 
     if (!(!!controlsOpts && !!url)) return null;
     return (
