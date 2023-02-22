@@ -15,7 +15,7 @@ const Controls = () => {
     const {
         controlsOpts,
         playerStore: {
-            url = '',
+            url,
             resizing,
         },
         videoEleAttributes: {
