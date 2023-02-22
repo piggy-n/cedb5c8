@@ -10,7 +10,7 @@ const Loading = () => {
         },
     } = useContext(PlayerContext);
 
-    useVideoLoading();
+    useVideoLoading(); // 用于监听视频加载状态
 
     if (!loading) return null;
     return (
