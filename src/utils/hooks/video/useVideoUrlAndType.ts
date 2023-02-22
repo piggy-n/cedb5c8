@@ -4,7 +4,7 @@ import { obtainDeviceStreamList } from '@/utils/methods/async/device';
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 
-const useVideoUrl = () => {
+const useVideoUrlAndType = () => {
     const { url, videoType, playerStoreDispatch, deviceOpts } = useContext(PlayerContext);
 
     const { deviceId, urlPrefix, streamType = '1', channelType = '1' } = deviceOpts || {};
@@ -47,4 +47,4 @@ const useVideoUrl = () => {
     );
 };
 
-export default useVideoUrl;
+export default useVideoUrlAndType;
