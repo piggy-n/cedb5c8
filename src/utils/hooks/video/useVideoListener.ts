@@ -8,7 +8,7 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
     const videoEleRef = useLatest(ele);
     const videoEle = videoEleRef.current;
 
-    const videoListenerIntervalRef = useRef<NodeJS.Timer | null>(null);
+    const videoListenerIntervalRef = useRef<NodeJS.Timer>();
     const videoEleAttributesRef = useRef<VideoEleAttributes>({
         playing: false,
         buffering: false,

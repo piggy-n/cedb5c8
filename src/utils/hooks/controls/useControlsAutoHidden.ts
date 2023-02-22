@@ -22,7 +22,7 @@ const useControlsAutoHidden = () => {
 
     const [hiddenKey, setHiddenKey] = useState(0);
 
-    const hiddenTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const hiddenTimeoutRef = useRef<NodeJS.Timeout>();
 
     const controlsVisibleChangeHandler = () => {
         if (mouseIsMoving) {

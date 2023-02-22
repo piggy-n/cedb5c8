@@ -10,7 +10,7 @@ const Wrapper = () => {
     const { controlsStoreDispatch, changePlayStatusHandler } = useContext(ControlsContext);
 
     const clickCountRef = useRef(0);
-    const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const clickTimeoutRef = useRef<NodeJS.Timeout>();
 
     useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
 

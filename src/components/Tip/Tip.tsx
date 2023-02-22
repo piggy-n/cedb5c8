@@ -19,7 +19,7 @@ const Tip: FC<TipProps> = (
         type = 'info',
     },
 ) => {
-    const tipTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const tipTimeoutRef = useRef<NodeJS.Timeout>();
 
     const removeHandler = () => {
         if (document.querySelector(`#tip-${uuid}`)) {

@@ -13,7 +13,7 @@ const useVideoLoading = () => {
         },
     } = useContext(PlayerContext);
 
-    const loadingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const loadingTimeoutRef = useRef<NodeJS.Timeout>();
 
     useEffect(
         () => {
@@ -37,6 +37,10 @@ const useVideoLoading = () => {
                     loading: false,
                 });
             }
+
+            return () => {
+                loadingTimeoutRef.current && clearTimeout(loadingTimeoutRef.current);
+            };
         },
         [
             playing,
