@@ -12,6 +12,8 @@ const Wrapper = () => {
     const clickCountRef = useRef(0);
     const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+    useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
+
     const clickHandler = () => {
         clickCountRef.current += 1;
 
@@ -35,8 +37,6 @@ const Wrapper = () => {
             250,
         );
     };
-
-    useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
 
     return (
         <div
