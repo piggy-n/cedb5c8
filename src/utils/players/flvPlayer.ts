@@ -127,6 +127,8 @@ class flvPlayer {
             this.dispatch({
                 loading: true,
                 canplay: false,
+                videoLoadErrorVal: 0,
+                videoLoadFailedVal: 0,
             });
 
             this.player = flvjs.createPlayer(
