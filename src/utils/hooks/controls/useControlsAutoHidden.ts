@@ -1,5 +1,5 @@
-import { useRafInterval } from 'ahooks';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useLatest, useRafInterval, useUnmount } from 'ahooks';
+import { useContext, useRef } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 
@@ -20,9 +20,9 @@ const useControlsAutoHidden = () => {
         },
     } = useContext(ControlsContext);
 
-    const [hiddenKey, setHiddenKey] = useState(0);
-
     const hiddenTimeoutRef = useRef<NodeJS.Timeout>();
+    const latestMouseIsMovingRef = useLatest(mouseIsMoving);
+    const latestMouseIsOnControlsRef = useLatest(mouseIsOnControls);
 
     const controlsVisibleChangeHandler = () => {
         if (mouseIsMoving) {
@@ -33,7 +33,16 @@ const useControlsAutoHidden = () => {
 
             hiddenTimeoutRef.current && clearTimeout(hiddenTimeoutRef.current);
             hiddenTimeoutRef.current = setTimeout(
-                () => setHiddenKey(hiddenKey + 1),
+                () => {
+                    if (
+                        !latestMouseIsMovingRef.current &&
+                        !latestMouseIsOnControlsRef.current
+                    ) {
+                        controlsStoreDispatch({
+                            showControls: false,
+                        });
+                    }
+                },
                 5000,
             );
         }
@@ -47,20 +56,9 @@ const useControlsAutoHidden = () => {
         },
     );
 
-    useEffect(
-        () => {
-            if (!mouseIsMoving && !mouseIsOnControls) {
-                controlsStoreDispatch({
-                    showControls: false,
-                });
-            }
-
-            return () => {
-                hiddenTimeoutRef.current && clearTimeout(hiddenTimeoutRef.current);
-            };
-        },
-        [hiddenKey],
-    );
+    useUnmount(() => {
+        hiddenTimeoutRef.current && clearTimeout(hiddenTimeoutRef.current);
+    });
 };
 
 export default useControlsAutoHidden;
