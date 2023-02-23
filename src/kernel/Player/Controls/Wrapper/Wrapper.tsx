@@ -3,6 +3,7 @@ import { useContext, useRef } from 'react';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
+import { useControlsAutoHidden } from '@/utils/hooks';
 
 const Wrapper = () => {
     const { videoContainerEle, playerStoreDispatch } = useContext(PlayerContext);
@@ -10,6 +11,8 @@ const Wrapper = () => {
 
     const clickCountRef = useRef(0);
     const clickTimeoutRef = useRef<NodeJS.Timeout>();
+
+    useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
 
     const clickHandler = () => {
         clickCountRef.current += 1;
