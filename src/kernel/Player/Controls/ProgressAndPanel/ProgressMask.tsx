@@ -11,7 +11,7 @@ const ProgressMask = () => {
         mouseMoveHandler,
         mouseLeaveHandler,
         clickHandler,
-    } = useProgressMethods(progressMaskEleRef.current);
+    } = useProgressMethods(progressMaskEleRef.current); // 进度条的方法
 
     return (
         <div
