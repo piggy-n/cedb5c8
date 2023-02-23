@@ -3,18 +3,20 @@ import s from './styles/progressAndPanel.scss';
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
+import ProgressMask from '@/kernel/Player/Controls/ProgressAndPanel/ProgressMask';
+import ProgressWrapper from '@/kernel/Player/Controls/ProgressAndPanel/ProgressWrapper';
 
 const ProgressAndPanel = () => {
     const {
         playerStore: {
-            videoType
-        }
+            videoType,
+        },
     } = useContext(PlayerContext);
     const {
         controlsStoreDispatch,
         controlsStore: {
             showControls,
-        }
+        },
     } = useContext(ControlsContext);
 
     return (
@@ -26,7 +28,8 @@ const ProgressAndPanel = () => {
             {
                 videoType === 'record'
                     ? <div className={c(s.progress, { [s.show]: showControls })}>
-
+                        <ProgressMask />
+                        <ProgressWrapper />
                     </div>
                     : null
             }

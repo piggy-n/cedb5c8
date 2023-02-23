@@ -33,6 +33,10 @@ const PlayButton = () => {
                     100,
                 );
             }
+
+            return () => {
+                visibleTimeoutRef.current && clearTimeout(visibleTimeoutRef.current);
+            };
         },
         [
             playing,
