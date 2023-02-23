@@ -9,7 +9,6 @@ import type { MouseEventHandler } from 'react';
 const ProgressMask = () => {
     const {
         videoEle,
-        flvPlayer,
         playerStoreDispatch,
         playerStore: {
             canplay,
@@ -74,8 +73,6 @@ const ProgressMask = () => {
         draggingIntervalRef.current && clearInterval(draggingIntervalRef.current);
 
         if (currentTime < totalTime && dragging) {
-            flvPlayer.play();
-
             playerStoreDispatch({
                 progressMouseUpVal: Date.now(),
             });

@@ -57,6 +57,7 @@ const ProgressWrapper = () => {
                 const progressWrapperEle = progressWrapperEleRef.current;
                 const progressControlPointEle = progressControlPointEleRef.current;
 
+                hoverStylesIntervalRef.current && clearInterval(hoverStylesIntervalRef.current);
                 hoverStylesIntervalRef.current = setInterval(
                     () => {
                         hoverStylesHandler({
