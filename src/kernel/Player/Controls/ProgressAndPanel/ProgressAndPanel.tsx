@@ -11,6 +11,9 @@ const ProgressAndPanel = () => {
         playerStore: {
             videoType,
         },
+        videoEleAttributes: {
+            ended,
+        },
     } = useContext(PlayerContext);
     const {
         controlsStoreDispatch,
@@ -19,6 +22,7 @@ const ProgressAndPanel = () => {
         },
     } = useContext(ControlsContext);
 
+    if (ended) return null;
     return (
         <div
             className={s.container}

@@ -120,7 +120,17 @@ const useProgressMethods = (ele: HTMLDivElement | null) => {
         () => {
             addEventListener('mouseup', mouseUpHandler);
 
-            return () => removeEventListener('mouseup', mouseUpHandler);
+            return () => {
+                removeEventListener('mouseup', mouseUpHandler);
+                controlsStoreDispatch({
+                    position: 0,
+                    percentage: 0,
+                    suspending: false,
+                    dragging: false,
+                    mouseIsMoving: false,
+                    mouseIsOnControls: false,
+                });
+            };
         },
         [],
     );

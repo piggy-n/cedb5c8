@@ -76,7 +76,11 @@ const useControlsProgressStyles = (
                 hoverStylesIntervalRef.current && clearInterval(hoverStylesIntervalRef.current);
             };
         },
-        [suspending],
+        [
+            suspending,
+            latestProgressWrapperEleRef.current,
+            latestProgressControlPointEleRef.current,
+        ],
     );
 
     return useMemo(
