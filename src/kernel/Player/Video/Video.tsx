@@ -4,7 +4,7 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import defaultPoster from '@/assets/images/snap.png';
 import type { ForwardRefRenderFunction } from 'react';
 
-const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
+const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement> = (
     _,
     ref,
 ) => {
@@ -28,5 +28,5 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement | null> = (
     );
 };
 
-export const Video = forwardRef<HTMLVideoElement | null>(VanillaVideo);
+export const Video = forwardRef<HTMLVideoElement>(VanillaVideo);
 

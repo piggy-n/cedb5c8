@@ -1,3 +1,53 @@
-.container {
+@import "src/assets/styles/mixin.scss";
 
+.container {
+  @include wh(100%, 4px);
+  @include ps(relative);
+  transition: all 0.3s;
+  background: #FFFFFF33;
+  position: relative;
+
+  .buffered {
+    @include wh(0%, 100%);
+    @include ps(absolute, 0, auto, auto, 0);
+    background: #FFFFFF7F;
+    z-index: 1;
+  }
+
+  .played {
+    @include wh(0%, 100%);
+    @include ps(absolute, 0, auto, auto, 0);
+    background: #16AEE0;
+    z-index: 2;
+
+    i {
+      @include wh(12px, 12px);
+      @include ps(absolute, -50%, -5px, auto, auto);
+      background: #16AEE0;
+      border-radius: 50%;
+      margin-top: 1px;
+      transition: all 0.3s;
+    }
+  }
+
+  .pointer {
+    @include ps(absolute, 0, auto, auto, auto);
+
+    i {
+      @include wh(0, 0);
+      @include ps(absolute, -5px, auto, auto, -4px);
+      border-top: 4px solid #16AEE0;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+
+    span {
+      @include ps(absolute, -30px, auto, auto, 50%);
+      @include style(12px, #EFF2F6);
+      transform: translateX(-50%);
+      background-color: #00000099;
+      padding: 1px 4px;
+    }
+  }
 }
