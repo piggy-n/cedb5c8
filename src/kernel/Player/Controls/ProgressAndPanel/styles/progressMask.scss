@@ -1,0 +1,11 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include wh(100%, calc(100% + 6px));
+  @include ps(absolute, -3px, auto, auto, 0);
+  z-index: 3;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

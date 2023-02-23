@@ -15,6 +15,8 @@ import type { VideoType } from '@/index.d';
  * @param {string} url - 视频url
  * @param {number} videoLoadErrorVal - 视频加载错误值，用于触发回调
  * @param {number} videoLoadFailedVal - 视频加载失败值，用于触发回调
+ * @param {number} progressMouseDownVal - 进度条鼠标按下值，用于触发回调
+ * @param {number} progressMouseUpVal - 进度条鼠标抬起值，用于触发回调
  */
 export interface PlayerStoreState {
     buffering?: boolean;
@@ -29,6 +31,8 @@ export interface PlayerStoreState {
     url?: string;
     videoLoadErrorVal?: number;
     videoLoadFailedVal?: number;
+    progressMouseDownVal?: number;
+    progressMouseUpVal?: number;
 }
 
 export const initialState: PlayerStoreState = {};
