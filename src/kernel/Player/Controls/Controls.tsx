@@ -25,7 +25,7 @@ const Controls = () => {
 
     const [store, dispatch] = useControlsStore();
 
-    const { changePlayStatusHandler } = useControlsMethods(dispatch); // 控制面板的方法
+    const controlsMethods = useControlsMethods(dispatch); // 控制面板的方法
 
     if (!(!!controlsOpts && !!url)) return null;
     return (
@@ -33,7 +33,7 @@ const Controls = () => {
             ...controlsContextDefaultValue,
             controlsStore: store,
             controlsStoreDispatch: dispatch,
-            changePlayStatusHandler,
+            ...controlsMethods,
         }}>
             <div
                 className={c(s.container, { [s.mask]: ended })}

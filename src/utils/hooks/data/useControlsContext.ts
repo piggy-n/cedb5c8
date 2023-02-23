@@ -7,6 +7,7 @@ export interface ControlsContextType {
     controlsStore: ControlsStoreState;
     controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>;
     changePlayStatusHandler: () => void;
+    wrapperClickHandler: () => void;
 }
 
 export const controlsContextDefaultValue: Partial<ControlsContextType> = {
