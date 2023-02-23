@@ -4,7 +4,7 @@ import {
     ControlsContext,
     controlsContextDefaultValue,
 } from '@/utils/hooks/data/useControlsContext';
-import { useControlsMethods, useControlsStore } from '@/utils/hooks';
+import { useControlsAutoHidden, useControlsMethods, useControlsStore } from '@/utils/hooks';
 import c from 'classnames';
 import s from './styles/controls.scss';
 import Wrapper from '@/kernel/Player/Controls/Wrapper';
@@ -26,6 +26,8 @@ const Controls = () => {
     const [store, dispatch] = useControlsStore();
 
     const { changePlayStatusHandler } = useControlsMethods(dispatch); // 控制面板的方法
+
+    useControlsAutoHidden(); // 用于控制控制面板的自动隐藏
 
     if (!(!!controlsOpts && !!url)) return null;
     return (
