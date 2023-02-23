@@ -6,7 +6,10 @@ import { useLatest } from 'ahooks';
 
 const useControlsProgressStyles = (
     progressWrapperEle: HTMLDivElement | null,
-    progressControlPointEle: HTMLDivElement | null,
+    progressBufferedEleRef: HTMLDivElement | null,
+    progressPlayedEleRef: HTMLDivElement | null,
+    progressPointerEleRef: HTMLDivElement | null,
+    progressTimeTextEleRef: HTMLDivElement | null,
 ) => {
     const {
         videoEleAttributes: {
@@ -20,11 +23,15 @@ const useControlsProgressStyles = (
     const {
         controlsStore: {
             suspending,
+            position,
         },
     } = useContext(ControlsContext);
 
     const latestProgressWrapperEleRef = useLatest(progressWrapperEle);
-    const latestProgressControlPointEleRef = useLatest(progressControlPointEle);
+    const latestProgressBufferedEleRef = useLatest(progressBufferedEleRef);
+    const latestProgressPlayedEleRef = useLatest(progressPlayedEleRef);
+    const latestProgressPointerEleRef = useLatest(progressPointerEleRef);
+    const latestProgressTimeTextEleRef = useLatest(progressTimeTextEleRef);
     const hoverStylesIntervalRef = useRef<NodeJS.Timer>();
 
     const bufferedPercentage = useMemo(
@@ -53,9 +60,9 @@ const useControlsProgressStyles = (
 
     useEffect(
         () => {
-            if (latestProgressWrapperEleRef.current && latestProgressControlPointEleRef.current) {
+            if (latestProgressWrapperEleRef.current && latestProgressPointerEleRef.current) {
                 const progressWrapperEle = latestProgressWrapperEleRef.current;
-                const progressControlPointEle = latestProgressControlPointEleRef.current;
+                const progressControlPointEle = latestProgressPointerEleRef.current;
 
                 hoverStylesIntervalRef.current && clearInterval(hoverStylesIntervalRef.current);
                 hoverStylesIntervalRef.current = setInterval(
@@ -79,18 +86,43 @@ const useControlsProgressStyles = (
         [
             suspending,
             latestProgressWrapperEleRef.current,
-            latestProgressControlPointEleRef.current,
+            latestProgressPointerEleRef.current,
         ],
     );
 
-    return useMemo(
-        () => ({
-            bufferedPercentage,
+    useEffect(
+        () => {
+            if (latestProgressPlayedEleRef.current) {
+                latestProgressPlayedEleRef.current.style.width = `${processPercentage}%`;
+            }
+        },
+        [
             processPercentage,
-        }),
+            latestProgressPlayedEleRef.current,
+        ],
+    );
+
+    useEffect(
+        () => {
+            if (latestProgressBufferedEleRef.current) {
+                latestProgressBufferedEleRef.current.style.width = `${bufferedPercentage}%`;
+            }
+        },
         [
             bufferedPercentage,
-            processPercentage,
+            latestProgressBufferedEleRef.current,
+        ],
+    );
+
+    useEffect(
+        () => {
+            if (latestProgressTimeTextEleRef.current) {
+                latestProgressTimeTextEleRef.current.style.left = `${position}px`;
+            }
+        },
+        [
+            position,
+            latestProgressTimeTextEleRef.current,
         ],
     );
 };

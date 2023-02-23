@@ -5,8 +5,8 @@ import type { VideoEleAttributes } from '@/index.d';
 
 const useVideoListener = (ele: HTMLVideoElement | null) => {
     const forceUpdate = useMandatoryUpdate();
-    const videoEleRef = useLatest(ele);
-    const videoEle = videoEleRef.current;
+    const latestVideoEleRef = useLatest(ele);
+    const videoEle = latestVideoEleRef.current;
 
     const videoListenerIntervalRef = useRef<NodeJS.Timer>();
     const videoEleAttributesRef = useRef<VideoEleAttributes>({
