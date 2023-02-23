@@ -5,6 +5,7 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 import { percentToSeconds } from '@/utils/methods/common/times';
 import type { MouseEventHandler } from 'react';
+import { useLatest } from 'ahooks';
 
 const ProgressMask = () => {
     const {
@@ -27,6 +28,7 @@ const ProgressMask = () => {
     } = useContext(ControlsContext);
 
     const { clientX } = useWindowClient();
+    const latestClientXRef = useLatest(clientX);
     const draggingIntervalRef = useRef<NodeJS.Timer>();
     const progressMaskEleRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,7 @@ const ProgressMask = () => {
                 if (!videoEle || !progressMaskEleRef.current) return;
 
                 const { offsetWidth } = progressMaskEleRef.current;
-                const position = clientX - progressMaskEleRef.current.getBoundingClientRect().left + 1;
+                const position = latestClientXRef.current - progressMaskEleRef.current.getBoundingClientRect().left + 1;
 
                 if (position >= 0 && position <= offsetWidth) {
                     const percentage = position / offsetWidth;
@@ -120,7 +122,6 @@ const ProgressMask = () => {
             addEventListener('mouseup', mouseUpHandler);
 
             return () => {
-                draggingIntervalRef.current && clearInterval(draggingIntervalRef.current);
                 removeEventListener('mouseup', mouseUpHandler);
             };
         },
