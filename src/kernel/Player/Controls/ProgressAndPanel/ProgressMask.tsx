@@ -1,9 +1,10 @@
 import s from './styles/progressMask.scss';
-import { MouseEventHandler, useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useWindowClient } from '@/utils/hooks';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 import { percentToSeconds } from '@/utils/methods/common/times';
+import type { MouseEventHandler } from 'react';
 
 const ProgressMask = () => {
     const {
@@ -28,7 +29,7 @@ const ProgressMask = () => {
 
     const { clientX } = useWindowClient();
     const draggingIntervalRef = useRef<NodeJS.Timer>();
-    const progressMaskEleRef = useRef<HTMLDivElement | null>(null);
+    const progressMaskEleRef = useRef<HTMLDivElement>(null);
 
     const mouseDownHandler = () => {
         if (!canplay) return;
