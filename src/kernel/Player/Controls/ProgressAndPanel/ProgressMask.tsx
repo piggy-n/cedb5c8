@@ -27,7 +27,6 @@ const ProgressMask = () => {
     } = useContext(ControlsContext);
 
     const { clientX } = useWindowClient();
-    const distanceOfClientXRef = useRef<number>(clientX);
     const draggingIntervalRef = useRef<NodeJS.Timer>();
     const progressMaskEleRef = useRef<HTMLDivElement | null>(null);
 
@@ -40,7 +39,7 @@ const ProgressMask = () => {
                 if (!videoEle || !progressMaskEleRef.current) return;
 
                 const { offsetWidth } = progressMaskEleRef.current;
-                const position = distanceOfClientXRef.current - progressMaskEleRef.current.getBoundingClientRect().left + 1;
+                const position = clientX - progressMaskEleRef.current.getBoundingClientRect().left + 1;
 
                 if (position >= 0 && position <= offsetWidth) {
                     const percentage = position / offsetWidth;
