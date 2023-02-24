@@ -19,11 +19,11 @@ const useProgressMethods = (ele: HTMLDivElement | null) => {
         },
     } = useContext(PlayerContext);
     const {
+        controlsStoreDispatch,
         controlsStore: {
             dragging,
             percentage,
         },
-        controlsStoreDispatch,
     } = useContext(ControlsContext);
 
     const { clientX } = useWindowClient();
