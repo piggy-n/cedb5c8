@@ -7,6 +7,7 @@ import useVideoUrlAndType from '@/utils/hooks/video/useVideoUrlAndType';
 import useVideoResizing from '@/utils/hooks/video/useVideoResizing';
 import useVideoPlayer from '@/utils/hooks/video/useVideoPlayer';
 import useVideoLoading from '@/utils/hooks/video/useVideoLoading';
+import useVideoResolution from '@/utils/hooks/video/useVideoResolution';
 import useControlsAutoHidden from '@/utils/hooks/controls/useControlsAutoHidden';
 import useControlsProgressStyles from '@/utils/hooks/controls/useControlsProgressStyles';
 import useControlsPlayButtonVisible from '@/utils/hooks/controls/useControlsPlayButtonVisible';
@@ -24,6 +25,7 @@ export {
     useVideoResizing,
     useVideoPlayer,
     useVideoLoading,
+    useVideoResolution,
     useControlsAutoHidden,
     useControlsProgressStyles,
     useControlsPlayButtonVisible,

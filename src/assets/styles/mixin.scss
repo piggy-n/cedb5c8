@@ -67,6 +67,12 @@
   }
 }
 
+@mixin viewerText() {
+  @include style(12px, #FFFFFF99);
+  line-height: 12px;
+  padding-right: 12px;
+}
+
 @mixin globalStyle() {
   font-family: 'Alibaba-PuHuiTi-Regular';
   box-sizing: border-box;
