@@ -1,9 +1,7 @@
 import s from './styles/buttons.scss';
 import { useContext } from 'react';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
-import PlayButton from '@/kernel/Player/Controls/Buttons/PlayButton';
-import EndedButton from '@/kernel/Player/Controls/Buttons/EndedButton';
-import ReloadButton from '@/kernel/Player/Controls/Buttons/ReloadButton';
+import { EndedButton, PlayButton, ReloadButton } from '@/kernel/Player/Controls/Buttons/index';
 
 const Buttons = () => {
     const { changePlayStatusHandler } = useContext(ControlsContext);

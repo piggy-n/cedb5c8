@@ -1,3 +1,5 @@
+import c from 'classnames';
+import s from './styles/controls.scss';
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import {
@@ -5,11 +7,7 @@ import {
     controlsContextDefaultValue,
 } from '@/utils/hooks/data/useControlsContext';
 import { useControlsMethods, useControlsStore } from '@/utils/hooks';
-import c from 'classnames';
-import s from './styles/controls.scss';
-import Wrapper from '@/kernel/Player/Controls/Wrapper';
-import Buttons from '@/kernel/Player/Controls/Buttons';
-import ProgressAndPanel from '@/kernel/Player/Controls/ProgressAndPanel';
+import { Buttons, ProgressAndPanel, Wrapper } from '@/kernel/Player/Controls/index';
 
 const Controls = () => {
     const {

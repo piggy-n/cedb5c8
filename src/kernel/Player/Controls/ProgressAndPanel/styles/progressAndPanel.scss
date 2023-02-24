@@ -21,6 +21,17 @@
     color: #EEEEEE;
     opacity: 0;
 
+    .left {
+      @include fr(flex-start);
+      margin-left: 12px;
+    }
+
+    .right {
+      @include fr(flex-end);
+      margin-right: 12px;
+      flex: 1;
+    }
+
     &:hover {
       cursor: default;
     }

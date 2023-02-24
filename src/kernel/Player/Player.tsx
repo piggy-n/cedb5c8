@@ -1,11 +1,9 @@
+import c from 'classnames';
+import s from './styles/player.scss';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hooks';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import c from 'classnames';
-import s from './styles/player.scss';
-import Video from '@/kernel/Player/Video';
-import Loading from '@/kernel/Player/Loading';
-import Controls from '@/kernel/Player/Controls';
+import { Controls, Loading, Video } from '@/kernel/Player/index';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';

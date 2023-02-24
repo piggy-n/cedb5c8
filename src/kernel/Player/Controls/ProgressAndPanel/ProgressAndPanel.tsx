@@ -3,8 +3,19 @@ import s from './styles/progressAndPanel.scss';
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
-import ProgressMask from '@/kernel/Player/Controls/ProgressAndPanel/ProgressMask';
-import ProgressWrapper from '@/kernel/Player/Controls/ProgressAndPanel/ProgressWrapper';
+import {
+    CaptureAndRecording,
+    FormatViewer,
+    FullscreenControl,
+    PlayControl,
+    ProgressMask,
+    ProgressWrapper,
+    QualityViewer,
+    ReloadControl,
+    TimeViewer,
+    TransmissionRateViewer,
+} from '@/kernel/Player/Controls/ProgressAndPanel/index';
+
 
 const ProgressAndPanel = () => {
     const {
@@ -38,7 +49,18 @@ const ProgressAndPanel = () => {
                     : null
             }
             <div className={c(s.panel, { [s.show]: showControls })}>
-
+                <div className={s.left}>
+                    <PlayControl />
+                    <ReloadControl />
+                    <TimeViewer />
+                </div>
+                <div className={s.right}>
+                    <FormatViewer />
+                    <QualityViewer />
+                    <TransmissionRateViewer />
+                    <CaptureAndRecording />
+                    <FullscreenControl />
+                </div>
             </div>
         </div>
     );
