@@ -13,34 +13,32 @@ const ProgressWrapper = () => {
     } = useContext(PlayerContext);
     const {
         controlsStore: {
+            position,
             percentage,
             suspending,
         },
     } = useContext(ControlsContext);
 
     const progressWrapperEleRef = useRef<HTMLDivElement>(null);
-    const progressBufferedEleRef = useRef<HTMLDivElement>(null);
-    const progressPlayedEleRef = useRef<HTMLDivElement>(null);
     const progressPointerEleRef = useRef<HTMLDivElement>(null);
-    const progressTimeTextEleRef = useRef<HTMLDivElement>(null);
 
-    useControlsProgressStyles(
+    const {
+        bufferedPercentage,
+        processPercentage,
+    } = useControlsProgressStyles(
         progressWrapperEleRef.current,
-        progressBufferedEleRef.current,
-        progressPlayedEleRef.current,
         progressPointerEleRef.current,
-        progressTimeTextEleRef.current,
     ); // 获取已播放进度条、已缓冲进度条的百分比，修改进度条的样式
 
     return (
         <div className={s.container} ref={progressWrapperEleRef}>
-            <div className={s.buffered} ref={progressBufferedEleRef} />
-            <div className={s.played} ref={progressPlayedEleRef}>
+            <div className={s.buffered} style={{ width: `${bufferedPercentage}%` }} />
+            <div className={s.played} style={{ width: `${processPercentage}%` }}>
                 <i ref={progressPointerEleRef} />
             </div>
             {
                 suspending && totalTime > 0 &&
-                <div className={s.time_text} ref={progressTimeTextEleRef}>
+                <div className={s.time_text} style={{ left: `${position}px` }}>
                     <i />
                     <span>{toMinutesAndSeconds(totalTime, percentage)}</span>
                 </div>

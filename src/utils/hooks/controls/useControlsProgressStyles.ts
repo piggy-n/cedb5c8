@@ -6,10 +6,7 @@ import { useLatest } from 'ahooks';
 
 const useControlsProgressStyles = (
     progressWrapperEle: HTMLDivElement | null,
-    progressBufferedEleRef: HTMLDivElement | null,
-    progressPlayedEleRef: HTMLDivElement | null,
-    progressPointerEleRef: HTMLDivElement | null,
-    progressTimeTextEleRef: HTMLDivElement | null,
+    progressPointerEle: HTMLDivElement | null,
 ) => {
     const {
         videoEleAttributes: {
@@ -23,15 +20,11 @@ const useControlsProgressStyles = (
     const {
         controlsStore: {
             suspending,
-            position,
         },
     } = useContext(ControlsContext);
 
     const latestProgressWrapperEleRef = useLatest(progressWrapperEle);
-    const latestProgressBufferedEleRef = useLatest(progressBufferedEleRef);
-    const latestProgressPlayedEleRef = useLatest(progressPlayedEleRef);
-    const latestProgressPointerEleRef = useLatest(progressPointerEleRef);
-    const latestProgressTimeTextEleRef = useLatest(progressTimeTextEleRef);
+    const latestProgressPointerEleRef = useLatest(progressPointerEle);
     const hoverStylesIntervalRef = useRef<NodeJS.Timer>();
 
     const bufferedPercentage = useMemo(
@@ -90,39 +83,14 @@ const useControlsProgressStyles = (
         ],
     );
 
-    useEffect(
-        () => {
-            if (latestProgressPlayedEleRef.current) {
-                latestProgressPlayedEleRef.current.style.width = `${processPercentage}%`;
-            }
-        },
-        [
+    return useMemo(
+        () => ({
+            bufferedPercentage,
             processPercentage,
-            latestProgressPlayedEleRef.current,
-        ],
-    );
-
-    useEffect(
-        () => {
-            if (latestProgressBufferedEleRef.current) {
-                latestProgressBufferedEleRef.current.style.width = `${bufferedPercentage}%`;
-            }
-        },
+        }),
         [
             bufferedPercentage,
-            latestProgressBufferedEleRef.current,
-        ],
-    );
-
-    useEffect(
-        () => {
-            if (latestProgressTimeTextEleRef.current) {
-                latestProgressTimeTextEleRef.current.style.left = `${position}px`;
-            }
-        },
-        [
-            position,
-            latestProgressTimeTextEleRef.current,
+            processPercentage,
         ],
     );
 };
