@@ -9,6 +9,7 @@ import { useReducer } from 'react';
  * @param {boolean} mouseIsMoving - 鼠标是否移动
  * @param {boolean} mouseIsOnControls - 鼠标是否在控制栏上
  * @param {boolean} showControls - 是否显示控制栏
+ * @param {boolean} showPlayBtn - 是否显示播放按钮
  */
 export interface ControlsStoreState {
     position: number;
@@ -18,6 +19,7 @@ export interface ControlsStoreState {
     mouseIsMoving: boolean;
     mouseIsOnControls: boolean;
     showControls: boolean;
+    showPlayBtn: boolean;
 }
 
 export const initialState: ControlsStoreState = {
@@ -28,6 +30,7 @@ export const initialState: ControlsStoreState = {
     mouseIsMoving: false,
     mouseIsOnControls: false,
     showControls: false,
+    showPlayBtn: false,
 };
 
 const useControlsStore = () => {

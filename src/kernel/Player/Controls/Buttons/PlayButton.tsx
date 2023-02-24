@@ -1,51 +1,14 @@
-import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
+import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 
 const PlayButton = () => {
     const {
-        playerStore: {
-            loading,
-            videoLoadFailedVal,
+        controlsStore: {
+            showPlayBtn,
         },
-        videoEleAttributes: {
-            ended,
-            playing,
-        },
-    } = useContext(PlayerContext);
+    } = useContext(ControlsContext);
 
-    const visibleTimeoutRef = useRef<NodeJS.Timeout>();
-    const [visible, setVisible] = useState(false);
-
-    useEffect(
-        () => {
-            const isPlaying = playing && !ended;
-            const isPaused = !playing && !ended && !loading && !videoLoadFailedVal;
-
-            visibleTimeoutRef.current && clearTimeout(visibleTimeoutRef.current);
-
-            if (isPlaying || loading) {
-                setVisible(false);
-            }
-
-            if (isPaused) {
-                visibleTimeoutRef.current = setTimeout(
-                    () => setVisible(true),
-                    100,
-                );
-            }
-
-            return () => {
-                visibleTimeoutRef.current && clearTimeout(visibleTimeoutRef.current);
-            };
-        },
-        [
-            playing,
-            ended,
-            loading,
-        ],
-    );
-
-    if (!visible) return null;
+    if (!showPlayBtn) return null;
     return (
         <h2>播放</h2>
     );

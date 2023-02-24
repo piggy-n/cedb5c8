@@ -16,7 +16,6 @@ import {
     TransmissionRateViewer,
 } from '@/kernel/Player/Controls/ProgressAndPanel/index';
 
-
 const ProgressAndPanel = () => {
     const {
         playerStore: {
