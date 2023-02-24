@@ -52,6 +52,21 @@
   font-weight: $bold;
 }
 
+@mixin icon() {
+  line-height: 1;
+
+  svg,
+  use {
+    cursor: pointer;
+  }
+}
+
+@mixin zoomIcon() {
+  svg:hover {
+    animation: scaleAni .5s ease;
+  }
+}
+
 @mixin globalStyle() {
   font-family: 'Alibaba-PuHuiTi-Regular';
   box-sizing: border-box;

@@ -1,0 +1,11 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include style(12px, #FFFFFF99);
+  padding-left: 10px;
+  line-height: 12px;
+
+  .time {
+    @include fr(flex-start);
+  }
+}

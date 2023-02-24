@@ -7,7 +7,7 @@ import { useControlsPlayButtonVisible } from '@/utils/hooks';
 const Buttons = () => {
     const { changePlayStatusHandler } = useContext(ControlsContext);
 
-    useControlsPlayButtonVisible();
+    useControlsPlayButtonVisible(); // 控制播放按钮的显示
 
     return (
         <div className={s.container} onClick={changePlayStatusHandler}>
