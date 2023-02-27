@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
+import Icon from '@/components/Icon';
 
 const PlayButton = () => {
     const {
@@ -10,7 +11,7 @@ const PlayButton = () => {
 
     if (!showPlayBtn) return null;
     return (
-        <h2>播放</h2>
+        <Icon name={'play-2'} size={55} title={'播放'} />
     );
 };
 

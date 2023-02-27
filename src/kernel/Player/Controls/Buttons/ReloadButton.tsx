@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
+import Icon from '@/components/Icon';
 
 const ReloadButton = () => {
     const {
@@ -10,7 +11,7 @@ const ReloadButton = () => {
 
     if (!videoLoadFailedVal) return null;
     return (
-        <h2>刷新</h2>
+        <Icon name={'reload-2'} size={55} title={'重新加载'} />
     );
 };
 

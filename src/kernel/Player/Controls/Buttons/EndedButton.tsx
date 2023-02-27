@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
+import Icon from '@/components/Icon';
 
 const EndedButton = () => {
     const {
@@ -10,7 +11,7 @@ const EndedButton = () => {
 
     if (!ended) return null;
     return (
-        <h2>重播</h2>
+        <Icon name={'replay'} size={55} title={'重播'} />
     );
 };
 
