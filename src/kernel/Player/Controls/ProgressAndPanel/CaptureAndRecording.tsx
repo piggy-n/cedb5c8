@@ -20,7 +20,7 @@ const CaptureAndRecording = () => {
                     (screenshot && isUndef(recording)) ||
                     (isUndef(screenshot) && recording) ||
                     (isUndef(screenshot) && isUndef(recording))
-                ) return ['both', 'setting', '截图/录像'];
+                ) return ['both', 'setting', '截图/录制'];
 
                 if (
                     (screenshot || isUndef(screenshot)) &&
@@ -32,7 +32,7 @@ const CaptureAndRecording = () => {
                     (recording || isUndef(recording)) &&
                     isBoolean(screenshot) &&
                     !screenshot
-                ) return ['recording', 'recording', '录像'];
+                ) return ['recording', 'recording', '录制'];
 
                 return ['none', 'none', 'none'];
             }

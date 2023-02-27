@@ -1,7 +1,6 @@
 @import "src/assets/styles/mixin.scss";
 
 .container {
-  @include ps(relative);
   @include icon();
   @include zoomIcon();
   margin-right: 8px;
@@ -11,7 +10,6 @@
     @include ps(absolute, auto, -22px, 46px, auto);
     @include wh(auto, 56px);
     @include fc(flex-start);
-    flex-wrap: nowrap;
     background: #06171EB2;
     border-radius: 3px;
     transform: translateX(-50%);
@@ -20,8 +18,8 @@
 
     .item {
       @include fr(flex-start);
-      @include wh(100%, 50%);
       @include style(12px, #FFFFFF);
+      height: 50%;
       line-height: 12px;
       cursor: pointer;
       padding: 0 12px;
