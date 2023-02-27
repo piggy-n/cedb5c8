@@ -31,7 +31,7 @@ const Demo = () => {
             </button>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
-                    <Player url={url} />
+                    <Player url={url} controlsOpts={{}}/>
                     {/*<Player*/}
                     {/*    // url={url}*/}
                     {/*    deviceOpts={device} />*/}

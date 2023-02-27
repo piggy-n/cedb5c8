@@ -1,0 +1,8 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include icon();
+  @include zoomIcon();
+  margin-right: 8px;
+  z-index: 3;
+}
