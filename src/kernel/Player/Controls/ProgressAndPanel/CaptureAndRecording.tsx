@@ -68,16 +68,10 @@ const CaptureAndRecording = () => {
             {
                 visible &&
                 <div className={s.both}>
-                    <div
-                        className={s.item}
-                        onClick={screenshotHandler}
-                    >
+                    <div className={s.item} onClick={screenshotHandler}>
                         <p>截图</p>
                     </div>
-                    <div
-                        className={s.item}
-                        onClick={recordingHandler}
-                    >
+                    <div className={s.item} onClick={recordingHandler}>
                         <p>录制</p>
                     </div>
                 </div>
