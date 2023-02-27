@@ -3,13 +3,14 @@ import { useContext, useMemo, useState } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { isBoolean, isObject, isUndef } from 'ahooks/es/utils';
 import { tip } from '@/components/Tip';
+import Icon from '@/components/Icon';
 
 const CaptureAndRecording = () => {
     const { uuid, controlsOpts } = useContext(PlayerContext);
 
     const [visible, setVisible] = useState(false);
 
-    const mode = useMemo(
+    const [mode, iconName, iconTitle] = useMemo(
         () => {
             if (isObject(controlsOpts)) {
                 const { screenshot, recording } = controlsOpts;
@@ -19,23 +20,23 @@ const CaptureAndRecording = () => {
                     (screenshot && isUndef(recording)) ||
                     (isUndef(screenshot) && recording) ||
                     (isUndef(screenshot) && isUndef(recording))
-                ) return 'both';
+                ) return ['both', 'setting', '截图/录像'];
 
                 if (
                     (screenshot || isUndef(screenshot)) &&
                     isBoolean(recording) &&
                     !recording
-                ) return 'screenshot';
+                ) return ['screenshot', 'screenshot-2', '截图'];
 
                 if (
                     (recording || isUndef(recording)) &&
                     isBoolean(screenshot) &&
                     !screenshot
-                ) return 'recording';
+                ) return ['recording', 'recording', '录像'];
 
-                return 'none';
+                return ['none', 'none', 'none'];
             }
-            return 'none';
+            return ['none', 'none', 'none'];
         },
         [controlsOpts],
     );
@@ -63,15 +64,17 @@ const CaptureAndRecording = () => {
     return (
         <div className={s.container}>
             <div onClick={clickHandler}>
-                {mode}
+                <Icon name={iconName} size={18} title={iconTitle} />
             </div>
             {
                 visible &&
                 <div className={s.both}>
                     <div className={s.item} onClick={screenshotHandler}>
+                        <Icon name={'screenshot-1'} />
                         <p>截图</p>
                     </div>
                     <div className={s.item} onClick={recordingHandler}>
+                        <Icon name={'recording'} />
                         <p>录制</p>
                     </div>
                 </div>
