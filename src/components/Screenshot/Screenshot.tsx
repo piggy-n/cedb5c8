@@ -52,7 +52,11 @@ const Screenshot: FC<ScreenshotProps> = (opts) => {
         <Draggable bounds={`#player-${opts.uuid}`} disabled={disabled}>
             <div className={s.container}>
                 <div className={s.close}>
-                    <Icon name={'close-1'} onClick={() => removeScreenshot({ ...opts })} />
+                    <Icon
+                        name={'close-1'}
+                        title={'关闭'}
+                        onClick={() => removeScreenshot({ ...opts })}
+                    />
                 </div>
                 <div
                     ref={screenshotDivRef}
