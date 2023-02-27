@@ -42,5 +42,9 @@ declare module 'zx-image-view' {
         public hide(): void;
 
         public destroy(): void;
+
+        public update(options: any): void;
+
+        public view(index: number): void;
     }
 }

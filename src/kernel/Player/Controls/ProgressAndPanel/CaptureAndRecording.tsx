@@ -4,9 +4,17 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { isBoolean, isObject, isUndef } from 'ahooks/es/utils';
 import { tip } from '@/components/Tip';
 import Icon from '@/components/Icon';
+import { createScreenshot } from '@/utils/methods/common/screenshot';
 
 const CaptureAndRecording = () => {
-    const { uuid, controlsOpts } = useContext(PlayerContext);
+    const {
+        uuid,
+        videoEle,
+        controlsOpts,
+        playerStore: {
+            canplay,
+        },
+    } = useContext(PlayerContext);
 
     const [visible, setVisible] = useState(false);
 
@@ -42,7 +50,17 @@ const CaptureAndRecording = () => {
     );
 
     const screenshotHandler = () => {
-        console.log('screenshot');
+        if (!canplay) return tip({
+            uuid,
+            eleId: 'player',
+            msg: '无可截取的视频画面',
+            type: 'error',
+        });
+        createScreenshot({
+            uuid,
+            videoEle,
+            eleId: 'player',
+        });
     };
 
     const recordingHandler = () => {

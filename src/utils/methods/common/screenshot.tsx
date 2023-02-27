@@ -2,7 +2,7 @@ import { createRoot } from 'react-dom/client';
 import Screenshot from '@/components/Screenshot';
 
 interface Options {
-    videoEle: HTMLVideoElement;
+    videoEle: HTMLVideoElement | null;
     canvasEle?: HTMLCanvasElement;
     eleId: string;
     uuid: string;
@@ -34,6 +34,8 @@ const removeScreenshot = (opts: Options) => {
 
 const createScreenshot = (opts: Options) => {
     const { videoEle, uuid, eleId } = opts;
+    if (!videoEle) return;
+
     const containerEle = document.querySelector(`#${eleId}-${uuid}`);
     const screenshotEle = document.querySelector(`#screenshot-${uuid}`);
 
