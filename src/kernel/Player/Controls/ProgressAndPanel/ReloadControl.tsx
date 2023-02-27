@@ -2,6 +2,7 @@ import s from './styles/reloadControl.scss';
 import { useContext } from 'react';
 import { ControlsContext } from '@/utils/hooks/data/useControlsContext';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
+import Icon from '@/components/Icon';
 
 const ReloadControl = () => {
     const {
@@ -13,7 +14,7 @@ const ReloadControl = () => {
 
     return (
         <div className={s.container} onClick={() => reloadHandler(currentTime)}>
-            重
+            <Icon name={'reload-1'} size={18} title={'重载'} />
         </div>
     );
 };

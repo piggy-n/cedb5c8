@@ -11,7 +11,7 @@ const ReloadButton = () => {
 
     if (!videoLoadFailedVal) return null;
     return (
-        <Icon name={'reload-2'} size={55} title={'重新加载'} />
+        <Icon name={'reload-2'} size={55} title={'重载'} />
     );
 };
 

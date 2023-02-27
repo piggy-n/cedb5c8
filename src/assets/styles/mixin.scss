@@ -67,6 +67,12 @@
   }
 }
 
+@mixin rotateIcon() {
+  svg:hover {
+    animation: rotateAni .7s ease;
+  }
+}
+
 @mixin viewerText() {
   @include style(12px, #FFFFFF99);
   line-height: 12px;
@@ -116,5 +122,14 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes rotateAni {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

@@ -2,6 +2,7 @@
 
 .container {
   @include viewerText();
+  padding-left: 10px;
 
   .time {
     @include fr(flex-start);

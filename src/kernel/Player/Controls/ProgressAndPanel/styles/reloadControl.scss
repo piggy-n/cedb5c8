@@ -2,6 +2,6 @@
 
 .container {
   @include icon();
-  @include zoomIcon();
+  @include rotateIcon();
   padding-left: 8px;
 }
