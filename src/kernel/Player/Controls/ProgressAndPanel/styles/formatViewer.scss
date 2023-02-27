@@ -2,8 +2,4 @@
 
 .container {
   @include viewerText();
-
-  .time {
-    @include fr(flex-start);
-  }
 }

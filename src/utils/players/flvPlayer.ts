@@ -75,6 +75,7 @@ class flvPlayer {
 
     private success() {
         this.dispatch({
+            mime: 'H.264',
             canplay: true,
         });
 
@@ -125,6 +126,7 @@ class flvPlayer {
             this.successHandler
         ) {
             this.dispatch({
+                mime: '',
                 loading: true,
                 canplay: false,
                 videoLoadErrorVal: 0,
@@ -150,6 +152,7 @@ class flvPlayer {
 
     public stop() {
         this.dispatch({
+            mime: '',
             loading: false,
             canplay: false,
         });
