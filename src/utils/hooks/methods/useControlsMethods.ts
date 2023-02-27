@@ -1,5 +1,6 @@
 import { useContext, useMemo, useRef } from 'react';
 import { useUnmount } from 'ahooks';
+import { isNumber } from 'ahooks/es/utils';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 import type { Dispatch } from 'react';
@@ -44,6 +45,16 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
         }
     };
 
+    const reloadHandler = (currentTime?: number) => {
+        if (videoType === 'record') {
+            if (isNumber(currentTime) && canplay) {
+                return flvPlayer.reload(currentTime);
+            }
+            flvPlayer.stop();
+            flvPlayer.start(url);
+        }
+    };
+
     const wrapperClickHandler = () => {
         wrapperClickCountRef.current += 1;
 
@@ -75,6 +86,7 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
     return useMemo(
         () => ({
             changePlayStatusHandler,
+            reloadHandler,
             wrapperClickHandler,
         }),
         [

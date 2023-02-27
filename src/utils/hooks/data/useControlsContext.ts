@@ -7,6 +7,7 @@ export interface ControlsContextType {
     controlsStore: ControlsStoreState;
     controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>;
     changePlayStatusHandler: () => void;
+    reloadHandler: (currentTime?: number) => void;
     wrapperClickHandler: () => void;
 }
 

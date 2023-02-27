@@ -109,11 +109,15 @@ class flvPlayer {
         }
     }
 
-    public reload() {
+    public reload(currentTime?: number) {
         if (this.player) {
             this.player.unload();
             this.player.load();
             this.player.play();
+
+            if (currentTime) {
+                this.player.currentTime = currentTime;
+            }
         }
     }
 
