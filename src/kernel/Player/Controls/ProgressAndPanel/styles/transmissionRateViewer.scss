@@ -1,0 +1,6 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include viewerText();
+  width: 76px;
+}
