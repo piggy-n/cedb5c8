@@ -1,7 +1,7 @@
 import s from './styles/fullscreenControl.scss';
 import { useContext } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
-import { isBoolean } from 'ahooks/es/utils';
+import { isBoolean, isObject } from 'ahooks/es/utils';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 
 const FullscreenControl = () => {
@@ -19,7 +19,11 @@ const FullscreenControl = () => {
         });
     };
 
-    if ((isBoolean(controlsOpts) && !controlsOpts) || !controlsOpts?.fullscreen) return null;
+    if (
+        isObject(controlsOpts) &&
+        isBoolean(controlsOpts.fullscreen) &&
+        !controlsOpts.fullscreen
+    ) return null;
     return (
         <div className={s.container} onClick={clickHandler}>
             全
