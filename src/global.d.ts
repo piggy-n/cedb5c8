@@ -32,3 +32,15 @@ declare module 'mp4box' {
         public setExtractionOptions(options: any): void;
     }
 }
+
+declare module 'zx-image-view' {
+    export class ZxImageView {
+        constructor();
+
+        public show(options: any): void;
+
+        public hide(): void;
+
+        public destroy(): void;
+    }
+}

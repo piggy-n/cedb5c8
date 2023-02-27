@@ -23,7 +23,7 @@ const Icon: FC<IconProps> = (
 ) => {
     return (
         <svg
-            className={c(s.icon, className)}
+            className={c(s.container, className)}
             style={{
                 width: size && `${size}px`,
                 height: size && `${size}px`,

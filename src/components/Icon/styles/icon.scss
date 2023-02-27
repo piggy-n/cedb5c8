@@ -1,6 +1,6 @@
 @import "src/assets/styles/mixin.scss";
 
-.icon {
+.container {
   @include wh(16px, 16px);
   display: inline-flex;
   fill: currentColor;
