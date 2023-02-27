@@ -53,7 +53,7 @@ const CaptureAndRecording = () => {
         if (!canplay) return tip({
             uuid,
             eleId: 'player',
-            msg: '无可截取的视频画面',
+            msg: '暂无可截取的视频画面',
             type: 'error',
         });
         createScreenshot({
