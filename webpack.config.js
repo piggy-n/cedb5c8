@@ -18,9 +18,6 @@ module.exports = {
                 test: /\.svg$/,
                 loader: require.resolve("svg-sprite-loader"),
                 include: path.resolve(__dirname, "./src/assets/icons"),
-                options: {
-                    symbolId: "icon-[name]",
-                },
             },
             {
                 test: /\.(jpg|png|gif)$/,
