@@ -100,7 +100,7 @@ export type PlayerMethods<T = noArgVoid, U = isArgVoid> = {
     pause: T;
     reload: T;
     setPlayProgress: U<number>;
-    setVideoSrc: U<string>;
+    setVideoSrc: (src: string, videoType?: VideoType) => void;
 }
 
 /**
