@@ -5,6 +5,7 @@ import useControlsStore from '@/utils/hooks/data/useControlsStore';
 import useVideoListener from '@/utils/hooks/video/useVideoListener';
 import useVideoUrlAndType from '@/utils/hooks/video/useVideoUrlAndType';
 import useVideoResizing from '@/utils/hooks/video/useVideoResizing';
+import useVideoCallback from '@/utils/hooks/video/useVideoCallback';
 import useVideoPlayer from '@/utils/hooks/video/useVideoPlayer';
 import useVideoLoading from '@/utils/hooks/video/useVideoLoading';
 import useVideoResolution from '@/utils/hooks/video/useVideoResolution';
@@ -23,6 +24,7 @@ export {
     useVideoListener,
     useVideoUrlAndType,
     useVideoResizing,
+    useVideoCallback,
     useVideoPlayer,
     useVideoLoading,
     useVideoResolution,

@@ -146,7 +146,7 @@ export type PlayerRef = PlayerMethods
  * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性选项
  * @param {VideoType} videoType 视频类型 default: 'live'
  */
-export type PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> = {
+export interface PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> extends Partial<VideoCallback> {
     controlsOpts?: ControlsOpts | false;
     deviceOpts?: DeviceOpts;
     url?: string;
