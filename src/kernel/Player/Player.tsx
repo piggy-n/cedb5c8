@@ -24,8 +24,14 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const wsPlayerRef = useRef<WsPlayer>(new WsPlayer({ uuid, dispatch }));
     const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer({ uuid, dispatch }));
 
-    const playerMethods = usePlayerMethods(); // 播放器的方法
     const videoEleAttributes = useVideoListener(videoEleRef.current); // video 元素的监听器
+    const playerMethods = usePlayerMethods(
+        store,
+        dispatch,
+        videoEleAttributes,
+        wsPlayerRef.current,
+        flvPlayerRef.current,
+    ); // 播放器的方法
 
     useImperativeHandle(
         ref,

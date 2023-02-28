@@ -122,6 +122,12 @@ class flvPlayer {
         }
     }
 
+    public seek(time: number) {
+        if (this.ele) {
+            this.ele.currentTime = time;
+        }
+    }
+
     public start(url: string) {
         if (!url) return this.stop();
         if (

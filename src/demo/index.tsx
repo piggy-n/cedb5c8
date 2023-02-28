@@ -31,7 +31,20 @@ const Demo = () => {
             </button>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
-                    <Player url={url} controlsOpts={{}}/>
+                    <Player
+                        url={url}
+                        controlsOpts={{}}
+                        // onTimeUpdate={() => console.log('onTimeUpdate', 111)}
+                        // onPlay={() => console.log('onPlay', 222)}
+                        // onPause={() => console.log('onPause', 333)}
+                        // onEnded={() => console.log('onEnded', 444)}
+                        // onCanplay={() => console.log('onCanplay', 555)}
+                        // onVideoStateChange={() => console.log('onVideoStateChange', 666)}
+                        // onProgressMouseDown={() => console.log('onProgressMouseDown', 777)}
+                        // onProgressMouseUp={() => console.log('onProgressMouseUp', 888)}
+                        // onVideoLoadError={() => console.log('onVideoLoadError', 999)}
+                        // onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}
+                    />
                     {/*<Player*/}
                     {/*    // url={url}*/}
                     {/*    deviceOpts={device} />*/}
