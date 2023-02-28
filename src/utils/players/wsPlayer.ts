@@ -218,6 +218,14 @@ class WsPlayer {
     public start(url: string) {
         if (!url) return this.stop();
         if (this.ele && this.sourceOpenHandler) {
+            this.dispatch({
+                mime: '',
+                loading: true,
+                canplay: false,
+                videoLoadErrorVal: 0,
+                videoLoadFailedVal: 0,
+            });
+
             this.url = url;
             this.mediaSource = new MediaSource();
             this.mediaSource.addEventListener('sourceopen', this.sourceOpenHandler);
@@ -240,6 +248,15 @@ class WsPlayer {
         });
 
         this.pause();
+
+        if (this.errorTimes) {
+            this.errorTimes = 0;
+        }
+
+        if (this.errorTimeout) {
+            clearTimeout(this.errorTimeout);
+            this.errorTimeout = undefined;
+        }
 
         if (this.mp4BoxFile) {
             this.mp4BoxFile.stop();

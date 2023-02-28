@@ -12,7 +12,7 @@ const useVideoUrlAndType = () => {
     useAsyncEffect(
         async () => {
             if (url) {
-                const isLive = /^ws:\/\/|^wss:\/\//.test(url) && /live.mp4$/.test(url);
+                const isLive = /^ws:\/\/|^wss:\/\//.test(url);
 
                 return playerStoreDispatch({
                     url,

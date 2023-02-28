@@ -4,7 +4,7 @@ import { useState } from 'react';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
-    const [url, setUrl] = useState('https://www.w3schools.com/html/mov_bb.mp4');
+    const [url, setUrl] = useState('wss://lzz.enbo12119.com/live/1557972003987841025/101.live.mp4?token=b4a9fc6a-d3b4-444e-9d46-1ba70fe0468d');
     const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',
@@ -14,7 +14,7 @@ const Demo = () => {
         <>
             <button onClick={() => setUrl(
                 Math.random() > 0.5
-                    ? 'wss://lzz.enbo12119.com/live/1557972003987841025/101.live.mp4?token=b4a9fc6a-d3b4-444e-9d46-1ba70fe0468d'
+                    ? 'ws://192.168.9.148/live/1625782312488669187/101.live.mp4?token=c3cb9efd-a63a-4243-9b83-00cd02f9689a'
                     : 'https://osstest-enbo.oss-cn-shanghai.aliyuncs.com/alarm/file/2023/02/20/13_105008_105108.mp4?Expires=1834541575&OSSAccessKeyId=LTAI5tDjcMGsJKeq9L3PautV&Signature=fl%2BEsqO%2BsInyoc6fq9AtUCWXF88%3D',
             )}>
                 设url random
