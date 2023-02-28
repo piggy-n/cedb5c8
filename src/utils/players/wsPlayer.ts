@@ -9,6 +9,7 @@ interface Options {
 }
 
 class WsPlayer {
+    public mp4BoxFile?: any;
     private ws?: WebSocket;
     private ele?: HTMLVideoElement;
     private url?: string;
@@ -19,7 +20,6 @@ class WsPlayer {
     private mediaSource?: MediaSource;
     private arrayBuffer: ArrayBuffer[];
     private sourceBuffer?: SourceBuffer;
-    private mp4BoxFile?: any;
     private errorTimeout?: NodeJS.Timeout;
     private transmissionRateInterval?: NodeJS.Timeout;
     private loadHandler?: () => void;
@@ -213,7 +213,7 @@ class WsPlayer {
                 });
             }
         };
-    };
+    }
 
     public start(url: string) {
         if (!url) return this.stop();
@@ -298,6 +298,7 @@ class WsPlayer {
     public destroy() {
         this.stop();
         this.ele = undefined;
+        this.url = undefined;
         this.loadHandler = undefined;
         this.sourceOpenHandler = undefined;
     }

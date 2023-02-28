@@ -15,7 +15,7 @@ const useVideoPlayer = () => {
     useEffect(
         () => {
             if (!videoEle) return;
-            // wsPlayer.init(ele);
+            wsPlayer.init(videoEle);
             flvPlayer.init(videoEle);
 
             return () => {
@@ -28,8 +28,9 @@ const useVideoPlayer = () => {
 
     useEffect(
         () => {
+            wsPlayer.stop();
             flvPlayer.stop();
-            flvPlayer.start(url);
+            videoType === 'record' ? flvPlayer.start(url) : wsPlayer.start(url);
         },
         [
             url,

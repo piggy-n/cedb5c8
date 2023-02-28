@@ -8,7 +8,7 @@ import type { ControlsStoreState } from '@/utils/hooks/data/useControlsStore';
 
 const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>) => {
     const {
-        // wsPlayer,
+        wsPlayer,
         flvPlayer,
         videoContainerEle,
         playerStoreDispatch,
@@ -43,6 +43,14 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
                 ? flvPlayer.stop()
                 : flvPlayer.start(url);
         }
+
+        if (canplay) return playing
+            ? wsPlayer.pause()
+            : wsPlayer.play();
+
+        return wsPlayer.mp4BoxFile
+            ? wsPlayer.stop()
+            : wsPlayer.start(url);
     };
 
     const reloadHandler = (currentTime?: number) => {
@@ -52,7 +60,15 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
             }
             flvPlayer.stop();
             flvPlayer.start(url);
+            return;
         }
+
+        if (isNumber(currentTime) && canplay) {
+            return wsPlayer.reload();
+        }
+
+        wsPlayer.stop();
+        wsPlayer.start(url);
     };
 
     const wrapperClickHandler = () => {
