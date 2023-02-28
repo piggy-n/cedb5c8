@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import Player from '@/kernel/Player';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import type { PlayerRef } from '@/index.d';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
@@ -10,8 +11,39 @@ const Demo = () => {
         streamType: '1',
     });
 
+    const playerRef = useRef<PlayerRef>(null);
+
+    const changeUrl = () => {
+        playerRef.current?.setVideoSrc('https://www.w3schools.com/html/mov_bb.mp4');
+    };
+
+    const play = () => {
+        playerRef.current?.play();
+    };
+
+    const pause = () => {
+        playerRef.current?.pause();
+    };
+
+    const reload = () => {
+        playerRef.current?.reload();
+    };
+
+    const seek = () => {
+        playerRef.current?.setPlayProgress(Math.random() * 100);
+    };
+
     return (
         <>
+            <div style={{ backgroundColor: '#5e4949' }}>
+                <h3>方法</h3>
+                <button onClick={play}>play</button>
+                <button onClick={pause}>pause</button>
+                <button onClick={reload}>reload</button>
+                <button onClick={seek}>seek</button>
+                <button onClick={changeUrl}>setVideoSrc</button>
+            </div>
+
             <button onClick={() => setUrl(
                 Math.random() > 0.5
                     ? 'ws://192.168.9.148/live/1625782312488669187/101.live.mp4?token=c3cb9efd-a63a-4243-9b83-00cd02f9689a'
@@ -32,6 +64,7 @@ const Demo = () => {
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
                     <Player
+                        ref={playerRef}
                         url={url}
                         controlsOpts={{}}
                         // onTimeUpdate={() => console.log('onTimeUpdate', 111)}
