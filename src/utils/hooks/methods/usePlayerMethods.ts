@@ -58,8 +58,10 @@ const usePlayerMethods = (
 
     const setPlayProgress = (progress: number) => {
         if (videoType === 'record' && canplay) {
-            const time = progress > totalTime ? totalTime : progress;
-            flvPlayer.seek(time > 0 ? time : 0);
+            let time = progress;
+            if (time < 0) time = 0;
+            if (time > totalTime) time = totalTime;
+            return flvPlayer.seek(time);
         }
     };
 
