@@ -30,6 +30,8 @@ declare module 'mp4box' {
         public reset(): void;
 
         public setExtractionOptions(options: any): void;
+
+        public static createFile(): Mp4box;
     }
 }
 
