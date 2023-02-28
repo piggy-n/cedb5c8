@@ -166,6 +166,7 @@ class WsPlayer {
     private success() {
         this.dispatch({
             canplay: true,
+            videoCanplayVal: Date.now(),
         });
 
         this.transmissionRateInterval && clearInterval(this.transmissionRateInterval);
@@ -222,6 +223,7 @@ class WsPlayer {
                 mime: '',
                 loading: true,
                 canplay: false,
+                videoCanplayVal: 0,
                 videoLoadErrorVal: 0,
                 videoLoadFailedVal: 0,
             });

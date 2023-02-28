@@ -77,6 +77,7 @@ class flvPlayer {
         this.dispatch({
             mime: 'H.264',
             canplay: true,
+            videoCanplayVal: Date.now(),
         });
 
         if (this.errorTimes) {
@@ -133,6 +134,7 @@ class flvPlayer {
                 mime: '',
                 loading: true,
                 canplay: false,
+                videoCanplayVal: 0,
                 videoLoadErrorVal: 0,
                 videoLoadFailedVal: 0,
             });

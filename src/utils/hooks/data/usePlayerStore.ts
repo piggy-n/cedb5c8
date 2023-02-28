@@ -29,6 +29,7 @@ export interface PlayerStoreState {
     resizing?: boolean;
     transmissionRate?: number;
     url?: string;
+    videoCanplayVal?: number;
     videoLoadErrorVal?: number;
     videoLoadFailedVal?: number;
     progressMouseDownVal?: number;

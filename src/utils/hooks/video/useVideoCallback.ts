@@ -6,6 +6,7 @@ import type { VideoCallback } from '@/index.d';
 const useVideoCallback = (callback: Partial<VideoCallback>) => {
     const {
         playerStore: {
+            videoCanplayVal,
             videoLoadErrorVal,
             videoLoadFailedVal,
             progressMouseDownVal,
@@ -23,8 +24,9 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     const {
         onPlay,
         onPause,
-        onTimeUpdate,
         onEnded,
+        onCanplay,
+        onTimeUpdate,
         onProgressMouseDown,
         onProgressMouseUp,
         onVideoStateChange,
@@ -50,6 +52,15 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
             }
         },
         [ended],
+    );
+
+    useEffect(
+        () => {
+            if (videoCanplayVal) {
+                onCanplay && onCanplay(videoEleAttributes);
+            }
+        },
+        [videoCanplayVal],
     );
 
     useEffect(

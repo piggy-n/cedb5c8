@@ -120,6 +120,7 @@ export type VideoCallback<T = noArgVoid, U = isArgVoid, K = VideoElementAttribut
     onPause: U<K>;
     onTimeUpdate: U<K>;
     onEnded: U<K>;
+    onCanplay: U<K>;
     onProgressMouseDown: U<K>;
     onProgressMouseUp: U<K>;
     onVideoStateChange: U<K>;
