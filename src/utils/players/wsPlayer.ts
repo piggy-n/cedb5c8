@@ -274,10 +274,6 @@ class WsPlayer {
             this.mediaSource = undefined;
         }
 
-        if (this.transmissionRateInterval) {
-            clearInterval(this.transmissionRateInterval);
-        }
-
         this.mime = undefined;
         this.streaming = false;
         this.arrayBuffer = [];
@@ -285,15 +281,22 @@ class WsPlayer {
 
     public play() {
         this.sourceOpen();
+        this.ele?.play();
     }
 
     public pause() {
+        this.ele?.pause();
+
         if (this.ws) {
             this.ws.close();
             this.ws.onopen = null;
             this.ws.onmessage = null;
             this.ws.onerror = null;
             this.ws = undefined;
+        }
+
+        if (this.transmissionRateInterval) {
+            clearInterval(this.transmissionRateInterval);
         }
 
         this.dispatch({
