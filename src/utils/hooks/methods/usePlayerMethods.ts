@@ -62,11 +62,11 @@ const usePlayerMethods = (
         }
     };
 
-    const setVideoSrc = (src: string, videoType?: VideoType) => {
-        const isLive = /^ws:\/\/|^wss:\/\//.test(url);
+    const setVideoSrc = (src: string, type?: VideoType) => {
+        const isLive = /^ws:\/\/|^wss:\/\//.test(src);
         return dispatch({
-            url,
-            videoType: videoType ?? (isLive ? 'live' : 'record'),
+            url: src,
+            videoType: type ?? (isLive ? 'live' : 'record'),
         });
     };
 
