@@ -125,6 +125,7 @@ class flvPlayer {
     public seek(time: number) {
         if (this.ele) {
             this.ele.currentTime = time;
+            this.play();
         }
     }
 
