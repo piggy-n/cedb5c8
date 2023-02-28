@@ -14,7 +14,7 @@ const Demo = () => {
     const playerRef = useRef<PlayerRef>(null);
 
     const changeUrl = () => {
-        playerRef.current?.setVideoSrc('https://www.w3schools.com/html/mov_bb.mp4');
+        playerRef.current?.setVideoSrc('https://www.w3schools.com/html/mov_bbb.mp4');
     };
 
     const play = () => {
