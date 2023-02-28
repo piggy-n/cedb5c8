@@ -7,6 +7,7 @@ const TransmissionRateViewer = () => {
         playerStore: {
             transmissionRate = 0,
             videoType,
+            canplay,
         },
     } = useContext(PlayerContext);
 
@@ -17,7 +18,7 @@ const TransmissionRateViewer = () => {
         [transmissionRate],
     );
 
-    if (videoType === 'record') return null;
+    if (videoType === 'record' || !canplay) return null;
     return (
         <div className={s.container}>
             {rate}

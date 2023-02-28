@@ -2,7 +2,7 @@ import type {
     VideoHTMLAttributes,
     HTMLAttributes,
     ForwardRefExoticComponent,
-    RefAttributes
+    RefAttributes,
 } from 'react';
 
 export type Response = {
@@ -112,9 +112,10 @@ export type PlayerMethods<T = noArgVoid, U = isArgVoid> = {
  * @param onProgressMouseDown 鼠标按下进度条时回调
  * @param onProgressMouseUp 鼠标抬起进度条时回调
  * @param onVideoStateChange 视频状态改变回调
- * @param onError 错误回调
+ * @param onVideoLoadError 视频加载错误回调
+ * @param onVideoLoadFailed 视频加载失败回调
  */
-export type VideoCallBack<T = noArgVoid, U = isArgVoid, K = VideoElementAttributes> = {
+export type VideoCallback<T = noArgVoid, U = isArgVoid, K = VideoElementAttributes> = {
     onPlay: U<K>;
     onPause: U<K>;
     onTimeUpdate: U<K>;
@@ -122,7 +123,8 @@ export type VideoCallBack<T = noArgVoid, U = isArgVoid, K = VideoElementAttribut
     onProgressMouseDown: U<K>;
     onProgressMouseUp: U<K>;
     onVideoStateChange: U<K>;
-    onError: T;
+    onVideoLoadError: U<K>;
+    onVideoLoadFailed: U<K>;
 }
 
 /**
