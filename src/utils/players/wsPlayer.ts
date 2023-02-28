@@ -276,6 +276,10 @@ class WsPlayer {
             this.mediaSource = undefined;
         }
 
+        if (this.ele) {
+            this.ele.src = '';
+        }
+
         this.mime = undefined;
         this.streaming = false;
         this.arrayBuffer = [];
