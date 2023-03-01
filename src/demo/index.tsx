@@ -78,9 +78,9 @@ const Demo = () => {
                         // onVideoLoadError={() => console.log('onVideoLoadError', 999)}
                         // onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}
                     />
-                    <Player
-                        url={url}
-                         />
+                    {/*<Player*/}
+                    {/*    // url={url}*/}
+                    {/*    deviceOpts={device} />*/}
                 </div>
                 <br />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
