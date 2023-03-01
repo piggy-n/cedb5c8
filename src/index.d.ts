@@ -114,6 +114,13 @@ export type PlayerMethods<T = noArgVoid, U = isArgVoid> = {
  * @param onVideoStateChange 视频状态改变回调
  * @param onVideoLoadError 视频加载错误回调
  * @param onVideoLoadFailed 视频加载失败回调
+ *
+ * 更多video元素原生事件回调可通过videoEleOpts属性绑定，或者通过ref获取video元素绑定
+ * eg：videoEleOpts={{
+ *      onCanPlayThrough: () => console.log('onCanPlayThrough')
+ *      onDurationChange: () => console.log('onDurationChange')
+ *      ...
+ *    }}
  */
 export type VideoCallback<T = noArgVoid, U = isArgVoid, K = VideoElementAttributes> = {
     onPlay: U<K>;
