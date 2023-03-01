@@ -1,8 +1,9 @@
-import type { FC } from 'react';
 import c from 'classnames';
 import s from './styles/tip.scss';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { useTipStore } from '@/utils/hooks';
+import type { FC } from 'react';
 
 interface TipProps {
     msg: string;
@@ -19,9 +20,10 @@ const Tip: FC<TipProps> = (
         type = 'info',
     },
 ) => {
-    const tipTimeoutRef = useRef<NodeJS.Timeout>();
+    const { tipTimeoutKeyObj } = useTipStore(s => s);
 
     const removeHandler = () => {
+        tipTimeoutKeyObj[uuid] && clearTimeout(tipTimeoutKeyObj[uuid]);
         if (document.querySelector(`#tip-${uuid}`)) {
             document
                 .querySelector(`#${eleId}-${uuid}`)!
@@ -31,14 +33,18 @@ const Tip: FC<TipProps> = (
 
     useEffect(
         () => {
-            tipTimeoutRef.current = setTimeout(
-                () => removeHandler(),
-                3000,
-            );
+            // 手动remove元素不触发umount，存储timeoutKey以便手动清除timeout
+            tipTimeoutKeyObj[uuid] && clearTimeout(tipTimeoutKeyObj[uuid]);
 
-            return () => {
-                tipTimeoutRef.current && clearTimeout(tipTimeoutRef.current);
-            };
+            useTipStore.setState({
+                tipTimeoutKeyObj: {
+                    ...tipTimeoutKeyObj,
+                    [uuid]: setTimeout(
+                        () => removeHandler(),
+                        3000,
+                    ),
+                },
+            });
         },
         [],
     );
