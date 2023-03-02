@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import { render } from 'react-dom';
 import Screenshot from '@/components/Screenshot';
 
 interface Options {
@@ -50,9 +50,8 @@ const createScreenshot = (opts: Options) => {
         containerEle.appendChild(screenshotDiv);
     }
 
-    const root = createRoot(screenshotDiv);
     const canvas = capture(videoEle);
-    root.render(<Screenshot {...opts} canvasEle={canvas} />);
+    render(<Screenshot {...opts} canvasEle={canvas} />, screenshotDiv);
 };
 
 export { createScreenshot, removeScreenshot };

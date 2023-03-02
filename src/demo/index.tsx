@@ -1,5 +1,5 @@
-import { createRoot } from 'react-dom/client';
 import Player from '@/kernel/Player';
+import { render } from 'react-dom';
 import { useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
 // import { randomString } from '@/utils/methods/common/randomString';
@@ -89,5 +89,4 @@ const Demo = () => {
     );
 };
 
-const root = createRoot(document.getElementById('root')!);
-root.render(<Demo />);
+render(<Demo />, document.getElementById('root'));

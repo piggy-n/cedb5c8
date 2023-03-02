@@ -1,7 +1,7 @@
 import c from 'classnames';
 import s from './styles/tip.scss';
+import { render } from 'react-dom';
 import { useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
 import { useTipStore } from '@/utils/hooks';
 import type { FC } from 'react';
 
@@ -67,8 +67,7 @@ export const createTip = (option: TipProps) => {
 
         if (tipWrapperEle) {
             tipWrapperEle.appendChild(container);
-            const root = createRoot(container);
-            root.render(<Tip {...option} />);
+            render(<Tip {...option} />, container);
         }
     }
 };
