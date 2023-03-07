@@ -1,14 +1,12 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
-import { useRef } from 'react';
-import { useRndPlayerStore } from '@/utils/hooks';
 import { Rnd } from 'react-rnd';
+import { useRndPlayerStore } from '@/utils/hooks';
+import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import Header from '@/kernel/RndPlayer/Header';
+import Content from '@/kernel/RndPlayer/Content/Content';
 import type { FC } from 'react';
 import type { RndPlayerProps } from '@/index.d';
-import Header from '@/kernel/RndPlayer/Header';
-// import useRndPlayerStyles from '@/utils/hooks/rnd/useRndPlayerStyles';
-import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import Content from '@/kernel/RndPlayer/Content/Content';
 
 const RndPlayer: FC<RndPlayerProps> = (
     {
@@ -17,15 +15,13 @@ const RndPlayer: FC<RndPlayerProps> = (
     },
 ) => {
     const [store, dispatch] = useRndPlayerStore();
-    const rndPlayerContainerEleRef = useRef<HTMLDivElement>(null);
-
-    // useRndPlayerStyles(rndPlayerContainerEleRef.current, rndEleOpts);
 
     return (
         <RndPlayerContext.Provider value={{
             rndPlayerStore: store,
             rndPlayerStoreDispatch: dispatch,
-            rndPlayerContainerEle: rndPlayerContainerEleRef.current,
+            rndEleOpts,
+            rndPlayerContainerEleOpts,
         }}>
             <Rnd
                 bounds={'parent'}
@@ -43,7 +39,6 @@ const RndPlayer: FC<RndPlayerProps> = (
                 }}
             >
                 <div
-                    ref={rndPlayerContainerEleRef}
                     {...rndPlayerContainerEleOpts}
                     className={c(s.player_container, rndPlayerContainerEleOpts?.className)}
                     style={{
