@@ -33,9 +33,14 @@ const RndPlayer: FC<RndPlayerProps> = (
                 maxHeight={innerHeight}
                 lockAspectRatio
                 {...rndEleOpts}
-                className={c(s.rnd_container, rndEleOpts?.className)}
-                minHeight={store.minHeight}
+                position={store.position}
                 minWidth={store.minWidth}
+                minHeight={store.minHeight}
+                className={c(s.rnd_container, rndEleOpts?.className)}
+                onDragStop={(e, data) => {
+                    dispatch({ position: data });
+                    rndEleOpts?.onDragStop?.(e, data);
+                }}
             >
                 <div
                     ref={rndPlayerContainerEleRef}
