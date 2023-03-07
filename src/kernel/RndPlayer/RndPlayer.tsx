@@ -28,6 +28,11 @@ const RndPlayer: FC<RndPlayerProps> = (
                 maxWidth={innerWidth}
                 maxHeight={innerHeight}
                 lockAspectRatio
+                enableResizing={{
+                    right: true,
+                    bottom: true,
+                    bottomRight: true,
+                }}
                 {...rndEleOpts}
                 position={store.position}
                 minWidth={store.minWidth}
