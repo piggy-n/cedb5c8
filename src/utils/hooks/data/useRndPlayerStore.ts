@@ -3,11 +3,14 @@ import type { Position } from 'react-rnd';
 
 export interface RndPlayerStoreState {
     position?: Position;
+    disableDragging?: boolean;
     minWidth?: number | string;
     minHeight?: number | string;
 }
 
-export const initialState: RndPlayerStoreState = {};
+export const initialState: RndPlayerStoreState = {
+    disableDragging: true,
+};
 
 const useRndPlayerStore = () => {
     const reducer = (

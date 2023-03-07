@@ -1,5 +1,9 @@
 @import "src/assets/styles/mixin.scss";
 
 .container {
-
+  @include ps(relative);
+  @include fr(flex-start, flex-start);
+  flex-wrap: nowrap;
+  width: 100%;
+  flex: 1;
 }

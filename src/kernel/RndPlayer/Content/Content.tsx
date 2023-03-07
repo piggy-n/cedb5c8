@@ -20,7 +20,10 @@ const Content = () => {
     );
 
     return (
-        <div className={s.container}>
+        <div
+            className={s.container}
+            onMouseOver={() => rndPlayerStoreDispatch({ disableDragging: true })}
+        >
             <Panel />
             <PlayerWrapper />
         </div>
