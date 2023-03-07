@@ -3,7 +3,6 @@ import type { VideoType } from '@/index.d';
 
 /**
  * @description PlayerStoreState
- * @param {boolean} buffering - 视频是否在缓冲中
  * @param {boolean} canplay - 视频是否可以播放
  * @param {boolean} isFullScreen - 播放器是否全屏
  * @param {boolean} isError - 视频是否出错
@@ -19,7 +18,6 @@ import type { VideoType } from '@/index.d';
  * @param {number} progressMouseUpVal - 进度条鼠标抬起值，用于触发回调
  */
 export interface PlayerStoreState {
-    buffering?: boolean;
     canplay?: boolean;
     isFullscreen?: boolean;
     isError?: boolean;

@@ -1,6 +1,6 @@
 import Player from '@/kernel/Player';
 import { render } from 'react-dom';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
 // import { randomString } from '@/utils/methods/common/randomString';
 
@@ -32,6 +32,10 @@ const Demo = () => {
     const seek = () => {
         playerRef.current?.setPlayProgress(Math.random() * 100);
     };
+
+    useEffect(() => {
+        console.log(playerRef.current?.attributes, 'playerRef.current?.attributes');
+    }, [playerRef.current?.attributes]);
 
     return (
         <>

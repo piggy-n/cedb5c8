@@ -4,6 +4,7 @@ import type {
     ForwardRefExoticComponent,
     RefAttributes,
 } from 'react';
+import type { Props } from 'react-rnd';
 
 export type Response = {
     msg: string;
@@ -154,13 +155,18 @@ export type PlayerRef = PlayerMethods
  * @param {VideoHTMLAttributes<HTMLVideoElement>} videoEleOpts video元素属性选项
  * @param {VideoType} videoType 视频类型 default: 'live'
  */
-export interface PlayerProps<T = HTMLAttributes<HTMLDivElement>, U = VideoHTMLAttributes<HTMLVideoElement>> extends Partial<VideoCallback> {
+export interface PlayerProps extends Partial<VideoCallback> {
     controlsOpts?: ControlsOpts | false;
     deviceOpts?: DeviceOpts;
     url?: string;
-    videoContainerEleOpts?: T;
-    videoEleOpts?: U;
+    videoContainerEleOpts?: HTMLAttributes<HTMLDivElement>;
+    videoEleOpts?: VideoHTMLAttributes<HTMLVideoElement>;
     videoType?: VideoType;
+}
+
+export interface RndPlayerProps {
+    rndEleOpts?: Props;
+    rndPlayerContainerEleOpts?: HTMLAttributes<HTMLDivElement>;
 }
 
 declare const Player: ForwardRefExoticComponent<PlayerProps & RefAttributes<PlayerRef>>;

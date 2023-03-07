@@ -1,5 +1,12 @@
 @import "src/assets/styles/mixin.scss";
 
-.container {
+.rnd_container {
+  margin: 0;
+  user-select: none;
+  cursor: default !important;
+  z-index: 10;
 
+  .player_container {
+
+  }
 }
