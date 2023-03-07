@@ -52,7 +52,10 @@ const RndPlayer: FC<RndPlayerProps> = (
                         minWidth: store.minWidth,
                         minHeight: store.minHeight,
                     }}
-                    onMouseLeave={() => dispatch({ disableDragging: true })}
+                    onMouseLeave={(e) => {
+                        dispatch({ disableDragging: true });
+                        rndPlayerContainerEleOpts?.onMouseLeave?.(e);
+                    }}
                 >
                     <Header />
                     <Content />
