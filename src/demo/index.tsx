@@ -2,6 +2,7 @@ import Player from '@/kernel/Player';
 import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
+import RndPlayer from '@/kernel/RndPlayer';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
@@ -87,6 +88,7 @@ const Demo = () => {
                     {/*    deviceOpts={device} />*/}
                 </div>
                 <br />
+                <RndPlayer />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
         </>

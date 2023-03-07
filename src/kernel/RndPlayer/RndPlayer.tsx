@@ -6,7 +6,9 @@ import { Rnd } from 'react-rnd';
 import type { FC } from 'react';
 import type { RndPlayerProps } from '@/index.d';
 import Header from '@/kernel/RndPlayer/Header';
-import Main from '@/kernel/RndPlayer/Main';
+// import useRndPlayerStyles from '@/utils/hooks/rnd/useRndPlayerStyles';
+import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import Content from '@/kernel/RndPlayer/Content/Content';
 
 const RndPlayer: FC<RndPlayerProps> = (
     {
@@ -16,33 +18,40 @@ const RndPlayer: FC<RndPlayerProps> = (
 ) => {
     const [store, dispatch] = useRndPlayerStore();
     const rndPlayerContainerEleRef = useRef<HTMLDivElement>(null);
-    // const { minWidth = 480, minHeight = 270, position: { x = 0, y = 0 } } = rndEleOpts || {};
+
+    // useRndPlayerStyles(rndPlayerContainerEleRef.current, rndEleOpts);
 
     return (
-        <Rnd
-            bounds={'parent'}
-            maxWidth={innerWidth}
-            maxHeight={innerHeight}
-            lockAspectRatio
-            {...rndEleOpts}
-            className={c(s.rnd_container, rndEleOpts?.className)}
-            minHeight={store.minHeight}
-            minWidth={store.minWidth}
-        >
-            <div
-                ref={rndPlayerContainerEleRef}
-                {...rndPlayerContainerEleOpts}
-                className={c(s.player_container, rndPlayerContainerEleOpts?.className)}
-                style={{
-                    ...rndPlayerContainerEleOpts?.style,
-                    minWidth: store.minWidth,
-                    minHeight: store.minHeight,
-                }}
+        <RndPlayerContext.Provider value={{
+            rndPlayerStore: store,
+            rndPlayerStoreDispatch: dispatch,
+            rndPlayerContainerEle: rndPlayerContainerEleRef.current,
+        }}>
+            <Rnd
+                bounds={'parent'}
+                maxWidth={innerWidth}
+                maxHeight={innerHeight}
+                lockAspectRatio
+                {...rndEleOpts}
+                className={c(s.rnd_container, rndEleOpts?.className)}
+                minHeight={store.minHeight}
+                minWidth={store.minWidth}
             >
-                <Header />
-                <Main />
-            </div>
-        </Rnd>
+                <div
+                    ref={rndPlayerContainerEleRef}
+                    {...rndPlayerContainerEleOpts}
+                    className={c(s.player_container, rndPlayerContainerEleOpts?.className)}
+                    style={{
+                        ...rndPlayerContainerEleOpts?.style,
+                        minWidth: store.minWidth,
+                        minHeight: store.minHeight,
+                    }}
+                >
+                    <Header />
+                    <Content />
+                </div>
+            </Rnd>
+        </RndPlayerContext.Provider>
     );
 };
 
