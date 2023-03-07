@@ -2,6 +2,7 @@ import useMandatoryUpdate from '@/utils/hooks/common/useMandatoryUpdate';
 import useWindowClient from '@/utils/hooks/common/useWindowClient';
 import usePlayerStore from '@/utils/hooks/data/usePlayerStore';
 import useControlsStore from '@/utils/hooks/data/useControlsStore';
+import useRndPlayerStore from '@/utils/hooks/data/useRndPlayerStore';
 import useTipStore from '@/utils/hooks/data/useTipStore';
 import useVideoListener from '@/utils/hooks/video/useVideoListener';
 import useVideoUrlAndType from '@/utils/hooks/video/useVideoUrlAndType';
@@ -22,6 +23,7 @@ export {
     useWindowClient,
     usePlayerStore,
     useControlsStore,
+    useRndPlayerStore,
     useTipStore,
     useVideoListener,
     useVideoUrlAndType,

@@ -1,0 +1,13 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include fr(space-between, center, nowrap);
+  @include wh(100%, 36px);
+  background: #071E27BF;
+  cursor: move;
+
+  svg,
+  use {
+    cursor: pointer;
+  }
+}
