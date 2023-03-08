@@ -2,12 +2,14 @@ import s from './styles/content.scss';
 import { useContext } from 'react';
 import { Panel, Players } from '@/kernel/RndPlayer/Content';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import { useRndPlayerInit } from '@/utils/hooks';
+import { useRndPlayerInit, useRndPlayerStyles } from '@/utils/hooks';
 
 const Content = () => {
     const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);
 
     useRndPlayerInit();
+
+    useRndPlayerStyles();
 
     return (
         <div

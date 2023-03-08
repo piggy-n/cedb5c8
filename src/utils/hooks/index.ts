@@ -18,6 +18,7 @@ import usePlayerMethods from '@/utils/hooks/methods/usePlayerMethods';
 import useControlsMethods from '@/utils/hooks/methods/useControlsMethods';
 import useProgressMethods from '@/utils/hooks/methods/useProgressMethods';
 import useRndPlayerInit from '@/utils/hooks/rnd/useRndPlayerInit';
+import useRndPlayerStyles from '@/utils/hooks/rnd/useRndPlayerStyles';
 
 export {
     useMandatoryUpdate,
@@ -40,4 +41,5 @@ export {
     useControlsMethods,
     useProgressMethods,
     useRndPlayerInit,
+    useRndPlayerStyles,
 };
