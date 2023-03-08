@@ -5,6 +5,7 @@ import type { RndPlayerProps } from '@/index.d';
 import type { RndPlayerStoreState } from '@/utils/hooks/data/useRndPlayerStore';
 
 export interface RndPlayerContextType extends RndPlayerProps {
+    rndEle: any;
     rndPlayerStore: RndPlayerStoreState;
     rndPlayerStoreDispatch: Dispatch<Partial<RndPlayerStoreState>>;
 }

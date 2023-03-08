@@ -5,18 +5,23 @@ const borderWidth = 2;
 
 const useRndPlayerStyles = () => {
     const {
+        // rndEle,
         rndPlayerStoreDispatch,
         rndPlayerStore: {
             players,
+            rndEleWidth,
             initialMinWidth,
-            initialMinHeight,
+
         },
     } = useContext(RndPlayerContext);
 
     useEffect(
         () => {
-            if (!players.length || !initialMinWidth || !initialMinHeight) return;
+            if (!players.length || !rndEleWidth || !initialMinWidth) return;
 
+            // rndEle.updateSize({
+            //     width: rndEleWidth * players.length,
+            // });
             rndPlayerStoreDispatch({
                 minWidth: initialMinWidth * players.length + borderWidth * 2,
             });

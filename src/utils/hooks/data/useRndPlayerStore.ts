@@ -8,6 +8,7 @@ export interface RndPlayerStoreState {
     minHeight?: number;
     initialMinWidth?: number;
     initialMinHeight?: number;
+    rndEleWidth?: number;
     disableDragging?: boolean;
     players: ItemProps[];
 }

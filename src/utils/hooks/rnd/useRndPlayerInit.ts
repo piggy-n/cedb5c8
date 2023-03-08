@@ -30,6 +30,7 @@ const useRndPlayerInit = () => {
                 initialMinHeight: minHeight,
                 minWidth: minWidth + borderWidth * 2,
                 minHeight: minHeight + borderWidth * 2,
+                rndEleWidth: minWidth + borderWidth * 2,
             });
         },
         [],

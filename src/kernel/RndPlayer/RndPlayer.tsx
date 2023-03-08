@@ -1,6 +1,7 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
 import { Rnd } from 'react-rnd';
+import { useRef } from 'react';
 import { useRndPlayerStore } from '@/utils/hooks';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import Header from '@/kernel/RndPlayer/Header';
@@ -15,15 +16,18 @@ const RndPlayer: FC<RndPlayerProps> = (
     },
 ) => {
     const [store, dispatch] = useRndPlayerStore();
+    const rndEleRef = useRef<any>();
 
     return (
         <RndPlayerContext.Provider value={{
+            rndEle: rndEleRef.current,
             rndPlayerStore: store,
             rndPlayerStoreDispatch: dispatch,
             rndEleOpts,
             rndPlayerContainerEleOpts,
         }}>
             <Rnd
+                ref={rndEleRef}
                 bounds={'parent'}
                 maxWidth={innerWidth}
                 maxHeight={innerHeight}
@@ -42,6 +46,16 @@ const RndPlayer: FC<RndPlayerProps> = (
                 onDragStop={(e, data) => {
                     dispatch({ position: data });
                     rndEleOpts?.onDragStop?.(e, data);
+                }}
+                onResizeStop={(
+                    e,
+                    dir,
+                    elementRef,
+                    delta,
+                    position,
+                ) => {
+                    dispatch({ rndEleWidth: Number(elementRef.style.width.replace(/\D/g, '')) });
+                    rndEleOpts?.onResizeStop?.(e, dir, elementRef, delta, position);
                 }}
             >
                 <div
