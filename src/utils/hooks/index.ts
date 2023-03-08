@@ -17,6 +17,7 @@ import useControlsPlayButtonVisible from '@/utils/hooks/controls/useControlsPlay
 import usePlayerMethods from '@/utils/hooks/methods/usePlayerMethods';
 import useControlsMethods from '@/utils/hooks/methods/useControlsMethods';
 import useProgressMethods from '@/utils/hooks/methods/useProgressMethods';
+import useRndPlayerInit from '@/utils/hooks/rnd/useRndPlayerInit';
 
 export {
     useMandatoryUpdate,
@@ -38,4 +39,5 @@ export {
     usePlayerMethods,
     useControlsMethods,
     useProgressMethods,
+    useRndPlayerInit,
 };

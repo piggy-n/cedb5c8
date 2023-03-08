@@ -1,35 +1,13 @@
 import s from './styles/content.scss';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Panel, Players } from '@/kernel/RndPlayer/Content';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import { useRndPlayerInit } from '@/utils/hooks';
 
 const Content = () => {
-    const {
-        rndPlayerStoreDispatch,
-        rndEleOpts: {
-            minWidth = 480,
-            minHeight = 270,
-            position = { x: 0, y: 0 },
-        } = {},
-    } = useContext(RndPlayerContext);
+    const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);
 
-    useEffect(
-        () => rndPlayerStoreDispatch({
-            minWidth: minWidth + 4,
-            minHeight: minHeight + 4,
-            position,
-        }),
-        [],
-    );
-
-    useEffect(() => {
-        // const playerBoxEle = <PlayerBox minWidth={minWidth} minHeight={minHeight} />;
-        // const playerBoxWrapperEle = document.getElementById('rnd-player-box-wrapper');
-        //
-        // if (playerBoxWrapperEle) {
-        //     render(playerBoxEle, playerBoxWrapperEle);
-        // }
-    }, []);
+    useRndPlayerInit();
 
     return (
         <div

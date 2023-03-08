@@ -1,15 +1,23 @@
 import { useReducer } from 'react';
 import type { Position } from 'react-rnd';
+import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
+
+export interface PlayerItem extends ItemProps {
+    id: string;
+    render: any;
+}
 
 export interface RndPlayerStoreState {
     position?: Position;
     disableDragging?: boolean;
     minWidth?: number;
     minHeight?: number;
+    players: PlayerItem[];
 }
 
 export const initialState: RndPlayerStoreState = {
     disableDragging: true,
+    players: [],
 };
 
 const useRndPlayerStore = () => {
