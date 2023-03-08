@@ -3,6 +3,8 @@ import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import { randomString } from '@/utils/methods/common/randomString';
 import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
+const borderWidth = 2;
+
 const useRndPlayerInit = () => {
     const {
         rndPlayerStoreDispatch,
@@ -15,18 +17,19 @@ const useRndPlayerInit = () => {
 
     useEffect(
         () => {
-            const initialSize = { minWidth, minHeight };
             const playerItem: ItemProps = {
-                ...initialSize,
+                minWidth,
+                minHeight,
                 id: randomString(),
             };
 
             rndPlayerStoreDispatch({
                 position,
-                initialSize,
                 players: [playerItem],
-                minWidth: minWidth + 4,
-                minHeight: minHeight + 4,
+                initialMinWidth: minWidth,
+                initialMinHeight: minHeight,
+                minWidth: minWidth + borderWidth * 2,
+                minHeight: minHeight + borderWidth * 2,
             });
         },
         [],

@@ -2,16 +2,12 @@ import { useReducer } from 'react';
 import type { Position } from 'react-rnd';
 import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
-type InitialSize = {
-    minWidth: number;
-    minHeight: number;
-}
-
 export interface RndPlayerStoreState {
     position?: Position;
     minWidth?: number;
     minHeight?: number;
-    initialSize?: InitialSize;
+    initialMinWidth?: number;
+    initialMinHeight?: number;
     disableDragging?: boolean;
     players: ItemProps[];
 }
