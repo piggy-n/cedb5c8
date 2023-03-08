@@ -1,12 +1,13 @@
+import s from './styles/playerWrapper.scss';
 import { useRef } from 'react';
-import Player from '@/kernel/Player';
+import PlayerBox from '@/kernel/RndPlayer/Content/PlayerWrapper/PlayerBox';
 
 const PlayerWrapper = () => {
     const playerWrapperEleRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div ref={playerWrapperEleRef}>
-            <Player />
+        <div className={s.container} ref={playerWrapperEleRef}>
+            <PlayerBox />
         </div>
     );
 };

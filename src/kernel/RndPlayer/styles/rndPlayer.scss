@@ -9,6 +9,6 @@
   .player_container {
     @include fc(flex-start);
     @include wh(100%, 100%);
-    border: 1px solid #1E6079;
+    border: 2px solid #1E6079;
   }
 }

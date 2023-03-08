@@ -1,0 +1,7 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include ps(relative);
+  @include fr(flex-start, flex-start);
+  @include wh(100%, 100%);
+}

@@ -1,0 +1,11 @@
+@import "src/assets/styles/mixin.scss";
+
+.container {
+  @include wh(100%, 100%);
+
+  .mask {
+    @include ps(absolute);
+    @include wh(100%, 100%);
+    z-index: 1;
+  }
+}

@@ -33,15 +33,15 @@ const RndPlayer: FC<RndPlayerProps> = (
                 minWidth={store.minWidth}
                 minHeight={store.minHeight}
                 disableDragging={store.disableDragging}
-                className={c(s.rnd_container, rndEleOpts?.className)}
-                onDragStop={(e, data) => {
-                    dispatch({ position: data });
-                    rndEleOpts?.onDragStop?.(e, data);
-                }}
                 enableResizing={{
                     right: true,
                     bottom: true,
                     bottomRight: true,
+                }}
+                className={c(s.rnd_container, rndEleOpts?.className)}
+                onDragStop={(e, data) => {
+                    dispatch({ position: data });
+                    rndEleOpts?.onDragStop?.(e, data);
                 }}
             >
                 <div

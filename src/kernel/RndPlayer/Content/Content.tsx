@@ -19,6 +19,10 @@ const Content = () => {
         [],
     );
 
+    useEffect(() => {
+
+    }, []);
+
     return (
         <div
             className={s.container}
