@@ -1,4 +1,4 @@
-import Player from '@/kernel/Player';
+// import Player from '@/kernel/Player';
 import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
@@ -6,7 +6,7 @@ import RndPlayer from '@/kernel/RndPlayer';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
-    const [url, setUrl] = useState('wss://lzz.enbo12119.com/live/1572529841719136267/101.live.mp4?token=b4a9fc6a-d3b4-444e-9d46-1ba70fe0468d');
+    const [, setUrl] = useState('wss://lzz.enbo12119.com/live/1572529841719136267/101.live.mp4?token=b4a9fc6a-d3b4-444e-9d46-1ba70fe0468d');
     const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',

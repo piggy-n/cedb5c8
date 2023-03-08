@@ -1,4 +1,5 @@
 import s from './styles/players.scss';
+import { Item } from '@/kernel/RndPlayer/Content/Players';
 import { useContext } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 
@@ -10,13 +11,9 @@ const Players = () => {
     } = useContext(RndPlayerContext);
 
     return (
-        <div className={s.container}>
+        <div className={s.container} id={'rnd-players-container'}>
             {
-                players.map(player => {
-                    const { render, ...r } = player;
-                    const Component = render;
-                    return <Component {...r} />;
-                })
+                players.map((props, index) => <Item {...props} key={`p___${index}`} />)
             }
         </div>
     );

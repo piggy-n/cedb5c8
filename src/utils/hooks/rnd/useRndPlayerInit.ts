@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import { PlayerItem } from '@/utils/hooks/data/useRndPlayerStore';
 import { randomString } from '@/utils/methods/common/randomString';
+import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 const useRndPlayerInit = () => {
     const {
@@ -15,15 +15,15 @@ const useRndPlayerInit = () => {
 
     useEffect(
         () => {
-            const playerItem: PlayerItem = {
-                minWidth,
-                minHeight,
+            const initialSize = { minWidth, minHeight };
+            const playerItem: ItemProps = {
+                ...initialSize,
                 id: randomString(),
-                render: require('@/kernel/RndPlayer/Content/Players/Item').default,
             };
 
             rndPlayerStoreDispatch({
                 position,
+                initialSize,
                 players: [playerItem],
                 minWidth: minWidth + 4,
                 minHeight: minHeight + 4,
