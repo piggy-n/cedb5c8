@@ -3,6 +3,8 @@ import Panel from '@/kernel/RndPlayer/Content/Panel/Panel';
 import PlayerWrapper from '@/kernel/RndPlayer/Content/PlayerWrapper/PlayerWrapper';
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import { render } from 'react-dom';
+import PlayerBox from '@/kernel/RndPlayer/Content/PlayerWrapper/PlayerBox';
 
 const Content = () => {
     const {
@@ -15,12 +17,23 @@ const Content = () => {
     } = useContext(RndPlayerContext);
 
     useEffect(
-        () => rndPlayerStoreDispatch({ minWidth, minHeight, position }),
+        () => rndPlayerStoreDispatch({
+            minWidth: minWidth + 4,
+            minHeight: minHeight + 4,
+            position,
+        }),
         [],
     );
 
     useEffect(() => {
+        const rndPlayerWrapperEle = document.getElementById('rnd-player-wrapper');
 
+        if (rndPlayerWrapperEle) {
+            render(
+                <PlayerBox minWidth={minWidth} minHeight={minHeight} />,
+                rndPlayerWrapperEle,
+            );
+        }
     }, []);
 
     return (

@@ -1,17 +1,19 @@
 import s from './styles/playerBox.scss';
-import { useContext } from 'react';
-import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import { FC } from 'react';
 import Draggable from 'react-draggable';
 import Player from '@/kernel/Player';
 
-const PlayerBox = () => {
-    const {
-        rndPlayerStore: {
-            minWidth,
-            minHeight,
-        },
-    } = useContext(RndPlayerContext);
+interface PlayerBoxProps {
+    minWidth?: number;
+    minHeight?: number;
+}
 
+const PlayerBox: FC<PlayerBoxProps> = (
+    {
+        minWidth,
+        minHeight,
+    },
+) => {
     return (
         <Draggable bounds={'parent'} disabled>
             <div className={s.container}>

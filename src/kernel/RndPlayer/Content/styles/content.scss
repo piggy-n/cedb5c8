@@ -3,7 +3,7 @@
 .container {
   @include ps(relative);
   @include fr(flex-start, flex-start);
+  flex: 1;
   flex-wrap: nowrap;
   width: 100%;
-  flex: 1;
 }

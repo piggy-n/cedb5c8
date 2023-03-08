@@ -4,8 +4,8 @@ import type { Position } from 'react-rnd';
 export interface RndPlayerStoreState {
     position?: Position;
     disableDragging?: boolean;
-    minWidth?: number | string;
-    minHeight?: number | string;
+    minWidth?: number;
+    minHeight?: number;
 }
 
 export const initialState: RndPlayerStoreState = {

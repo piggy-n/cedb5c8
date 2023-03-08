@@ -164,8 +164,13 @@ export interface PlayerProps extends Partial<VideoCallback> {
     videoType?: VideoType;
 }
 
+export interface RndEleOpts extends Props {
+    minWidth?: number;
+    minHeight?: number;
+}
+
 export interface RndPlayerProps {
-    rndEleOpts?: Props;
+    rndEleOpts?: RndEleOpts;
     rndPlayerContainerEleOpts?: HTMLAttributes<HTMLDivElement>;
 }
 
