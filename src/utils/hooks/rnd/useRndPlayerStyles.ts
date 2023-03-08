@@ -19,7 +19,6 @@ const useRndPlayerStyles = () => {
 
             rndPlayerStoreDispatch({
                 minWidth: initialMinWidth * players.length + borderWidth * 2,
-                minHeight: initialMinHeight * players.length + borderWidth * 2,
             });
         },
         [players.length],
