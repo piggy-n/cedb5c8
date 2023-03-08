@@ -1,14 +1,14 @@
-import s from './styles/playerBox.scss';
-import { FC } from 'react';
-import Draggable from 'react-draggable';
+import s from './styles/item.scss';
 import Player from '@/kernel/Player';
+import Draggable from 'react-draggable';
+import type { FC } from 'react';
 
-interface PlayerBoxProps {
+interface ItemProps {
     minWidth?: number;
     minHeight?: number;
 }
 
-const PlayerBox: FC<PlayerBoxProps> = (
+const Item: FC<ItemProps> = (
     {
         minWidth,
         minHeight,
@@ -24,4 +24,4 @@ const PlayerBox: FC<PlayerBoxProps> = (
     );
 };
 
-export default PlayerBox;
+export default Item;

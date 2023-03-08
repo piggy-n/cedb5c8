@@ -1,9 +1,7 @@
 import s from './styles/content.scss';
-import Panel from '@/kernel/RndPlayer/Content/Panel/Panel';
 import { useContext, useEffect } from 'react';
+import { Panel, Players } from '@/kernel/RndPlayer/Content';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import { render } from 'react-dom';
-import { PlayerBox, PlayerBoxWrapper } from '@/kernel/RndPlayer/Content/PlayerBoxWrapper';
 
 const Content = () => {
     const {
@@ -25,12 +23,12 @@ const Content = () => {
     );
 
     useEffect(() => {
-        const playerBoxEle = <PlayerBox minWidth={minWidth} minHeight={minHeight} />;
-        const playerBoxWrapperEle = document.getElementById('rnd-player-box-wrapper');
-
-        if (playerBoxWrapperEle) {
-            render(playerBoxEle, playerBoxWrapperEle);
-        }
+        // const playerBoxEle = <PlayerBox minWidth={minWidth} minHeight={minHeight} />;
+        // const playerBoxWrapperEle = document.getElementById('rnd-player-box-wrapper');
+        //
+        // if (playerBoxWrapperEle) {
+        //     render(playerBoxEle, playerBoxWrapperEle);
+        // }
     }, []);
 
     return (
@@ -39,7 +37,7 @@ const Content = () => {
             onMouseOver={() => rndPlayerStoreDispatch({ disableDragging: true })}
         >
             <Panel />
-            <PlayerBoxWrapper />
+            <Players />
         </div>
     );
 };
