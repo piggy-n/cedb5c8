@@ -55,9 +55,10 @@ const StylesHandler = () => {
 
     useEffect(
         () => {
-            if (!playersLength || !rndWidth || !rndHeight || !videoMinWidth) return;
+            if (!rndWidth || !rndHeight || !videoMinWidth) return;
             const oneToTwo = prevPlayersLength === 1 && playersLength === 2;
             const twoToOne = prevPlayersLength === 2 && playersLength === 1;
+
             const expand = () => {
                 rndEle.updateSize({
                     width: (rndWidth - borderWidth) * 2 + borderWidth,
@@ -71,35 +72,22 @@ const StylesHandler = () => {
 
             const shrink = () => {
                 rndEle.updateSize({
-                    width: (rndWidth - borderWidth) / 2 + borderWidth,
+                    width: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
                     height: rndHeight,
                 });
                 rndPlayerStoreDispatch({
-                    rndWidth: (rndWidth - borderWidth) / 2 + borderWidth,
+                    rndWidth: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
                     rndMinWidth: videoMinWidth + borderWidth,
                 });
             };
 
             // 1 => 2
-            if (oneToTwo && mode === 'db') {
-                console.log('1 => 2');
-                expand();
-            }
-
+            if (oneToTwo && mode === 'db') return expand();
             // 2 => 1
-            if (twoToOne && prevMode === 'db') {
-                shrink();
-            }
-
+            if (twoToOne && prevMode === 'db') return shrink();
             // only mode change
-            if (playersLength === 2) {
-                if (prevMode === 'db') {
-                    shrink();
-                }
-                if (prevMode === 'pip') {
-                    expand();
-                }
-            }
+            if (playersLength === 2 && prevMode === 'db') return shrink();
+            if (playersLength === 2 && prevMode === 'pip') return expand();
         },
         [playersLength, prevPlayersLength, mode, prevMode],
     );
