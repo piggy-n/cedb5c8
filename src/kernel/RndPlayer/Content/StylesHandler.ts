@@ -12,6 +12,7 @@ const StylesHandler = () => {
         rndEle,
         rndPlayerStoreDispatch,
         rndPlayerStore: {
+            mode,
             players,
             rndWidth,
             rndHeight,
@@ -26,6 +27,7 @@ const StylesHandler = () => {
 
     const playersLength = players.length;
     const prevPlayersLength = usePrevious(players.length);
+    const prevMode = usePrevious(mode);
 
     useEffect(
         () => {
@@ -54,33 +56,52 @@ const StylesHandler = () => {
     useEffect(
         () => {
             if (!playersLength || !rndWidth || !rndHeight || !videoMinWidth) return;
-
-            // 1 => 2
-            if (prevPlayersLength === 1 && playersLength === 2) {
+            const oneToTwo = prevPlayersLength === 1 && playersLength === 2;
+            const twoToOne = prevPlayersLength === 2 && playersLength === 1;
+            const expand = () => {
                 rndEle.updateSize({
                     width: (rndWidth - borderWidth) * 2 + borderWidth,
                     height: rndHeight,
                 });
                 rndPlayerStoreDispatch({
                     rndWidth: (rndWidth - borderWidth) * 2 + borderWidth,
+                    rndMinWidth: videoMinWidth * 2 + borderWidth,
                 });
-            }
-            // 2 => 1
-            if (prevPlayersLength === 2 && playersLength === 1) {
+            };
+
+            const shrink = () => {
                 rndEle.updateSize({
                     width: (rndWidth - borderWidth) / 2 + borderWidth,
                     height: rndHeight,
                 });
                 rndPlayerStoreDispatch({
                     rndWidth: (rndWidth - borderWidth) / 2 + borderWidth,
+                    rndMinWidth: videoMinWidth + borderWidth,
                 });
+            };
+
+            // 1 => 2
+            if (oneToTwo && mode === 'db') {
+                console.log('1 => 2');
+                expand();
             }
 
-            rndPlayerStoreDispatch({
-                rndMinWidth: videoMinWidth * playersLength + borderWidth,
-            });
+            // 2 => 1
+            if (twoToOne && prevMode === 'db') {
+                shrink();
+            }
+
+            // only mode change
+            if (playersLength === 2) {
+                if (prevMode === 'db') {
+                    shrink();
+                }
+                if (prevMode === 'pip') {
+                    expand();
+                }
+            }
         },
-        [playersLength, prevPlayersLength],
+        [playersLength, prevPlayersLength, mode, prevMode],
     );
 
     return null;
