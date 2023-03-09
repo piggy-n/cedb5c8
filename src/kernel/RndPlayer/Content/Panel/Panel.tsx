@@ -17,6 +17,7 @@ const Panel = () => {
         minWidth: videoMinWidth,
         minHeight: videoMinHeight,
         isMainPlayer: false,
+        url: 'https://www.w3schools.com/html/mov_bbb.mp4',
     };
 
     const change = () => {

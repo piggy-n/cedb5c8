@@ -8,6 +8,7 @@ import {
 } from '@/utils/hooks/data/useControlsContext';
 import { useControlsMethods, useControlsStore } from '@/utils/hooks';
 import { Buttons, ProgressAndPanel, Wrapper } from '@/kernel/Player/Controls/index';
+import { isBoolean } from 'ahooks/es/utils';
 
 const Controls = () => {
     const {
@@ -25,7 +26,7 @@ const Controls = () => {
 
     const controlsMethods = useControlsMethods(dispatch); // 控制面板的方法
 
-    if (!(!!controlsOpts && !!url)) return null;
+    if (isBoolean(controlsOpts) && !controlsOpts || !url) return null;
     return (
         <ControlsContext.Provider value={{
             ...controlsContextDefaultValue,

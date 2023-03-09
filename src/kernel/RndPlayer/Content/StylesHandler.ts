@@ -36,6 +36,7 @@ const StylesHandler = () => {
                 minWidth: videoMinWidth,
                 minHeight: videoMinHeight,
                 isMainPlayer: true,
+                url: 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4',
             };
 
             rndPlayerStoreDispatch({
