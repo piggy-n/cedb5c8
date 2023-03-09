@@ -5,6 +5,7 @@ import type { FC } from 'react';
 
 export interface ItemProps {
     id?: string;
+    url?: string;
     minWidth?: number;
     minHeight?: number;
 }
@@ -12,6 +13,7 @@ export interface ItemProps {
 const Item: FC<ItemProps> = (
     {
         id,
+        url,
         minWidth,
         minHeight,
     },
@@ -22,7 +24,7 @@ const Item: FC<ItemProps> = (
                 <div className={s.mask} />
                 <Player
                     videoContainerEleOpts={{ style: { minWidth, minHeight } }}
-                    url={'https://www.w3school.com.cn/i/movie.ogg'}
+                    url={url}
                 />
             </div>
         </Draggable>
