@@ -7,7 +7,6 @@ import { useContext, useState } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 
 export interface ItemProps {
-    id?: string;
     url?: string;
     minWidth?: number;
     minHeight?: number;
@@ -16,7 +15,6 @@ export interface ItemProps {
 
 const Item: FC<ItemProps> = (
     {
-        id,
         url,
         minWidth,
         minHeight,
@@ -51,10 +49,7 @@ const Item: FC<ItemProps> = (
             position={mode === 'pip' && !isMainPlayer ? position : { x: 0, y: 0 }}
             onDrag={(_, data) => setPosition(data)}
         >
-            <div
-                id={id}
-                className={c(s.container, containerStylesHandler())}
-            >
+            <div className={c(s.container, containerStylesHandler())}>
                 <div className={s.mask} />
                 <Player
                     videoContainerEleOpts={videoStylesHandler()}
