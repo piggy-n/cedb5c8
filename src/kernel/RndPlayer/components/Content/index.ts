@@ -1,4 +1,4 @@
-import Content from './Content';
+import Content from '@/kernel/RndPlayer/components/Content/Content';
 import Panel from '@/kernel/RndPlayer/components/Content/components/Panel';
 import Players from '@/kernel/RndPlayer/components/Content/components/Players';
 
