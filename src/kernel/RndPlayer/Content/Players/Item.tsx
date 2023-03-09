@@ -32,6 +32,18 @@ const Item: FC<ItemProps> = (
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
+    const containerStylesHandler = () => {
+        if (mode === 'sg' || players.length === 1 || (mode === 'pip' && isMainPlayer)) return [s.sg];
+        if (mode === 'db' && players.length === 2) return [s.db];
+        if (mode === 'pip' && !isMainPlayer) return [s.pip];
+        return [];
+    };
+
+    const videoStylesHandler = () => {
+        if (mode === 'pip' && !isMainPlayer) return;
+        return { style: { minWidth, minHeight } };
+    };
+
     return (
         <Draggable
             bounds={'parent'}
@@ -41,22 +53,11 @@ const Item: FC<ItemProps> = (
         >
             <div
                 id={id}
-                className={c(
-                    s.container,
-                    {
-                        [s.sg]: mode === 'sg' || players.length === 1 || (mode === 'pip' && isMainPlayer),
-                        [s.db]: mode === 'db' && players.length === 2,
-                        [s.pip]: mode === 'pip' && !isMainPlayer,
-                    },
-                )}
+                className={c(s.container, containerStylesHandler())}
             >
                 <div className={s.mask} />
                 <Player
-                    videoContainerEleOpts={{
-                        style: mode === 'pip' && !isMainPlayer
-                            ? undefined
-                            : { minWidth, minHeight },
-                    }}
+                    videoContainerEleOpts={videoStylesHandler()}
                     url={url}
                 />
             </div>
