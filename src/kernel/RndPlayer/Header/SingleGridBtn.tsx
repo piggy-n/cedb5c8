@@ -12,11 +12,12 @@ const SingleGridBtn = () => {
     } = useContext(RndPlayerContext);
 
     const clickHandler = () => {
-        const [player] = players;
-
-        if (players.length > 1) {
+        const copyPlayers = [...players];
+        const subPlayer = copyPlayers.find((item) => !item.isMainPlayer);
+        if (subPlayer) {
+            subPlayer.url = '';
             rndPlayerStoreDispatch({
-                players: [player],
+                players: copyPlayers,
             });
         }
 

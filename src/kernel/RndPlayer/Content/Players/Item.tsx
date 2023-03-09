@@ -37,12 +37,16 @@ const Item: FC<ItemProps> = (
         () => mode === 'pip' && !isMainPlayer,
         [mode, isMainPlayer],
     );
+    const playersUrlListLength = useMemo(
+        () => players.map((item) => item.url).filter((item) => item).length,
+        [players],
+    );
 
     const containerStylesHandler = () => {
-        if (mode === 'sg' || players.length === 1 || (mode === 'pip' && isMainPlayer)) return [s.sg];
-        if (mode === 'db' && players.length === 2) return [s.db];
+        if (mode === 'sg' || playersUrlListLength === 1) return [s.sg];
+        if (mode === 'db' && playersUrlListLength === 2) return [s.db];
         if (mode === 'pip' && !isMainPlayer) return [s.pip];
-        return [];
+        return [s.sg];
     };
 
     const videoStylesHandler = () => {
@@ -60,11 +64,11 @@ const Item: FC<ItemProps> = (
                 if (clickCountRef.current === 2) {
                     const copyPlayers = [...players];
                     const mainPlayer = copyPlayers.find(player => player.isMainPlayer);
-                    const pipPlayer = copyPlayers.find(player => !player.isMainPlayer);
+                    const subPlayer = copyPlayers.find(player => !player.isMainPlayer);
 
-                    if (mainPlayer && pipPlayer) {
+                    if (mainPlayer && subPlayer) {
                         mainPlayer.isMainPlayer = false;
-                        pipPlayer.isMainPlayer = true;
+                        subPlayer.isMainPlayer = true;
                         rndPlayerStoreDispatch({
                             players: copyPlayers,
                         });
@@ -76,6 +80,7 @@ const Item: FC<ItemProps> = (
         );
     };
 
+    if (!url && !isMainPlayer) return null;
     return (
         <Draggable
             bounds={'parent'}

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import { usePrevious } from 'ahooks';
 import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
@@ -24,9 +24,12 @@ const StylesHandler = () => {
         } = {},
     } = useContext(RndPlayerContext);
 
-    const playersLength = players.length;
-    const prevPlayersLength = usePrevious(players.length);
+    const playersUrlListLength = useMemo(
+        () => players.map((item) => item.url).filter((item) => item).length,
+        [players],
+    );
     const prevMode = usePrevious(mode);
+    const prevPlayersUrlListLength = usePrevious(playersUrlListLength);
 
     useEffect(
         () => {
@@ -36,12 +39,12 @@ const StylesHandler = () => {
                 minWidth: videoMinWidth,
                 minHeight: videoMinHeight,
                 isMainPlayer: true,
-                url: 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4',
+                url: '',
             };
 
             rndPlayerStoreDispatch({
                 position,
-                players: [playerItem],
+                players: [playerItem, { ...playerItem, isMainPlayer: false }],
                 rndWidth: minWidth,
                 rndMinWidth: minWidth,
                 rndMinHeight: minHeight,
@@ -55,8 +58,8 @@ const StylesHandler = () => {
     useEffect(
         () => {
             if (!rndWidth || !rndHeight || !videoMinWidth) return;
-            const oneToTwo = prevPlayersLength === 1 && playersLength === 2;
-            const twoToOne = prevPlayersLength === 2 && playersLength === 1;
+            const oneToTwo = prevPlayersUrlListLength === 1 && playersUrlListLength === 2;
+            const twoToOne = prevPlayersUrlListLength === 2 && playersUrlListLength === 1;
 
             const expand = () => {
                 rndEle.updateSize({
@@ -85,10 +88,15 @@ const StylesHandler = () => {
             // 2 => 1
             if (twoToOne && prevMode === 'db') return shrink();
             // only mode change
-            if (playersLength === 2 && prevMode === 'db') return shrink();
-            if (playersLength === 2 && prevMode === 'pip') return expand();
+            if (playersUrlListLength === 2 && prevMode === 'db') return shrink();
+            if (playersUrlListLength === 2 && prevMode === 'pip') return expand();
         },
-        [playersLength, prevPlayersLength, mode, prevMode],
+        [
+            mode,
+            prevMode,
+            playersUrlListLength,
+            prevPlayersUrlListLength,
+        ],
     );
 
     return null;
