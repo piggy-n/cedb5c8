@@ -4,7 +4,7 @@ import { randomString } from '@/utils/methods/common/randomString';
 import { usePrevious } from 'ahooks';
 import type { ItemProps } from '@/kernel/RndPlayer/components/Content/components/Players/Item';
 
-const borderWidth = 2;
+const borderWidth = 4;
 const headerHeight = 36;
 
 const StylesHandler = () => {
@@ -29,8 +29,8 @@ const StylesHandler = () => {
 
     useEffect(
         () => {
-            const videoMinWidth = minWidth - borderWidth * 2;
-            const videoMinHeight = minHeight - headerHeight - borderWidth * 2;
+            const videoMinWidth = minWidth - borderWidth;
+            const videoMinHeight = minHeight - headerHeight - borderWidth;
             const playerItem: ItemProps = {
                 minWidth: videoMinWidth,
                 minHeight: videoMinHeight,
@@ -57,26 +57,26 @@ const StylesHandler = () => {
             // 1 => 2
             if (prevPlayersLength === 1 && playersLength === 2) {
                 rndEle.updateSize({
-                    width: rndWidth * 2,
+                    width: (rndWidth - borderWidth) * 2 + borderWidth,
                     height: rndHeight,
                 });
                 rndPlayerStoreDispatch({
-                    rndWidth: rndWidth * 2,
+                    rndWidth: (rndWidth - borderWidth) * 2 + borderWidth,
                 });
             }
             // 2 => 1
             if (prevPlayersLength === 2 && playersLength === 1) {
                 rndEle.updateSize({
-                    width: rndWidth / 2,
+                    width: (rndWidth - borderWidth) / 2 + borderWidth,
                     height: rndHeight,
                 });
                 rndPlayerStoreDispatch({
-                    rndWidth: rndWidth / 2,
+                    rndWidth: (rndWidth - borderWidth) / 2 + borderWidth,
                 });
             }
 
             rndPlayerStoreDispatch({
-                rndMinWidth: videoMinWidth * playersLength + borderWidth * 2,
+                rndMinWidth: videoMinWidth * playersLength + borderWidth,
             });
         },
         [playersLength, prevPlayersLength],

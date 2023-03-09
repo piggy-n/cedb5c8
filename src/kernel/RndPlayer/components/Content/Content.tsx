@@ -12,9 +12,9 @@ const Content = () => {
             className={s.container}
             onMouseOver={() => rndPlayerStoreDispatch({ disableDragging: true })}
         >
-            <StylesHandler />
             <Panel />
             <Players />
+            <StylesHandler />
         </div>
     );
 };
