@@ -12,11 +12,13 @@ export interface RndPlayerStoreState {
     videoMinHeight?: number;
     disableDragging?: boolean;
     players: ItemProps[];
+    mode: 'sg' | 'db' | 'pip'; // 单宫 双宫 画中画
 }
 
 export const initialState: RndPlayerStoreState = {
     disableDragging: true,
     players: [],
+    mode: 'sg',
 };
 
 const useRndPlayerStore = () => {
