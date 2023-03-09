@@ -1,8 +1,18 @@
 import s from './styles/header.scss';
 import { useContext } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import {
+    CloseBtn,
+    ControlPanelBtn,
+    DeviceInfo,
+    DoubleGridBtn,
+    FullscreenBtn,
+    PipGridBtn,
+    ScreenshotBtn,
+    SingleGridBtn,
+    VideoPanelBtn,
+} from '@/kernel/RndPlayer/Header';
 import type { MouseEventHandler } from 'react';
-import DeviceInfo from '@/kernel/RndPlayer/Header/DeviceInfo';
 
 const Header = () => {
     const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);
@@ -20,7 +30,14 @@ const Header = () => {
         <div className={s.container} onMouseMove={mouseOverHandler}>
             <DeviceInfo />
             <div className={s.toolbar}>
-
+                <SingleGridBtn />
+                <DoubleGridBtn />
+                <PipGridBtn />
+                <ScreenshotBtn />
+                <ControlPanelBtn />
+                <VideoPanelBtn />
+                <FullscreenBtn />
+                <CloseBtn />
             </div>
         </div>
     );

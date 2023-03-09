@@ -4,6 +4,6 @@ import Content from '@/kernel/RndPlayer/Content';
 
 export {
     Header,
-    Content
-}
+    Content,
+};
 export default RndPlayer;
