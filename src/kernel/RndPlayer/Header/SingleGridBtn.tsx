@@ -7,14 +7,29 @@ const SingleGridBtn = () => {
         rndPlayerStoreDispatch,
         rndPlayerStore: {
             mode,
+            players,
         },
     } = useContext(RndPlayerContext);
+
+    const clickHandler = () => {
+        const [player] = players;
+
+        if (players.length > 1) {
+            rndPlayerStoreDispatch({
+                players: [player],
+            });
+        }
+
+        rndPlayerStoreDispatch({
+            mode: 'sg',
+        });
+    };
 
     return (
         <Icon
             name={mode === 'sg' ? 'sg-2' : 'sg-1'}
             title={'单宫'}
-            onClick={() => rndPlayerStoreDispatch({ mode: 'sg' })}
+            onClick={clickHandler}
         />
     );
 };
