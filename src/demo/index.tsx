@@ -35,7 +35,7 @@ const Demo = () => {
     };
 
     useEffect(() => {
-        console.log(playerRef.current?.attributes, 'playerRef.current?.attributes');
+        // console.log(playerRef.current?.attributes, 'playerRef.current?.attributes');
     }, [playerRef.current?.attributes]);
 
     return (

@@ -4,33 +4,36 @@ import { randomString } from '@/utils/methods/common/randomString';
 import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 const borderWidth = 2;
+const headerHeight = 36;
 
 const useRndPlayerInit = () => {
     const {
         rndPlayerStoreDispatch,
         rndEleOpts: {
-            minWidth = 480,
-            minHeight = 270,
+            minWidth = 484,
+            minHeight = 310,
             position = { x: 0, y: 0 },
         } = {},
     } = useContext(RndPlayerContext);
 
     useEffect(
         () => {
+            const videoMinWidth = minWidth - borderWidth * 2;
+            const videoMinHeight = minHeight - headerHeight - borderWidth * 2;
             const playerItem: ItemProps = {
-                minWidth,
-                minHeight,
+                minWidth: videoMinWidth,
+                minHeight: videoMinHeight,
                 id: randomString(),
             };
 
             rndPlayerStoreDispatch({
                 position,
                 players: [playerItem],
-                initialMinWidth: minWidth,
-                initialMinHeight: minHeight,
-                minWidth: minWidth + borderWidth * 2,
-                minHeight: minHeight + borderWidth * 2,
-                rndEleWidth: minWidth + borderWidth * 2,
+                rndWidth: minWidth,
+                rndMinWidth: minWidth,
+                rndMinHeight: minHeight,
+                videoMinWidth,
+                videoMinHeight,
             });
         },
         [],

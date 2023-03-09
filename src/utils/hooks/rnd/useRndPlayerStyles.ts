@@ -1,32 +1,53 @@
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import { usePrevious } from 'ahooks';
 
 const borderWidth = 2;
 
 const useRndPlayerStyles = () => {
     const {
-        // rndEle,
+        rndEle,
         rndPlayerStoreDispatch,
         rndPlayerStore: {
             players,
-            rndEleWidth,
-            initialMinWidth,
-
+            rndWidth,
+            rndHeight,
+            videoMinWidth,
         },
     } = useContext(RndPlayerContext);
 
+    const playersLength = players.length;
+    const prevPlayersLength = usePrevious(players.length);
+
     useEffect(
         () => {
-            if (!players.length || !rndEleWidth || !initialMinWidth) return;
+            if (!playersLength || !rndWidth || !rndHeight || !videoMinWidth) return;
 
-            // rndEle.updateSize({
-            //     width: rndEleWidth * players.length,
-            // });
+            // 1 => 2
+            if (prevPlayersLength === 1 && playersLength === 2) {
+                rndEle.updateSize({
+                    width: rndWidth * 2,
+                    height: rndHeight,
+                });
+                rndPlayerStoreDispatch({
+                    rndWidth: rndWidth * 2,
+                })
+            }
+            // 2 => 1
+            if (prevPlayersLength === 2 && playersLength === 1) {
+                rndEle.updateSize({
+                    width: rndWidth / 2,
+                    height: rndHeight,
+                });
+                rndPlayerStoreDispatch({
+                    rndWidth: rndWidth / 2,
+                });
+            }
             rndPlayerStoreDispatch({
-                minWidth: initialMinWidth * players.length + borderWidth * 2,
+                rndMinWidth: videoMinWidth * playersLength + borderWidth * 2,
             });
         },
-        [players.length],
+        [playersLength, prevPlayersLength],
     );
 };
 

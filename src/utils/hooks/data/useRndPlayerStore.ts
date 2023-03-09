@@ -4,11 +4,12 @@ import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 export interface RndPlayerStoreState {
     position?: Position;
-    minWidth?: number;
-    minHeight?: number;
-    initialMinWidth?: number;
-    initialMinHeight?: number;
-    rndEleWidth?: number;
+    rndWidth?: number;
+    rndHeight?: number;
+    rndMinWidth?: number;
+    rndMinHeight?: number;
+    videoMinWidth?: number;
+    videoMinHeight?: number;
     disableDragging?: boolean;
     players: ItemProps[];
 }

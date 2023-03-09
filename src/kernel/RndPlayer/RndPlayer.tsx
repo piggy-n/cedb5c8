@@ -34,8 +34,8 @@ const RndPlayer: FC<RndPlayerProps> = (
                 {...rndEleOpts}
                 lockAspectRatio
                 position={store.position}
-                minWidth={store.minWidth}
-                minHeight={store.minHeight}
+                minWidth={store.rndMinWidth}
+                minHeight={store.rndMinHeight}
                 disableDragging={store.disableDragging}
                 enableResizing={{
                     right: true,
@@ -54,7 +54,10 @@ const RndPlayer: FC<RndPlayerProps> = (
                     delta,
                     position,
                 ) => {
-                    dispatch({ rndEleWidth: Number(elementRef.style.width.replace(/\D/g, '')) });
+                    dispatch({
+                        rndWidth: Number(elementRef.style.width.replace(/\D/g, '')),
+                        rndHeight: Number(elementRef.style.height.replace(/\D/g, '')),
+                    });
                     rndEleOpts?.onResizeStop?.(e, dir, elementRef, delta, position);
                 }}
             >
@@ -63,8 +66,8 @@ const RndPlayer: FC<RndPlayerProps> = (
                     className={c(s.player_container, rndPlayerContainerEleOpts?.className)}
                     style={{
                         ...rndPlayerContainerEleOpts?.style,
-                        minWidth: store.minWidth,
-                        minHeight: store.minHeight,
+                        minWidth: store.rndMinWidth,
+                        minHeight: store.rndMinHeight,
                     }}
                     onMouseLeave={(e) => {
                         dispatch({ disableDragging: true });
