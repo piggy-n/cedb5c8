@@ -35,6 +35,7 @@ const StylesHandler = () => {
                 minWidth: videoMinWidth,
                 minHeight: videoMinHeight,
                 id: randomString(),
+                isMainPlayer: true,
             };
 
             rndPlayerStoreDispatch({

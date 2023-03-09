@@ -18,6 +18,7 @@ const Panel = () => {
         minWidth: videoMinWidth,
         minHeight: videoMinHeight,
         id: randomString(),
+        isMainPlayer: false,
     };
 
     const change = () => {

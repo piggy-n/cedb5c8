@@ -9,3 +9,20 @@
     z-index: 1;
   }
 }
+
+.sg {
+  width: 100%;
+}
+
+.db {
+  width: 50%;
+}
+
+.pip {
+  @include wh(35%, 35%);
+  @include mwh(auto, auto);
+  @include ps(absolute, 0, auto, auto, 0);
+  border: 1px solid #16aee0;
+  cursor: move;
+  z-index: 1;
+}
