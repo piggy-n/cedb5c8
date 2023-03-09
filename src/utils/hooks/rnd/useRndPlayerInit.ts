@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import { randomString } from '@/utils/methods/common/randomString';
-import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
+import { ItemProps } from '@/kernel/RndPlayer/components/Content/components/Players/Item';
 
 const borderWidth = 2;
 const headerHeight = 36;

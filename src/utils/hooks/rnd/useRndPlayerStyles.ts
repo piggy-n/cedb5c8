@@ -43,6 +43,7 @@ const useRndPlayerStyles = () => {
                     rndWidth: rndWidth / 2,
                 });
             }
+
             rndPlayerStoreDispatch({
                 rndMinWidth: videoMinWidth * playersLength + borderWidth * 2,
             });

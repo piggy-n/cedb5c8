@@ -1,11 +1,10 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
 import { Rnd } from 'react-rnd';
+import { Content, Header } from '@/kernel/RndPlayer/components';
 import { useRef } from 'react';
 import { useRndPlayerStore } from '@/utils/hooks';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import Header from '@/kernel/RndPlayer/Header';
-import Content from '@/kernel/RndPlayer/Content/Content';
 import type { FC } from 'react';
 import type { RndPlayerProps } from '@/index.d';
 

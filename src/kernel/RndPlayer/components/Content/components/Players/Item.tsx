@@ -20,7 +20,10 @@ const Item: FC<ItemProps> = (
         <Draggable bounds={'parent'} disabled>
             <div className={s.container} id={id}>
                 <div className={s.mask} />
-                <Player videoContainerEleOpts={{ style: { minWidth, minHeight } }} />
+                <Player
+                    videoContainerEleOpts={{ style: { minWidth, minHeight } }}
+                    url={'https://www.w3school.com.cn/i/movie.ogg'}
+                />
             </div>
         </Draggable>
     );

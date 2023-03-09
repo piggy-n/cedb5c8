@@ -1,7 +1,7 @@
 import s from './styles/players.scss';
-import { Item } from '@/kernel/RndPlayer/Content/Players';
 import { useContext } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
+import { Item } from '@/kernel/RndPlayer/components/Content/components/Players';
 
 const Players = () => {
     const {
