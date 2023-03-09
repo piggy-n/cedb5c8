@@ -1,24 +1,21 @@
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 const Panel = () => {
     const {
         rndPlayerStore: {
-            videoMinWidth,
-            videoMinHeight,
             players,
         },
         rndPlayerStoreDispatch,
         rndEle,
     } = useContext(RndPlayerContext);
 
-    const playerItem: ItemProps = {
-        minWidth: videoMinWidth,
-        minHeight: videoMinHeight,
-        isMainPlayer: false,
-        url: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    };
+    // const playerItem: ItemProps = {
+    //     minWidth: videoMinWidth,
+    //     minHeight: videoMinHeight,
+    //     isMainPlayer: false,
+    //     url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    // };
 
     const change = () => {
         const player = players.reverse();
@@ -28,20 +25,26 @@ const Panel = () => {
     };
 
     const add = () => {
+        const url = Math.random() > 0.5
+            ? 'https://www.w3schools.com/html/mov_bbb.mp4'
+            : 'https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4';
         const player = [...players];
-        player.push(playerItem);
-        rndPlayerStoreDispatch({
-            players: player,
-        });
+        const emptyPlayer = player.find((item) => !item.url);
+        if (emptyPlayer) {
+            emptyPlayer.url = url;
+            rndPlayerStoreDispatch({
+                players: player,
+            });
+        }
     };
 
     const del = () => {
-        const player = [...players];
-        player.splice(player.length - 1, 1);
-        console.log(player);
-        rndPlayerStoreDispatch({
-            players: player,
-        });
+        // const player = [...players];
+        // player.splice(player.length - 1, 1);
+        // console.log(player);
+        // rndPlayerStoreDispatch({
+        //     players: player,
+        // });
     };
 
     useEffect(() => {
