@@ -10,4 +10,15 @@
   use {
     cursor: pointer;
   }
+
+  .toolbar {
+    @include fr(flex-end, center);
+    flex-wrap: nowrap;
+    height: 100%;
+    padding: 0 4px;
+
+    svg {
+      margin: 0 4px;
+    }
+  }
 }

@@ -19,6 +19,9 @@ const Header = () => {
     return (
         <div className={s.container} onMouseMove={mouseOverHandler}>
             <DeviceInfo />
+            <div className={s.toolbar}>
+
+            </div>
         </div>
     );
 };
