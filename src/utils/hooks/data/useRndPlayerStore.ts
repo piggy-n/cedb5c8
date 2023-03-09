@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import type { Position } from 'react-rnd';
-import type { ItemProps } from '@/kernel/RndPlayer/components/Content/components/Players/Item';
+import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 export interface RndPlayerStoreState {
     position?: Position;

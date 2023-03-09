@@ -1,7 +1,7 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
 import { Rnd } from 'react-rnd';
-import { Content, Header } from '@/kernel/RndPlayer/components';
+import { Content, Header } from '@/kernel/RndPlayer';
 import { useRef } from 'react';
 import { useRndPlayerStore } from '@/utils/hooks';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';

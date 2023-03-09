@@ -1,8 +1,7 @@
 import s from './styles/content.scss';
 import { useContext } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import { Panel, Players } from '@/kernel/RndPlayer/components/Content';
-import { StylesHandler } from '@/kernel/RndPlayer/components/Content/handlers';
+import { Panel, Players, StylesHandler } from '@/kernel/RndPlayer/Content';
 
 const Content = () => {
     const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);

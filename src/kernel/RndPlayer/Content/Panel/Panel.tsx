@@ -1,7 +1,7 @@
 import { randomString } from '@/utils/methods/common/randomString';
 import { useContext, useEffect } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
-import type { ItemProps } from '@/kernel/RndPlayer/components/Content/components/Players/Item';
+import type { ItemProps } from '@/kernel/RndPlayer/Content/Players/Item';
 
 const Panel = () => {
     const {
