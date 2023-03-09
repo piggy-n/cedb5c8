@@ -35,6 +35,8 @@ export type VideoType = 'live' | 'record' | 'stream-record';
  */
 export type DeviceOpts = {
     deviceId: string;
+    deviceName?: string;
+    deviceStatus?: 'online' | 'offline';
     urlPrefix?: string;
     streamType?: '1' | '2';
     channelType?: '1' | '2';
@@ -169,7 +171,19 @@ export interface RndEleOpts extends Props {
     minHeight?: number;
 }
 
-export interface RndPlayerProps {
+export interface HeaderOpts {
+    showStatus?: boolean;
+    sgMode?: boolean;
+    dbMode?: boolean;
+    pipMode?: boolean;
+    controlPanel?: boolean;
+    videoPanel?: boolean;
+    screenshot?: boolean;
+    fullscreen?: boolean;
+}
+
+export interface RndPlayerProps extends PlayerProps {
+    headerOpts?: HeaderOpts;
     rndEleOpts?: RndEleOpts;
     rndPlayerContainerEleOpts?: HTMLAttributes<HTMLDivElement>;
 }

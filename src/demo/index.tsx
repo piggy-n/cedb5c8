@@ -93,7 +93,11 @@ const Demo = () => {
                     {/*    deviceOpts={device} />*/}
                 </div>
                 <br />
-                <RndPlayer />
+                <RndPlayer deviceOpts={{
+                    deviceId: '1622468092196032514',
+                    deviceName: '测试设备',
+                    deviceStatus: 'online',
+                }} />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
         </>

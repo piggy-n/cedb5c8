@@ -12,6 +12,7 @@ const RndPlayer: FC<RndPlayerProps> = (
     {
         rndEleOpts,
         rndPlayerContainerEleOpts,
+        ...rest
     },
 ) => {
     const [store, dispatch] = useRndPlayerStore();
@@ -24,6 +25,7 @@ const RndPlayer: FC<RndPlayerProps> = (
             rndPlayerStoreDispatch: dispatch,
             rndEleOpts,
             rndPlayerContainerEleOpts,
+            ...rest,
         }}>
             <Rnd
                 ref={rndEleRef}
