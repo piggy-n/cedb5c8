@@ -3,7 +3,7 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { isNumber } from 'ahooks/es/utils';
 import type { VideoType } from '@/index.d';
 
-const PlayerMethods = () => {
+const ExMethods = () => {
     const {
         wsPlayer,
         flvPlayer,
@@ -94,7 +94,8 @@ const PlayerMethods = () => {
             currentTime,
         ],
     );
+
     return null;
 };
 
-export default PlayerMethods;
+export default ExMethods;

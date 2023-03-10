@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { useSize } from 'ahooks';
 
-const PlayerListener = () => {
+const Listener = () => {
     const forceUpdate = useMandatoryUpdate();
     const { videoEle, playerStoreDispatch } = useContext(PlayerContext);
 
@@ -60,6 +60,7 @@ const PlayerListener = () => {
         });
     };
 
+    // listen videoEle event
     useEffect(
         () => {
             if (!videoEle) return forceUpdate();
@@ -107,6 +108,7 @@ const PlayerListener = () => {
         [videoEle],
     );
 
+    // listen videoEle size change
     useEffect(
         () => {
             playerStoreDispatch({
@@ -131,4 +133,4 @@ const PlayerListener = () => {
     return null;
 };
 
-export default PlayerListener;
+export default Listener;
