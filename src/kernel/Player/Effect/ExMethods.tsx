@@ -9,6 +9,7 @@ const ExMethods = () => {
         playerStore: {
             url = '',
             videoType,
+            playing,
             canplay,
             currentTime,
             totalTime,
@@ -26,7 +27,7 @@ const ExMethods = () => {
             return;
         }
 
-        if (canplay) return wsPlayer.play();
+        if (canplay && !playing) return wsPlayer.play();
         wsPlayer.stop();
         wsPlayer.start(url);
     };
