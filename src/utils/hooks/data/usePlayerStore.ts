@@ -5,7 +5,6 @@ import type { VideoType, PlayerMethods, VideoEleAttributes } from '@/index.d';
  * @description PlayerStoreState
  * @param {boolean} canplay - 视频是否可以播放
  * @param {boolean} isFullScreen - 播放器是否全屏
- * @param {boolean} isError - 视频是否出错
  * @param {VideoType} videoType - 视频类型
  * @param {boolean} loading - 视频是否在加载中
  * @param {string} mime - 视频mime类型
@@ -18,15 +17,12 @@ import type { VideoType, PlayerMethods, VideoEleAttributes } from '@/index.d';
  * @param {number} progressMouseUpVal - 进度条鼠标抬起值，用于触发回调
  */
 export interface PlayerStoreState extends VideoEleAttributes {
-    canplay?: boolean;
-    isFullscreen?: boolean;
-    isError?: boolean;
+    url?: string;
     videoType?: VideoType;
+    isFullscreen?: boolean;
     loading?: boolean;
     mime?: string;
-    resizing?: boolean;
     transmissionRate?: number;
-    url?: string;
     wsCloseVal?: number;
     videoCanplayVal?: number;
     videoLoadErrorVal?: number;
@@ -41,6 +37,8 @@ export const initialVideoEleAttributes: VideoEleAttributes = {
     playing: false,
     buffering: false,
     ended: false,
+    canplay: false,
+    resizing: false,
     currentTime: 0,
     totalTime: 0,
     bufferedTime: 0,

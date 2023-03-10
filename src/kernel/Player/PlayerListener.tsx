@@ -1,10 +1,15 @@
 import { useMandatoryUpdate } from '@/utils/hooks';
 import { useContext, useEffect, useRef } from 'react';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
+import { useSize } from 'ahooks';
 
 const PlayerListener = () => {
     const forceUpdate = useMandatoryUpdate();
     const { videoEle, playerStoreDispatch } = useContext(PlayerContext);
+
+    const videoEleSize = useSize(videoEle);
+
+    const resizingTimeoutRef = useRef<NodeJS.Timeout>();
     const videoListenerIntervalRef = useRef<NodeJS.Timer>();
 
     const canPlayHandler = () => {
@@ -100,6 +105,27 @@ const PlayerListener = () => {
             };
         },
         [videoEle],
+    );
+
+    useEffect(
+        () => {
+            playerStoreDispatch({
+                resizing: true,
+            });
+
+            resizingTimeoutRef.current && clearTimeout(resizingTimeoutRef.current);
+            resizingTimeoutRef.current = setTimeout(
+                () => playerStoreDispatch({
+                    resizing: false,
+                }),
+                250,
+            );
+
+            return () => {
+                resizingTimeoutRef.current && clearTimeout(resizingTimeoutRef.current);
+            };
+        },
+        [videoEleSize],
     );
 
     return null;

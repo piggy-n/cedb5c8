@@ -2,7 +2,6 @@ import { forwardRef, useContext } from 'react';
 import {
     useVideoPlayer,
     useVideoUrlAndType,
-    useVideoResizing,
     useVideoCallback,
 } from '@/utils/hooks';
 import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
@@ -14,8 +13,6 @@ const VanillaVideo: ForwardRefRenderFunction<HTMLVideoElement> = (
     ref,
 ) => {
     const { videoEleOpts, ...rest } = useContext(PlayerContext);
-
-    useVideoResizing(); // 监听视频大小变化
 
     useVideoUrlAndType(); // 设置 store 中的 url 和 videoType
 

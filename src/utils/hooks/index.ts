@@ -4,9 +4,7 @@ import usePlayerStore from '@/utils/hooks/data/usePlayerStore';
 import useControlsStore from '@/utils/hooks/data/useControlsStore';
 import useRndPlayerStore from '@/utils/hooks/data/useRndPlayerStore';
 import useTipStore from '@/utils/hooks/data/useTipStore';
-import useVideoListener from '@/utils/hooks/video/useVideoListener';
 import useVideoUrlAndType from '@/utils/hooks/video/useVideoUrlAndType';
-import useVideoResizing from '@/utils/hooks/video/useVideoResizing';
 import useVideoCallback from '@/utils/hooks/video/useVideoCallback';
 import useVideoPlayer from '@/utils/hooks/video/useVideoPlayer';
 import useVideoLoading from '@/utils/hooks/video/useVideoLoading';
@@ -24,9 +22,7 @@ export {
     useControlsStore,
     useRndPlayerStore,
     useTipStore,
-    useVideoListener,
     useVideoUrlAndType,
-    useVideoResizing,
     useVideoCallback,
     useVideoPlayer,
     useVideoLoading,
