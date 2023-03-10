@@ -7,7 +7,7 @@ import { randomString } from '@/utils/methods/common/randomString';
 import Loading from '@/kernel/Player/Loading';
 import Video from '@/kernel/Player/Video';
 import Controls from '@/kernel/Player/Controls';
-import { ExMethods, Init, Listener, Play } from '@/kernel/Player/Effect';
+import { Callback, ExMethods, Init, Listener, Play } from '@/kernel/Player/Effect';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
 
@@ -53,6 +53,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
                 <Init />
                 <Listener />
                 <Play />
+                <Callback />
                 <ExMethods />
                 {/* UI */}
                 <Video ref={videoEleRef} />

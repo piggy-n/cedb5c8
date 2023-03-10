@@ -120,17 +120,17 @@ export type PlayerMethods<T = noArgVoid, U = isArgVoid> = {
  *      ...
  *    }}
  */
-export type VideoCallback<T = noArgVoid, U = isArgVoid, K = VideoElementAttributes> = {
-    onPlay: U<K>;
-    onPause: U<K>;
-    onTimeUpdate: U<K>;
-    onEnded: U<K>;
-    onCanplay: U<K>;
-    onProgressMouseDown: U<K>;
-    onProgressMouseUp: U<K>;
-    onVideoStateChange: U<K>;
-    onVideoLoadError: U<K>;
-    onVideoLoadFailed: U<K>;
+export type VideoCallback = {
+    onPlay: isArgVoid<VideoEleAttributes>;
+    onPause: isArgVoid<VideoEleAttributes>;
+    onTimeUpdate: isArgVoid<VideoEleAttributes>;
+    onEnded: isArgVoid<VideoEleAttributes>;
+    onCanplay: isArgVoid<VideoEleAttributes>;
+    onProgressMouseDown: isArgVoid<VideoEleAttributes>;
+    onProgressMouseUp: isArgVoid<VideoEleAttributes>;
+    onVideoStateChange: isArgVoid<VideoEleAttributes>;
+    onVideoLoadError: isArgVoid<VideoEleAttributes>;
+    onVideoLoadFailed: isArgVoid<VideoEleAttributes>;
 }
 
 /**
