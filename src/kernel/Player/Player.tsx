@@ -3,12 +3,11 @@ import s from './styles/player.scss';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { usePlayerStore, useVideoListener } from '@/utils/hooks';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { Controls, Loading, Video } from '@/kernel/Player';
+import { Controls, Loading, PlayerMethods, Video } from '@/kernel/Player';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
-import PlayerMethods from '@/kernel/Player/PlayerMethods';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     {
