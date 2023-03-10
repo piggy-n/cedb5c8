@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 import { initialState } from '@/utils/hooks/data/usePlayerStore';
-import type WsPlayer from '@/utils/players/wsPlayer';
-import type FlvPlayer from '@/utils/players/flvPlayer';
 import type { Dispatch } from 'react';
 import type { PlayerProps } from '@/index.d';
 import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
@@ -10,8 +8,6 @@ export interface PlayerContextType extends PlayerProps {
     uuid: string;
     playerStore: PlayerStoreState;
     playerStoreDispatch: Dispatch<Partial<PlayerStoreState>>;
-    wsPlayer: WsPlayer;
-    flvPlayer: FlvPlayer;
     videoEle: HTMLVideoElement | null;
     videoContainerEle: HTMLDivElement | null;
 }

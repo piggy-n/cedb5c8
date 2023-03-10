@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import type { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { VideoType, PlayerMethods, VideoEleAttributes } from '@/index.d';
 
 /**
@@ -31,6 +32,9 @@ export interface PlayerStoreState extends VideoEleAttributes {
     progressMouseUpVal?: number;
     streamRecordCurrentTime?: number;
     playerMethods?: PlayerMethods;
+
+    wsPlayer?: WsPlayer;
+    flvPlayer?: FlvPlayer;
 }
 
 export const initialVideoEleAttributes: VideoEleAttributes = {

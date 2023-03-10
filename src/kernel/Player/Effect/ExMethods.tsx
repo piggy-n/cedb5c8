@@ -5,8 +5,6 @@ import type { VideoType } from '@/index.d';
 
 const ExMethods = () => {
     const {
-        wsPlayer,
-        flvPlayer,
         playerStoreDispatch,
         playerStore: {
             url = '',
@@ -14,10 +12,13 @@ const ExMethods = () => {
             canplay,
             currentTime,
             totalTime,
+            wsPlayer,
+            flvPlayer,
         },
     } = useContext(PlayerContext);
 
     const play = () => {
+        if (!wsPlayer || !flvPlayer) return;
         if (videoType === 'record') {
             if (canplay) return flvPlayer.play();
             flvPlayer.stop();
@@ -31,6 +32,7 @@ const ExMethods = () => {
     };
 
     const pause = () => {
+        if (!wsPlayer || !flvPlayer) return;
         if (videoType === 'record') {
             if (canplay) return flvPlayer.pause();
             return flvPlayer.stop();
@@ -41,6 +43,7 @@ const ExMethods = () => {
     };
 
     const reload = () => {
+        if (!wsPlayer || !flvPlayer) return;
         if (videoType === 'record') {
             if (canplay && isNumber(currentTime)) {
                 return flvPlayer.reload(currentTime);
@@ -59,6 +62,7 @@ const ExMethods = () => {
     };
 
     const setPlayProgress = (progress: number) => {
+        if (!flvPlayer) return;
         if (videoType === 'record' && canplay) {
             let time = progress;
             if (time < 0) time = 0;

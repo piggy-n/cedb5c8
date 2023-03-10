@@ -8,8 +8,6 @@ import type { ControlsStoreState } from '@/utils/hooks/data/useControlsStore';
 
 const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>) => {
     const {
-        wsPlayer,
-        flvPlayer,
         videoContainerEle,
         playerStoreDispatch,
         playerStore: {
@@ -19,6 +17,8 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
             videoType,
             ended,
             playing,
+            wsPlayer,
+            flvPlayer,
         },
     } = useContext(PlayerContext);
 
@@ -26,6 +26,7 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
     const wrapperClickTimeoutRef = useRef<NodeJS.Timeout>();
 
     const changePlayStatusHandler = () => {
+        if (!wsPlayer || !flvPlayer) return;
         if (ended) {
             controlsStoreDispatch({
                 showControls: !resizing,
@@ -52,6 +53,7 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
     };
 
     const reloadHandler = (currentTime?: number) => {
+        if (!wsPlayer || !flvPlayer) return;
         if (videoType === 'record') {
             if (isNumber(currentTime) && canplay) {
                 return flvPlayer.reload(currentTime);
