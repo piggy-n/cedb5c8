@@ -236,6 +236,8 @@ class WsPlayer {
                 videoCanplayVal: 0,
                 videoLoadErrorVal: 0,
                 videoLoadFailedVal: 0,
+                wsCloseVal: 0,
+                streamRecordCurrentTime: 0,
             });
 
             this.url = url;
