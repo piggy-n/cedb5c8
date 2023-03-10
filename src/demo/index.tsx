@@ -1,8 +1,7 @@
-// import Player from '@/kernel/Player';
 import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
-import RndPlayer from '@/kernel/RndPlayer';
+// import RndPlayer from '@/kernel/RndPlayer';
 import { Player } from '@/index';
 // import { randomString } from '@/utils/methods/common/randomString';
 
@@ -90,18 +89,18 @@ const Demo = () => {
                     {/*    onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}*/}
                     {/*/>*/}
                     <Player
-                        url={'ws://192.168.9.148/rtp/1580036671288643585/101/vod/73038a02548f4d38848bbbb11ad253a0.live.mp4?token=30c40b85-ed6e-4c38-b305-a22c9c92cc5f'}
-                        videoType={'stream-record'}
-                        onTimeUpdate={(e: any) => console.log(e, 111)}
+                        url={'wss://lzz.enbo12119.com/live/1557971989710430210/101.live.mp4?token=3029f52d-a276-4de8-b8e0-f43b69e7d7fe'}
+                        // videoType={'stream-record'}
+                        // onTimeUpdate={(e: any) => console.log(e, 111)}
                         // deviceOpts={}
                     />
                 </div>
                 <br />
-                <RndPlayer deviceOpts={{
-                    deviceId: '1622468092196032514',
-                    deviceName: '测试设备',
-                    deviceStatus: 'online',
-                }} />
+                {/*<RndPlayer deviceOpts={{*/}
+                {/*    deviceId: '1622468092196032514',*/}
+                {/*    deviceName: '测试设备',*/}
+                {/*    deviceStatus: 'online',*/}
+                {/*}} />*/}
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
         </>

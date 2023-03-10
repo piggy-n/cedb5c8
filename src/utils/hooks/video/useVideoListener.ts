@@ -18,10 +18,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
         ended: false,
         networkState: 0,
         readyState: 0,
-        videoSize: {
-            videoWidth: 0,
-            videoHeight: 0,
-        },
+        videoWidth: 0,
+        videoHeight: 0,
     });
 
     const setVideoEleAttributesHandler = <T extends Partial<VideoEleAttributes>>(val: T) => {
@@ -33,10 +31,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
 
         setVideoEleAttributesHandler({
             totalTime: videoEle.duration,
-            videoSize: {
-                videoWidth: videoEle.videoWidth,
-                videoHeight: videoEle.videoHeight,
-            },
+            videoWidth: videoEle.videoWidth,
+            videoHeight: videoEle.videoHeight,
         });
     };
 
@@ -103,10 +99,8 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
                         ended: videoEle.ended,
                         networkState: videoEle.networkState,
                         readyState: videoEle.readyState,
-                        videoSize: {
-                            videoWidth: videoEle.videoWidth,
-                            videoHeight: videoEle.videoHeight,
-                        },
+                        videoWidth: videoEle.videoWidth,
+                        videoHeight: videoEle.videoHeight,
                     });
                 },
                 1,

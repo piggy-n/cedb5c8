@@ -6,10 +6,8 @@ import { useVideoResolution } from '@/utils/hooks';
 const QualityViewer = () => {
     const {
         videoEleAttributes: {
-            videoSize: {
-                videoWidth,
-                videoHeight,
-            },
+            videoWidth,
+            videoHeight,
         },
     } = useContext(PlayerContext);
 

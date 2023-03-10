@@ -55,17 +55,6 @@ export type ControlsOpts = {
 }
 
 /**
- * @description video元素尺寸
- * @interface VideoElementSize
- * @param {number} videoWidth 视频宽度
- * @param {number} videoHeight 视频高度
- */
-export type VideoElementSize = {
-    videoWidth: number;
-    videoHeight: number;
-}
-
-/**
  * @description video元素属性
  * @interface VideoEleAttributes
  * @param {boolean} playing 是否播放
@@ -74,18 +63,20 @@ export type VideoElementSize = {
  * @param {number} totalTime 总时长
  * @param {number} bufferedTime 缓存时长
  * @param {boolean} ended 是否结束
- * @param {VideoSize} videoSize 视频尺寸
+ * @param {number} videoWidth 视频宽度
+ * @param {number} videoHeight 视频高度
  * @param {number} networkState 网络状态
  * @param {number} readyState 就绪状态
  */
 export type VideoEleAttributes<T = VideoElementSize> = {
     playing: boolean;
     buffering: boolean;
-    currentTime: number;
-    totalTime: number;
-    bufferedTime: number;
     ended: boolean;
-    videoSize: T;
+    currentTime: number;
+    bufferedTime: number;
+    totalTime: number;
+    videoWidth: number;
+    videoHeight: number;
     networkState: number;
     readyState: number;
 }
