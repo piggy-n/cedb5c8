@@ -5,7 +5,7 @@ const useVideoLoading = () => {
     const {
         videoEle,
         playerStoreDispatch,
-        videoEleAttributes: {
+        playerStore: {
             buffering,
             playing,
             networkState,

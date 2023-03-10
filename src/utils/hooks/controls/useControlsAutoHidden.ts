@@ -7,8 +7,6 @@ const useControlsAutoHidden = () => {
     const {
         playerStore: {
             resizing,
-        },
-        videoEleAttributes: {
             ended,
         },
     } = useContext(PlayerContext);

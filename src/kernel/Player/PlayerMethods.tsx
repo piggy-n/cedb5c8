@@ -12,8 +12,6 @@ const PlayerMethods = () => {
             url = '',
             videoType,
             canplay,
-        },
-        videoEleAttributes: {
             currentTime,
             totalTime,
         },

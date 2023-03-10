@@ -20,8 +20,6 @@ const ProgressAndPanel = () => {
     const {
         playerStore: {
             videoType,
-        },
-        videoEleAttributes: {
             ended,
         },
     } = useContext(PlayerContext);

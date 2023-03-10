@@ -10,8 +10,6 @@ const useControlsPlayButtonVisible = () => {
             videoType,
             wsCloseVal,
             videoLoadFailedVal,
-        },
-        videoEleAttributes: {
             ended,
             playing,
         },

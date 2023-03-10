@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import type { VideoType, PlayerMethods } from '@/index.d';
+import type { VideoType, PlayerMethods, VideoEleAttributes } from '@/index.d';
 
 /**
  * @description PlayerStoreState
@@ -17,7 +17,7 @@ import type { VideoType, PlayerMethods } from '@/index.d';
  * @param {number} progressMouseDownVal - 进度条鼠标按下值，用于触发回调
  * @param {number} progressMouseUpVal - 进度条鼠标抬起值，用于触发回调
  */
-export interface PlayerStoreState {
+export interface PlayerStoreState extends VideoEleAttributes {
     canplay?: boolean;
     isFullscreen?: boolean;
     isError?: boolean;
@@ -37,7 +37,22 @@ export interface PlayerStoreState {
     playerMethods?: PlayerMethods;
 }
 
-export const initialState: PlayerStoreState = {};
+export const initialVideoEleAttributes: VideoEleAttributes = {
+    playing: false,
+    buffering: false,
+    ended: false,
+    currentTime: 0,
+    totalTime: 0,
+    bufferedTime: 0,
+    networkState: 0,
+    readyState: 0,
+    videoWidth: 0,
+    videoHeight: 0,
+};
+
+export const initialState: PlayerStoreState = {
+    ...initialVideoEleAttributes,
+};
 
 const usePlayerStore = () => {
     const reducer = (

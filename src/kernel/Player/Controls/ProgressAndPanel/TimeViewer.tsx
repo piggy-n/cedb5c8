@@ -8,8 +8,6 @@ const TimeViewer = () => {
         playerStore: {
             videoType,
             streamRecordCurrentTime,
-        },
-        videoEleAttributes: {
             currentTime,
             totalTime,
         },

@@ -9,7 +9,7 @@ const useControlsProgressStyles = (
     progressPointerEle: HTMLDivElement | null,
 ) => {
     const {
-        videoEleAttributes: {
+        playerStore: {
             currentTime,
             totalTime,
             bufferedTime,

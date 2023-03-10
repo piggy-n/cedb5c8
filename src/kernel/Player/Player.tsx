@@ -1,9 +1,9 @@
 import c from 'classnames';
 import s from './styles/player.scss';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { usePlayerStore, useVideoListener } from '@/utils/hooks';
+import { usePlayerStore } from '@/utils/hooks';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { Controls, Loading, PlayerMethods, Video } from '@/kernel/Player';
+import { Controls, Loading, PlayerListener, PlayerMethods, Video } from '@/kernel/Player';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
@@ -24,13 +24,13 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const wsPlayerRef = useRef<WsPlayer>(new WsPlayer({ uuid, dispatch }));
     const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer({ uuid, dispatch }));
 
-    const videoEleAttributes = useVideoListener(videoEleRef.current); // video 元素的监听器
+    // const videoEleAttributes = useVideoListener(videoEleRef.current); // video 元素的监听器
 
     useImperativeHandle(
         ref,
         () => ({
             ...store.playerMethods!,
-            ...videoEleAttributes,
+            // ...videoEleAttributes,
             video: videoEleRef.current,
         }),
     );
@@ -41,7 +41,6 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
             uuid,
             playerStore: store,
             playerStoreDispatch: dispatch,
-            videoEleAttributes,
             videoEle: videoEleRef.current,
             videoContainerEle: videoContainerEleRef.current,
             wsPlayer: wsPlayerRef.current,
@@ -57,6 +56,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
                 <Video ref={videoEleRef} />
                 <Loading />
                 <Controls />
+                <PlayerListener />
                 <PlayerMethods />
             </div>
         </PlayerContext.Provider>

@@ -12,8 +12,6 @@ const useProgressMethods = (ele: HTMLDivElement | null) => {
         playerStoreDispatch,
         playerStore: {
             canplay,
-        },
-        videoEleAttributes: {
             totalTime,
             currentTime,
         },

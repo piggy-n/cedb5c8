@@ -6,7 +6,7 @@ import Icon from '@/components/Icon';
 
 const ReloadControl = () => {
     const {
-        videoEleAttributes: {
+        playerStore: {
             currentTime,
         },
     } = useContext(PlayerContext);

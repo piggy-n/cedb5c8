@@ -7,7 +7,7 @@ import { toMinutesAndSeconds } from '@/utils/methods/common/times';
 
 const ProgressWrapper = () => {
     const {
-        videoEleAttributes: {
+        playerStore: {
             totalTime,
         },
     } = useContext(PlayerContext);

@@ -11,16 +11,15 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
             videoLoadFailedVal,
             progressMouseDownVal,
             progressMouseUpVal,
+            playing,
+            ended,
+            currentTime,
+            networkState,
+            readyState,
         },
-        videoEleAttributes,
+        // videoEleAttributes,
     } = useContext(PlayerContext);
-    const {
-        playing,
-        ended,
-        currentTime,
-        networkState,
-        readyState,
-    } = videoEleAttributes;
+
     const {
         onPlay,
         onPause,
@@ -37,9 +36,9 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (playing) {
-                onPlay && onPlay(videoEleAttributes);
+                onPlay && onPlay();
             } else {
-                onPause && onPause(videoEleAttributes);
+                onPause && onPause();
             }
         },
         [playing],
@@ -48,7 +47,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (ended) {
-                onEnded && onEnded(videoEleAttributes);
+                onEnded && onEnded();
             }
         },
         [ended],
@@ -57,7 +56,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (videoCanplayVal) {
-                onCanplay && onCanplay(videoEleAttributes);
+                onCanplay && onCanplay();
             }
         },
         [videoCanplayVal],
@@ -66,7 +65,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (currentTime) {
-                onTimeUpdate && onTimeUpdate(videoEleAttributes);
+                onTimeUpdate && onTimeUpdate();
             }
         },
         [currentTime],
@@ -74,7 +73,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
 
     useEffect(
         () => {
-            onVideoStateChange && onVideoStateChange(videoEleAttributes);
+            onVideoStateChange && onVideoStateChange();
         },
         [
             networkState,
@@ -85,7 +84,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (progressMouseDownVal) {
-                onProgressMouseDown && onProgressMouseDown(videoEleAttributes);
+                onProgressMouseDown && onProgressMouseDown();
             }
         },
         [progressMouseDownVal],
@@ -94,7 +93,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useDebounceEffect(
         () => {
             if (progressMouseUpVal) {
-                onProgressMouseUp && onProgressMouseUp(videoEleAttributes);
+                onProgressMouseUp && onProgressMouseUp();
             }
         },
         [progressMouseUpVal],
@@ -106,7 +105,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (videoLoadErrorVal) {
-                onVideoLoadError && onVideoLoadError(videoEleAttributes);
+                onVideoLoadError && onVideoLoadError();
             }
         },
         [videoLoadErrorVal],
@@ -115,7 +114,7 @@ const useVideoCallback = (callback: Partial<VideoCallback>) => {
     useEffect(
         () => {
             if (videoLoadFailedVal) {
-                onVideoLoadFailed && onVideoLoadFailed(videoEleAttributes);
+                onVideoLoadFailed && onVideoLoadFailed();
             }
         },
         [videoLoadFailedVal],

@@ -17,8 +17,6 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
             canplay,
             resizing,
             videoType,
-        },
-        videoEleAttributes: {
             ended,
             playing,
         },

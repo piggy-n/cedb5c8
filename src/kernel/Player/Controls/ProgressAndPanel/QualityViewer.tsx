@@ -5,7 +5,7 @@ import { useVideoResolution } from '@/utils/hooks';
 
 const QualityViewer = () => {
     const {
-        videoEleAttributes: {
+        playerStore: {
             videoWidth,
             videoHeight,
         },
