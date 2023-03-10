@@ -27,11 +27,13 @@ export interface PlayerStoreState {
     resizing?: boolean;
     transmissionRate?: number;
     url?: string;
+    wsCloseVal?: number;
     videoCanplayVal?: number;
     videoLoadErrorVal?: number;
     videoLoadFailedVal?: number;
     progressMouseDownVal?: number;
     progressMouseUpVal?: number;
+    streamRecordCurrentTime?: number;
 }
 
 export const initialState: PlayerStoreState = {};

@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
 import RndPlayer from '@/kernel/RndPlayer';
+import { Player } from '@/index';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
@@ -77,7 +78,7 @@ const Demo = () => {
                     {/*    ref={playerRef}*/}
                     {/*    url={url}*/}
                     {/*    controlsOpts={{}}*/}
-                    {/*    onTimeUpdate={() => console.log('onTimeUpdate', 111)}*/}
+                    {/*    onTimeUpdate={(e) => console.log(e, 111)}*/}
                     {/*    onPlay={() => console.log('onPlay', 222)}*/}
                     {/*    onPause={() => console.log('onPause', 333)}*/}
                     {/*    onEnded={() => console.log('onEnded', 444)}*/}
@@ -88,9 +89,12 @@ const Demo = () => {
                     {/*    onVideoLoadError={() => console.log('onVideoLoadError', 999)}*/}
                     {/*    onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}*/}
                     {/*/>*/}
-                    {/*<Player*/}
-                    {/*    // url={url}*/}
-                    {/*    deviceOpts={device} />*/}
+                    <Player
+                        url={'ws://192.168.9.148/rtp/1580036671288643585/101/vod/73038a02548f4d38848bbbb11ad253a0.live.mp4?token=30c40b85-ed6e-4c38-b305-a22c9c92cc5f'}
+                        videoType={'stream-record'}
+                        onTimeUpdate={(e: any) => console.log(e, 111)}
+                        // deviceOpts={}
+                    />
                 </div>
                 <br />
                 <RndPlayer deviceOpts={{

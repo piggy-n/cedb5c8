@@ -17,9 +17,6 @@ const Controls = () => {
             url,
             resizing,
         },
-        videoEleAttributes: {
-            ended,
-        },
     } = useContext(PlayerContext);
 
     const [store, dispatch] = useControlsStore();
@@ -35,8 +32,8 @@ const Controls = () => {
             ...controlsMethods,
         }}>
             <div
-                className={c(s.container, { [s.mask]: ended })}
-                onMouseEnter={() => dispatch({ showControls: !resizing && !ended })}
+                className={c(s.container, { [s.mask]: store.showEndedBtn })}
+                onMouseEnter={() => dispatch({ showControls: !resizing && !store.showEndedBtn })}
                 onMouseLeave={() => dispatch({ showControls: false })}
             >
                 <Wrapper />

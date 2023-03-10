@@ -20,6 +20,7 @@ export interface ControlsStoreState {
     mouseIsOnControls: boolean;
     showControls: boolean;
     showPlayBtn: boolean;
+    showEndedBtn: boolean;
 }
 
 export const initialState: ControlsStoreState = {
@@ -31,6 +32,7 @@ export const initialState: ControlsStoreState = {
     mouseIsOnControls: false,
     showControls: false,
     showPlayBtn: false,
+    showEndedBtn: false,
 };
 
 const useControlsStore = () => {

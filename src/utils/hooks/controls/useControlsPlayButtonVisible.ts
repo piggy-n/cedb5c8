@@ -6,6 +6,9 @@ const useControlsPlayButtonVisible = () => {
     const {
         playerStore: {
             loading,
+            canplay,
+            videoType,
+            wsCloseVal,
             videoLoadFailedVal,
         },
         videoEleAttributes: {
@@ -47,6 +50,25 @@ const useControlsPlayButtonVisible = () => {
             playing,
             ended,
             loading,
+        ],
+    );
+
+    useEffect(
+        () => {
+            if (videoType === 'stream-record' && canplay && wsCloseVal) {
+                return controlsStoreDispatch({
+                    showEndedBtn: true,
+                });
+            }
+            return controlsStoreDispatch({
+                showEndedBtn: ended,
+            });
+        },
+        [
+            videoType,
+            canplay,
+            wsCloseVal,
+            ended,
         ],
     );
 };

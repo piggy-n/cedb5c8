@@ -7,6 +7,7 @@ const TimeViewer = () => {
     const {
         playerStore: {
             videoType,
+            streamRecordCurrentTime,
         },
         videoEleAttributes: {
             currentTime,
@@ -15,7 +16,15 @@ const TimeViewer = () => {
     } = useContext(PlayerContext);
 
     if (videoType === 'live') return <div className={s.container}>实时</div>;
-    if (videoType === 'stream-record') return <div className={s.container}>录像</div>;
+    if (videoType === 'stream-record') return (
+        <div className={s.container}>
+            <div className={s.time}>
+                录像
+                &nbsp;
+                {toMinutesAndSeconds(streamRecordCurrentTime ?? 0)}
+            </div>
+        </div>
+    );
     return (
         <div className={s.container}>
             <div className={s.time}>

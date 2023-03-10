@@ -41,8 +41,12 @@ class WsPlayer {
         };
     }
 
-    private onMessage(data: any, byteLength: number) {
-        this.transmissionRate += byteLength / 1024;
+    private onMessage(e: MessageEvent) {
+        const { data, timeStamp } = e;
+        this.transmissionRate += data.byteLength / 1024;
+        this.dispatch({
+            streamRecordCurrentTime: timeStamp / 1000,
+        });
 
         if (!this.mime) {
             data.fileStart = 0;
@@ -88,7 +92,7 @@ class WsPlayer {
             this.ws.binaryType = 'arraybuffer';
 
             this.ws.onmessage = (e) => {
-                this.onMessage(e.data, e.data.byteLength);
+                this.onMessage(e);
             };
 
             this.ws.onopen = () => {
@@ -97,6 +101,12 @@ class WsPlayer {
 
             this.ws.onerror = () => {
                 this.error();
+            };
+
+            this.ws.onclose = () => {
+                this.dispatch({
+                    wsCloseVal: Date.now(),
+                });
             };
         }
     }

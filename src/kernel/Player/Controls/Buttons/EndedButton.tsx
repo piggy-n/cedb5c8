@@ -8,17 +8,15 @@ const EndedButton = () => {
         playerStore: {
             videoLoadFailedVal,
         },
-        videoEleAttributes: {
-            ended,
-        },
     } = useContext(PlayerContext);
     const {
         controlsStore: {
             showPlayBtn,
+            showEndedBtn,
         },
     } = useContext(ControlsContext);
 
-    if (!ended || videoLoadFailedVal || showPlayBtn) return null;
+    if (!showEndedBtn || videoLoadFailedVal || showPlayBtn) return null;
     return (
         <Icon name={'replay'} size={55} title={'重播'} />
     );

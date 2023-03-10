@@ -8,17 +8,15 @@ const ReloadButton = () => {
         playerStore: {
             videoLoadFailedVal,
         },
-        videoEleAttributes: {
-            ended,
-        },
     } = useContext(PlayerContext);
     const {
         controlsStore: {
             showPlayBtn,
+            showEndedBtn,
         },
     } = useContext(ControlsContext);
 
-    if (!videoLoadFailedVal || showPlayBtn || ended) return null;
+    if (!videoLoadFailedVal || showPlayBtn || showEndedBtn) return null;
     return (
         <Icon name={'reload-2'} size={55} title={'重载'} />
     );

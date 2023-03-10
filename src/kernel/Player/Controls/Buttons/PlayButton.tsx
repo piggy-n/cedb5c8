@@ -8,17 +8,15 @@ const PlayButton = () => {
         playerStore: {
             videoLoadFailedVal,
         },
-        videoEleAttributes: {
-            ended,
-        },
     } = useContext(PlayerContext);
     const {
         controlsStore: {
             showPlayBtn,
+            showEndedBtn
         },
     } = useContext(ControlsContext);
 
-    if (!showPlayBtn || videoLoadFailedVal || ended) return null;
+    if (!showPlayBtn || videoLoadFailedVal || showEndedBtn) return null;
     return (
         <Icon name={'play-2'} size={55} title={'播放'} />
     );
