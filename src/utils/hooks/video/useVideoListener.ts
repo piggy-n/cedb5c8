@@ -12,10 +12,10 @@ const useVideoListener = (ele: HTMLVideoElement | null) => {
     const videoEleAttributesRef = useRef<VideoEleAttributes>({
         playing: false,
         buffering: false,
+        ended: false,
         currentTime: 0,
         totalTime: 0,
         bufferedTime: 0,
-        ended: false,
         networkState: 0,
         readyState: 0,
         videoWidth: 0,

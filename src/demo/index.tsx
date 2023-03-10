@@ -6,7 +6,7 @@ import { Player } from '@/index';
 // import { randomString } from '@/utils/methods/common/randomString';
 
 const Demo = () => {
-    const [, setUrl] = useState('wss://lzz.enbo12119.com/live/1572529841719136267/101.live.mp4?token=b4a9fc6a-d3b4-444e-9d46-1ba70fe0468d');
+    const [url, setUrl] = useState('wss://lzz.enbo12119.com/live/1557971989710430210/101.live.mp4?token=3029f52d-a276-4de8-b8e0-f43b69e7d7fe');
     const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',
@@ -88,8 +88,7 @@ const Demo = () => {
                     {/*    onVideoLoadError={() => console.log('onVideoLoadError', 999)}*/}
                     {/*    onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}*/}
                     {/*/>*/}
-                    <Player
-                        url={'wss://lzz.enbo12119.com/live/1557971989710430210/101.live.mp4?token=3029f52d-a276-4de8-b8e0-f43b69e7d7fe'}
+                    <Player url={url}
                         // videoType={'stream-record'}
                         // onTimeUpdate={(e: any) => console.log(e, 111)}
                         // deviceOpts={}
