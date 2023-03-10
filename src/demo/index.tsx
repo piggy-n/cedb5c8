@@ -35,8 +35,8 @@ const Demo = () => {
     };
 
     useEffect(() => {
-        console.log('currentTime', playerRef.current?.currentTime);
-    }, [playerRef.current?.currentTime]);
+        console.log('playerRef.current', playerRef.current);
+    }, [playerRef.current]);
 
     return (
         <>
