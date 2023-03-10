@@ -5,12 +5,22 @@ import { useSize } from 'ahooks';
 
 const Listener = () => {
     const forceUpdate = useMandatoryUpdate();
-    const { videoEle, playerStoreDispatch } = useContext(PlayerContext);
+    const {
+        playerStore: {
+            playing,
+            buffering,
+            networkState,
+            readyState,
+        },
+        videoEle,
+        playerStoreDispatch,
+    } = useContext(PlayerContext);
 
     const videoEleSize = useSize(videoEle);
 
     const resizingTimeoutRef = useRef<NodeJS.Timeout>();
     const videoListenerIntervalRef = useRef<NodeJS.Timer>();
+    const loadingTimeoutRef = useRef<NodeJS.Timeout>();
 
     const canPlayHandler = () => {
         if (!videoEle) return;
@@ -128,6 +138,42 @@ const Listener = () => {
             };
         },
         [videoEleSize],
+    );
+
+    // listen loading
+    useEffect(
+        () => {
+            const inBuffer = playing && buffering;
+            const inReady = !videoEle?.autoplay && readyState === 4;
+            const inPlay = playing && [1, 2].includes(networkState) && [3, 4].includes(readyState);
+
+            loadingTimeoutRef.current && clearTimeout(loadingTimeoutRef.current);
+
+            if (inBuffer) {
+                loadingTimeoutRef.current = setTimeout(
+                    () => playerStoreDispatch({
+                        loading: true,
+                    }),
+                    750,
+                );
+            }
+
+            if (inPlay || inReady) {
+                playerStoreDispatch({
+                    loading: false,
+                });
+            }
+
+            return () => {
+                loadingTimeoutRef.current && clearTimeout(loadingTimeoutRef.current);
+            };
+        },
+        [
+            playing,
+            buffering,
+            networkState,
+            readyState,
+        ],
     );
 
     return null;
