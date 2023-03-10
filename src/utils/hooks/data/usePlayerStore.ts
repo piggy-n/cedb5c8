@@ -31,11 +31,19 @@ export interface PlayerStoreState extends VideoEleAttributes {
     progressMouseDownVal?: number;
     progressMouseUpVal?: number;
     streamRecordCurrentTime?: number;
-    playerMethods?: PlayerMethods;
 
     wsPlayer?: WsPlayer;
     flvPlayer?: FlvPlayer;
+    playerMethods: PlayerMethods;
 }
+
+export const initialPlayerMethods: PlayerMethods = {
+    play: () => ({}),
+    pause: () => ({}),
+    reload: () => ({}),
+    setPlayProgress: () => ({}),
+    setVideoSrc: () => ({}),
+};
 
 export const initialVideoEleAttributes: VideoEleAttributes = {
     playing: false,
@@ -54,6 +62,7 @@ export const initialVideoEleAttributes: VideoEleAttributes = {
 
 export const initialState: PlayerStoreState = {
     ...initialVideoEleAttributes,
+    playerMethods: initialPlayerMethods,
 };
 
 const usePlayerStore = () => {
