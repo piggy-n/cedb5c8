@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import type { VideoType } from '@/index.d';
+import type { VideoType, PlayerMethods } from '@/index.d';
 
 /**
  * @description PlayerStoreState
@@ -34,6 +34,7 @@ export interface PlayerStoreState {
     progressMouseDownVal?: number;
     progressMouseUpVal?: number;
     streamRecordCurrentTime?: number;
+    playerMethods?: PlayerMethods;
 }
 
 export const initialState: PlayerStoreState = {};

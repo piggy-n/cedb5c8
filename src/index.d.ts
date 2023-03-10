@@ -136,7 +136,7 @@ export type VideoCallback<T = noArgVoid, U = isArgVoid, K = VideoElementAttribut
  * @param video video元素
  */
 export type PlayerRef = PlayerMethods
-    & { attributes: VideoElementAttributes }
+    & VideoElementAttributes
     & { video: HTMLVideoElement | null };
 
 /**

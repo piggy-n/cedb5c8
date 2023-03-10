@@ -73,26 +73,26 @@ const Demo = () => {
             </div>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
-                    {/*<Player*/}
-                    {/*    ref={playerRef}*/}
-                    {/*    url={url}*/}
-                    {/*    controlsOpts={{}}*/}
-                    {/*    onTimeUpdate={(e) => console.log(e, 111)}*/}
-                    {/*    onPlay={() => console.log('onPlay', 222)}*/}
-                    {/*    onPause={() => console.log('onPause', 333)}*/}
-                    {/*    onEnded={() => console.log('onEnded', 444)}*/}
-                    {/*    onCanplay={() => console.log('onCanplay', 555)}*/}
-                    {/*    onVideoStateChange={() => console.log('onVideoStateChange', 666)}*/}
-                    {/*    onProgressMouseDown={() => console.log('onProgressMouseDown', 777)}*/}
-                    {/*    onProgressMouseUp={() => console.log('onProgressMouseUp', 888)}*/}
-                    {/*    onVideoLoadError={() => console.log('onVideoLoadError', 999)}*/}
-                    {/*    onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}*/}
-                    {/*/>*/}
-                    <Player url={url}
-                        // videoType={'stream-record'}
-                        // onTimeUpdate={(e: any) => console.log(e, 111)}
-                        // deviceOpts={}
+                    <Player
+                        ref={playerRef}
+                        url={url}
+                        controlsOpts={{}}
+                        // onTimeUpdate={(e) => console.log(e, 111)}
+                        // onPlay={() => console.log('onPlay', 222)}
+                        // onPause={() => console.log('onPause', 333)}
+                        // onEnded={() => console.log('onEnded', 444)}
+                        // onCanplay={() => console.log('onCanplay', 555)}
+                        // onVideoStateChange={() => console.log('onVideoStateChange', 666)}
+                        // onProgressMouseDown={() => console.log('onProgressMouseDown', 777)}
+                        // onProgressMouseUp={() => console.log('onProgressMouseUp', 888)}
+                        // onVideoLoadError={() => console.log('onVideoLoadError', 999)}
+                        // onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}
                     />
+                    {/*<Player url={url}*/}
+                    {/*    videoType={'stream-record'}*/}
+                    {/*    onTimeUpdate={(e: any) => console.log(e, 111)}*/}
+                    {/*    deviceOpts={}*/}
+                    {/*/>*/}
                 </div>
                 <br />
                 {/*<RndPlayer deviceOpts={{*/}

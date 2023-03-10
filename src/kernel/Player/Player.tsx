@@ -1,13 +1,14 @@
 import c from 'classnames';
 import s from './styles/player.scss';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { usePlayerMethods, usePlayerStore, useVideoListener } from '@/utils/hooks';
+import { usePlayerStore, useVideoListener } from '@/utils/hooks';
 import { PlayerContext, playerContextDefaultValue } from '@/utils/hooks/data/usePlayerContext';
-import { Controls, Loading, Video } from '@/kernel/Player/index';
+import { Controls, Loading, Video } from '@/kernel/Player';
 import { randomString } from '@/utils/methods/common/randomString';
 import { WsPlayer, FlvPlayer } from '@/utils/players';
 import type { ForwardRefRenderFunction } from 'react';
 import type { PlayerRef, PlayerProps } from '@/index.d';
+import PlayerMethods from '@/kernel/Player/PlayerMethods';
 
 const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     {
@@ -25,19 +26,12 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const flvPlayerRef = useRef<FlvPlayer>(new FlvPlayer({ uuid, dispatch }));
 
     const videoEleAttributes = useVideoListener(videoEleRef.current); // video 元素的监听器
-    const playerMethods = usePlayerMethods(
-        store,
-        dispatch,
-        videoEleAttributes,
-        wsPlayerRef.current,
-        flvPlayerRef.current,
-    ); // 播放器的方法
 
     useImperativeHandle(
         ref,
         () => ({
-            ...playerMethods,
-            attributes: videoEleAttributes,
+            ...store.playerMethods!,
+            ...videoEleAttributes,
             video: videoEleRef.current,
         }),
     );
@@ -64,6 +58,7 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
                 <Video ref={videoEleRef} />
                 <Loading />
                 <Controls />
+                <PlayerMethods />
             </div>
         </PlayerContext.Provider>
     );

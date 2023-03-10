@@ -1,19 +1,23 @@
-import { useMemo } from 'react';
+import { useContext, useEffect } from 'react';
+import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { isNumber } from 'ahooks/es/utils';
-import type { PlayerMethods, VideoEleAttributes, VideoType } from '@/index.d';
-import type { PlayerStoreState } from '@/utils/hooks/data/usePlayerStore';
-import type { WsPlayer } from '@/utils/players';
-import type { FlvPlayer } from '@/utils/players';
+import type { VideoType } from '@/index.d';
 
-const usePlayerMethods = (
-    store: PlayerStoreState,
-    dispatch: (action: Partial<PlayerStoreState>) => void,
-    attributes: VideoEleAttributes,
-    wsPlayer: WsPlayer,
-    flvPlayer: FlvPlayer,
-) => {
-    const { url = '', videoType, canplay } = store;
-    const { currentTime, totalTime } = attributes;
+const PlayerMethods = () => {
+    const {
+        wsPlayer,
+        flvPlayer,
+        playerStoreDispatch,
+        playerStore: {
+            url = '',
+            videoType,
+            canplay,
+        },
+        videoEleAttributes: {
+            currentTime,
+            totalTime,
+        },
+    } = useContext(PlayerContext);
 
     const play = () => {
         if (videoType === 'record') {
@@ -67,20 +71,24 @@ const usePlayerMethods = (
 
     const setVideoSrc = (src: string, type?: VideoType) => {
         const isLive = /^ws:\/\/|^wss:\/\//.test(src);
-        return dispatch({
+        return playerStoreDispatch({
             url: src,
             videoType: type ?? (isLive ? 'live' : 'record'),
         });
     };
 
-    return useMemo<PlayerMethods>(
-        () => ({
-            play,
-            pause,
-            reload,
-            setPlayProgress,
-            setVideoSrc,
-        }),
+    useEffect(
+        () => {
+            playerStoreDispatch({
+                playerMethods: {
+                    play,
+                    pause,
+                    reload,
+                    setPlayProgress,
+                    setVideoSrc,
+                },
+            });
+        },
         [
             url,
             videoType,
@@ -88,6 +96,7 @@ const usePlayerMethods = (
             currentTime,
         ],
     );
+    return null;
 };
 
-export default usePlayerMethods;
+export default PlayerMethods;
