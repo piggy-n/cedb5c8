@@ -28,7 +28,6 @@ const VanillaPlayer: ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
         ref,
         () => ({
             ...store.playerMethods!,
-            // ...videoEleAttributes,
             video: videoEleRef.current,
         }),
     );

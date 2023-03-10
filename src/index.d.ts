@@ -139,9 +139,7 @@ export type VideoCallback = {
  * @param PlayerMethods player组件方法
  * @param video video元素
  */
-export type PlayerRef = PlayerMethods
-    & VideoElementAttributes
-    & { video: HTMLVideoElement | null };
+export type PlayerRef = PlayerMethods & { video: HTMLVideoElement | null };
 
 /**
  * @description Player组件属性
