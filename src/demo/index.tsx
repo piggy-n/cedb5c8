@@ -1,12 +1,11 @@
 import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
-// import RndPlayer from '@/kernel/RndPlayer';
-import { Player } from '@/index';
-// import { randomString } from '@/utils/methods/common/randomString';
+import RndPlayer from '@/kernel/RndPlayer';
+// import { Player } from '@/index';
 
 const Demo = () => {
-    const [url, setUrl] = useState('wss://lzz.enbo12119.com/live/1557971989710430210/101.live.mp4?token=3029f52d-a276-4de8-b8e0-f43b69e7d7fe');
+    const [, setUrl] = useState('wss://lzz.enbo12119.com/live/1557971989710430210/101.live.mp4?token=3029f52d-a276-4de8-b8e0-f43b69e7d7fe');
     const [, setDevice] = useState<any>({
         deviceId: '1622468092196032514',
         streamType: '1',
@@ -73,21 +72,21 @@ const Demo = () => {
             </div>
             <div style={{ width: '100vw', height: '100vh', background: 'rgba(0, 0, 0, 0.1)' }}>
                 <div style={{ width: '480px', height: '270px' }}>
-                    <Player
-                        ref={playerRef}
-                        url={url}
-                        controlsOpts={{}}
-                        // onTimeUpdate={(e) => console.log(e, 111)}
-                        // onPlay={() => console.log('onPlay', 222)}
-                        // onPause={() => console.log('onPause', 333)}
-                        // onEnded={() => console.log('onEnded', 444)}
-                        // onCanplay={() => console.log('onCanplay', 555)}
-                        // onVideoStateChange={() => console.log('onVideoStateChange', 666)}
-                        // onProgressMouseDown={() => console.log('onProgressMouseDown', 777)}
-                        // onProgressMouseUp={() => console.log('onProgressMouseUp', 888)}
-                        // onVideoLoadError={() => console.log('onVideoLoadError', 999)}
-                        // onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}
-                    />
+                    {/*<Player*/}
+                    {/*    ref={playerRef}*/}
+                    {/*    url={url}*/}
+                    {/*    controlsOpts={{}}*/}
+                    {/*    onTimeUpdate={(e) => console.log(e, 111)}*/}
+                    {/*    onPlay={() => console.log('onPlay', 222)}*/}
+                    {/*    onPause={() => console.log('onPause', 333)}*/}
+                    {/*    onEnded={() => console.log('onEnded', 444)}*/}
+                    {/*    onCanplay={() => console.log('onCanplay', 555)}*/}
+                    {/*    onVideoStateChange={() => console.log('onVideoStateChange', 666)}*/}
+                    {/*    onProgressMouseDown={() => console.log('onProgressMouseDown', 777)}*/}
+                    {/*    onProgressMouseUp={() => console.log('onProgressMouseUp', 888)}*/}
+                    {/*    onVideoLoadError={() => console.log('onVideoLoadError', 999)}*/}
+                    {/*    onVideoLoadFailed={() => console.log('onVideoLoadFailed', 101010)}*/}
+                    {/*/>*/}
                     {/*<Player url={url}*/}
                     {/*    videoType={'stream-record'}*/}
                     {/*    onTimeUpdate={(e: any) => console.log(e, 111)}*/}
@@ -95,11 +94,11 @@ const Demo = () => {
                     {/*/>*/}
                 </div>
                 <br />
-                {/*<RndPlayer deviceOpts={{*/}
-                {/*    deviceId: '1622468092196032514',*/}
-                {/*    deviceName: '测试设备',*/}
-                {/*    deviceStatus: 'online',*/}
-                {/*}} />*/}
+                <RndPlayer deviceOpts={{
+                    deviceId: '1557971988926095361',
+                    deviceName: '测试设备',
+                    deviceStatus: 'online',
+                }} />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
         </>

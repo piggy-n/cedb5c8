@@ -8,6 +8,7 @@ import { useRndPlayerStore } from '@/utils/hooks';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import type { FC } from 'react';
 import type { RndPlayerProps } from '@/index.d';
+import A from '@/kernel/RndPlayer/Effect/A';
 
 const RndPlayer: FC<RndPlayerProps> = (
     {
@@ -78,6 +79,7 @@ const RndPlayer: FC<RndPlayerProps> = (
                 >
                     <Init />
                     <StylesHandler />
+                    <A />
                     <Header />
                     <Content />
                 </div>
