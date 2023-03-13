@@ -1,0 +1,17 @@
+@import 'src/assets/styles/mixin.scss';
+
+.container {
+  margin-right: 4px;
+  line-height: 0;
+
+  :global {
+    .ant-select {
+      @include style(12px, #EAEAEA);
+      @include wh(auto, 24px);
+      background: #FFFFFF33;
+      line-height: 24px;
+      border-radius: 12px;
+      //min-width: 80px;
+    }
+  }
+}

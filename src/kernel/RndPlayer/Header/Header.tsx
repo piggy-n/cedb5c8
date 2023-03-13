@@ -13,6 +13,7 @@ import {
     VideoPanelBtn,
 } from '@/kernel/RndPlayer/Header';
 import type { MouseEventHandler } from 'react';
+import StreamSelector from '@/kernel/RndPlayer/Header/StreamSelector';
 
 const Header = () => {
     const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);
@@ -30,6 +31,7 @@ const Header = () => {
         <div className={s.container} onMouseMove={mouseOverHandler}>
             <DeviceInfo />
             <div className={s.toolbar}>
+                <StreamSelector />
                 <SingleGridBtn />
                 <DoubleGridBtn />
                 <PipGridBtn />
