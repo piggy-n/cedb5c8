@@ -30,8 +30,8 @@ const DeviceHandler = () => {
                     serviceObj,
                     streamSelectorList,
                     cameraSelectorList,
-                    selectedStreamList: [mainStream.value],
-                    selectedCameraItem: firstCamera.value,
+                    selectedStreamList: [mainStream?.value],
+                    selectedCameraItem: firstCamera?.value,
                 });
             }
         },
