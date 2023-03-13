@@ -11,6 +11,7 @@ const StreamSelector = () => {
             selectedStreamList,
         },
     } = useContext(RndPlayerContext);
+
     const [open, setOpen] = useState<boolean>(false);
 
     const selectorChangeHandler = (val: string[]) => {
@@ -30,16 +31,14 @@ const StreamSelector = () => {
 
     if (streamSelectorList.length === 0) return null;
     return (
-        <div>
-            <Selector
-                mode={'multiple'}
-                value={selectedStreamList.filter(item => item !== '')}
-                onChange={selectorChangeHandler}
-                options={streamSelectorList}
-                open={open}
-                onDropdownVisibleChange={val => setOpen(val)}
-            />
-        </div>
+        <Selector
+            mode={'multiple'}
+            value={selectedStreamList.filter(item => item !== '')}
+            onChange={selectorChangeHandler}
+            options={streamSelectorList}
+            open={open}
+            onDropdownVisibleChange={val => setOpen(val)}
+        />
     );
 };
 

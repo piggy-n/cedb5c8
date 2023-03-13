@@ -17,6 +17,7 @@ const CameraSelector = () => {
         setOpen(false);
     };
 
+    if (cameraSelectorList.length <= 1) return null;
     return (
         <Selector
             value={selectedCameraItem}
