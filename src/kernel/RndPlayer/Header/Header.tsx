@@ -14,6 +14,7 @@ import {
 } from '@/kernel/RndPlayer/Header';
 import type { MouseEventHandler } from 'react';
 import StreamSelector from '@/kernel/RndPlayer/Header/StreamSelector';
+import CameraSelector from '@/kernel/RndPlayer/Header/CameraSelector';
 
 const Header = () => {
     const { rndPlayerStoreDispatch } = useContext(RndPlayerContext);
@@ -32,6 +33,7 @@ const Header = () => {
             <DeviceInfo />
             <div className={s.toolbar}>
                 <StreamSelector />
+                <CameraSelector />
                 <SingleGridBtn />
                 <DoubleGridBtn />
                 <PipGridBtn />
