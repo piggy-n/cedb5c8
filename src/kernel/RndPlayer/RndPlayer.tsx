@@ -1,6 +1,7 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
 import { Rnd } from 'react-rnd';
+import { Init, StylesHandler } from '@/kernel/RndPlayer/Effect';
 import { Content, Header } from '@/kernel/RndPlayer';
 import { useRef } from 'react';
 import { useRndPlayerStore } from '@/utils/hooks';
@@ -75,6 +76,8 @@ const RndPlayer: FC<RndPlayerProps> = (
                         rndPlayerContainerEleOpts?.onMouseLeave?.(e);
                     }}
                 >
+                    <Init />
+                    <StylesHandler />
                     <Header />
                     <Content />
                 </div>
