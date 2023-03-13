@@ -6,6 +6,9 @@ import { isObject } from 'ahooks/es/utils';
 
 const DeviceHandler = () => {
     const {
+        rndPlayerStore: {
+            players,
+        },
         deviceOpts,
         rndPlayerStoreDispatch,
     } = useContext(RndPlayerContext);
@@ -24,8 +27,14 @@ const DeviceHandler = () => {
                 const [firstStream] = streamSelectorList;
                 const [firstCamera] = cameraSelectorList;
                 const mainStream = streamSelectorList.find(item => item.main) || firstStream;
+                const copyPlayers = [...players];
+                const mainPlayer = copyPlayers.find(player => player.isMainPlayer);
+                if (mainPlayer) {
+                    mainPlayer.url = mainStream?.value || '';
+                }
 
                 rndPlayerStoreDispatch({
+                    players: copyPlayers,
                     deviceTypeCode,
                     serviceObj,
                     streamSelectorList,

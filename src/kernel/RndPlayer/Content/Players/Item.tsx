@@ -8,16 +8,12 @@ import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 
 export interface ItemProps {
     url?: string;
-    minWidth?: number;
-    minHeight?: number;
     isMainPlayer?: boolean;
 }
 
 const Item: FC<ItemProps> = (
     {
         url,
-        minWidth,
-        minHeight,
         isMainPlayer,
     },
 ) => {
@@ -26,6 +22,8 @@ const Item: FC<ItemProps> = (
         rndPlayerStore: {
             mode,
             players,
+            videoMinWidth: minWidth,
+            videoMinHeight: minHeight,
         },
     } = useContext(RndPlayerContext);
 

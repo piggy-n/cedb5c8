@@ -25,7 +25,10 @@ export interface RndPlayerStoreState {
 
 export const initialState: RndPlayerStoreState = {
     disableDragging: true,
-    players: [],
+    players: [
+        { url: '', isMainPlayer: true },
+        { url: '', isMainPlayer: false },
+    ],
     mode: 'sg',
     deviceTypeCode: '',
     serviceObj: {
