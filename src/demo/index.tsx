@@ -95,7 +95,7 @@ const Demo = () => {
                 </div>
                 <br />
                 <RndPlayer deviceOpts={{
-                    deviceId: '1557971988926095361',
+                    deviceId: '1631161382613291009',
                     deviceName: '测试设备',
                     deviceStatus: 'online',
                 }} />

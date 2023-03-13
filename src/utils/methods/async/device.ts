@@ -21,8 +21,14 @@ export type LiveUrlItem = {
 
 export type PtzCameraItem = {
     id: string
-    name: string
+    name: string,
+    liveUrlList: LiveUrlItem[]
     // ...
+}
+
+export type ServiceItem = {
+    serviceCode: string;
+    serviceDesc: string;
 }
 
 export type SelectorItem = {
@@ -34,6 +40,7 @@ export type DeviceInfo = {
     deviceTypeCode: string // 2 云台 4 相机
     ptzCameraList: PtzCameraItem[],
     liveUrlList: LiveUrlItem[]
+    serviceList: ServiceItem[]
 }
 
 /**
@@ -71,6 +78,7 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
             if (!res?.success) return {};
             const {
                 deviceTypeCode,
+                serviceList = [],
                 liveUrlList = [], // 相机
                 ptzCameraList = [], // 云台
             } = res.data as DeviceInfo;
@@ -78,26 +86,40 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
             const streamSelectorList: SelectorItem[] = [];
             const cameraSelectorList: SelectorItem[] = [];
 
-            liveUrlList.forEach(item => {
-                streamSelectorList.push({
-                    label: item.streamType + '' === '1' || item.streamTypeDesc === '主码流'
-                        ? `${item.channelDesc}（主）`
-                        : `${item.channelDesc}（辅）`,
-                    value: isDevEnv
-                        ? `${urlPrefix ?? devLocationPrefix}${item.url}${token}`
-                        : `${wsPrefix}${locationHost}${item.url}${token}`,
+            const setStreamSelectorList = (list: LiveUrlItem[]) => {
+                list.forEach(item => {
+                    streamSelectorList.push({
+                        label: item.streamType + '' === '1' || item.streamTypeDesc === '主码流'
+                            ? `${item.channelDesc}（主）`
+                            : `${item.channelDesc}（辅）`,
+                        value: isDevEnv
+                            ? `${urlPrefix ?? devLocationPrefix}${item.url}${token}`
+                            : `${wsPrefix}${locationHost}${item.url}${token}`,
+                    });
                 });
-            });
+            };
 
-            ptzCameraList.forEach(item => {
-                cameraSelectorList.push({
-                    label: item.name,
-                    value: item.id,
+            // 云台
+            if (deviceTypeCode === '2') {
+                ptzCameraList.forEach(item => {
+                    setStreamSelectorList(item.liveUrlList);
                 });
-            });
+
+                ptzCameraList.forEach(item => {
+                    cameraSelectorList.push({
+                        label: item.name,
+                        value: item.id,
+                    });
+                });
+            }
+
+            if (deviceTypeCode === '4') {
+                setStreamSelectorList(liveUrlList);
+            }
 
             return {
                 deviceTypeCode,
+                serviceList,
                 streamSelectorList,
                 cameraSelectorList,
             };
