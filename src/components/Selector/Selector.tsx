@@ -29,7 +29,7 @@ const Selector: FC<SelectorProps> = (
     },
 ) => {
     return (
-        <div className={s.container}>
+        <div className={s.container} id={'ws-selector'}>
             <Select
                 value={value}
                 size={'small'}
