@@ -1,14 +1,13 @@
 import c from 'classnames';
 import s from './styles/rndPlayer.scss';
 import { Rnd } from 'react-rnd';
-import { Init, StylesHandler } from '@/kernel/RndPlayer/Effect';
+import { DeviceHandler, Init, StylesHandler } from '@/kernel/RndPlayer/Effect';
 import { Content, Header } from '@/kernel/RndPlayer';
 import { useRef } from 'react';
 import { useRndPlayerStore } from '@/utils/hooks';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 import type { FC } from 'react';
 import type { RndPlayerProps } from '@/index.d';
-import A from '@/kernel/RndPlayer/Effect/A';
 
 const RndPlayer: FC<RndPlayerProps> = (
     {
@@ -79,7 +78,7 @@ const RndPlayer: FC<RndPlayerProps> = (
                 >
                     <Init />
                     <StylesHandler />
-                    <A />
+                    <DeviceHandler />
                     <Header />
                     <Content />
                 </div>

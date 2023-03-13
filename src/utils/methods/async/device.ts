@@ -27,13 +27,14 @@ export type PtzCameraItem = {
 }
 
 export type ServiceItem = {
-    serviceCode: string;
+    serviceCode: 'stream' | 'ptz' | 'videoRecord';
     serviceDesc: string;
 }
 
 export type SelectorItem = {
     label: string;
     value: string;
+    main?: boolean;
 }
 
 export type DeviceInfo = {
@@ -75,7 +76,7 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
 
     return await getDeviceInfo({ id: deviceId })
         .then(res => {
-            if (!res?.success) return {};
+            if (!res?.success) return;
             const {
                 deviceTypeCode,
                 serviceList = [],
@@ -85,6 +86,11 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
 
             const streamSelectorList: SelectorItem[] = [];
             const cameraSelectorList: SelectorItem[] = [];
+            const serviceObj: Record<'stream' | 'ptz' | 'videoRecord', boolean> = {
+                stream: false,
+                ptz: false,
+                videoRecord: false,
+            };
 
             const setStreamSelectorList = (list: LiveUrlItem[]) => {
                 list.forEach(item => {
@@ -95,6 +101,7 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
                         value: isDevEnv
                             ? `${urlPrefix ?? devLocationPrefix}${item.url}${token}`
                             : `${wsPrefix}${locationHost}${item.url}${token}`,
+                        main: item.streamType + '' === '1' && item.channelId === '1', // 可能会有channelId为null的数据
                     });
                 });
             };
@@ -117,12 +124,16 @@ export const obtainDeviceInfo = async (deviceOpts: DeviceOpts) => {
                 setStreamSelectorList(liveUrlList);
             }
 
+            serviceList.forEach(item => serviceObj[item.serviceCode] = true);
+
             return {
                 deviceTypeCode,
-                serviceList,
+                serviceObj,
                 streamSelectorList,
                 cameraSelectorList,
             };
         })
-        .catch(() => ({}));
+        .catch(() => {
+            return;
+        });
 };
