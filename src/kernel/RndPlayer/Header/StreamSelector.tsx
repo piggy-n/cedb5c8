@@ -35,14 +35,7 @@ const StreamSelector = () => {
         const mainPlayer = copyPlayers.find(player => player.isMainPlayer);
         const subPlayer = copyPlayers.find(player => !player.isMainPlayer);
 
-        if (mode === 'sg' && mainPlayer) {
-            mainPlayer.url = val;
-            return rndPlayerStoreDispatch({
-                players: copyPlayers,
-            });
-        }
-
-        if (mainPlayer && !mainPlayer.url) {
+        if (mainPlayer && (mode === 'sg' || !mainPlayer.url)) {
             mainPlayer.url = val;
             return rndPlayerStoreDispatch({
                 players: copyPlayers,
@@ -60,23 +53,24 @@ const StreamSelector = () => {
     const deselectHandler = (val: string) => {
         const copyPlayers = [...players];
         const player = copyPlayers.find(item => item.url === val);
-        const playersUrlListLength = players.map(item => item.url).filter(item => item).length;
+        const playersUrlListLength = players
+            .map(item => item.url)
+            .filter(item => item).length;
 
-        if (mode === 'sg' || playersUrlListLength <= 1) return;
-        if (player) {
-            player.url = '';
-            const { isMainPlayer } = player;
-            if (isMainPlayer) {
-                const subPlayer = copyPlayers.find(item => !item.isMainPlayer);
-                if (subPlayer) {
-                    player.isMainPlayer = false;
-                    subPlayer.isMainPlayer = true;
-                }
+        if (!player || mode === 'sg' || playersUrlListLength <= 1) return;
+
+        const { isMainPlayer } = player;
+        if (isMainPlayer) {
+            const subPlayer = copyPlayers.find(item => !item.isMainPlayer);
+            if (subPlayer) {
+                player.isMainPlayer = false;
+                subPlayer.isMainPlayer = true;
             }
-            return rndPlayerStoreDispatch({
-                players: copyPlayers,
-            });
         }
+        player.url = '';
+        rndPlayerStoreDispatch({
+            players: copyPlayers,
+        });
     };
 
     if (streamSelectorList.length === 0) return null;
