@@ -18,54 +18,68 @@ const StylesHandler = () => {
     } = useContext(RndPlayerContext);
 
     const playersUrlListLength = useMemo(
-        () => players.map((item) => item.url).filter((item) => item).length,
+        () => players
+            .map((item) => item.url)
+            .filter((item) => item)
+            .length,
         [players],
     );
     const prevMode = usePrevious(mode);
     const prevPlayersUrlListLength = usePrevious(playersUrlListLength);
+    const lengthChangeStatus = useMemo(
+        () => {
+            if (prevPlayersUrlListLength === 1 && playersUrlListLength === 2) return 'expand';
+            if (prevPlayersUrlListLength === 2 && playersUrlListLength === 1) return 'shrink';
+            return 'none';
+        },
+        [prevPlayersUrlListLength, playersUrlListLength],
+    );
+
+    const expand = () => {
+        if (!rndWidth || !rndHeight || !videoMinWidth) return;
+        rndEle.updateSize({
+            width: (rndWidth - borderWidth) * 2 + borderWidth,
+            height: rndHeight,
+        });
+        rndPlayerStoreDispatch({
+            rndWidth: (rndWidth - borderWidth) * 2 + borderWidth,
+            rndMinWidth: videoMinWidth * 2 + borderWidth,
+        });
+    };
+
+    const shrink = () => {
+        if (!rndWidth || !rndHeight || !videoMinWidth) return;
+        rndEle.updateSize({
+            width: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
+            height: rndHeight,
+        });
+        rndPlayerStoreDispatch({
+            rndWidth: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
+            rndMinWidth: videoMinWidth + borderWidth,
+        });
+    };
 
     useEffect(
         () => {
-            if (!rndWidth || !rndHeight || !videoMinWidth) return;
-            const oneToTwo = prevPlayersUrlListLength === 1 && playersUrlListLength === 2;
-            const twoToOne = prevPlayersUrlListLength === 2 && playersUrlListLength === 1;
-
-            const expand = () => {
-                rndEle.updateSize({
-                    width: (rndWidth - borderWidth) * 2 + borderWidth,
-                    height: rndHeight,
-                });
-                rndPlayerStoreDispatch({
-                    rndWidth: (rndWidth - borderWidth) * 2 + borderWidth,
-                    rndMinWidth: videoMinWidth * 2 + borderWidth,
-                });
-            };
-
-            const shrink = () => {
-                rndEle.updateSize({
-                    width: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
-                    height: rndHeight,
-                });
-                rndPlayerStoreDispatch({
-                    rndWidth: Math.floor((rndWidth - borderWidth) / 2) + borderWidth,
-                    rndMinWidth: videoMinWidth + borderWidth,
-                });
-            };
-
-            // 1 => 2
-            if (oneToTwo && mode === 'db') return expand();
-            // 2 => 1
-            if (twoToOne && prevMode === 'db') return shrink();
-            // only mode change
-            if (playersUrlListLength === 2 && prevMode === 'db') return shrink();
-            if (playersUrlListLength === 2 && prevMode === 'pip') return expand();
+            if (lengthChangeStatus === 'expand') {
+                if (mode === 'db') return expand();
+            }
+            if (lengthChangeStatus === 'shrink') {
+                if (mode === 'db') return shrink();
+                if (prevMode === 'db' && (mode === 'sg' || mode === 'pip')) return shrink();
+            }
         },
-        [
-            mode,
-            prevMode,
-            playersUrlListLength,
-            prevPlayersUrlListLength,
-        ],
+        [lengthChangeStatus],
+    );
+
+    useEffect(
+        () => {
+            if (playersUrlListLength === 2) {
+                if (prevMode === 'db') return shrink();
+                if (prevMode === 'pip') return expand();
+            }
+        },
+        [prevMode],
     );
 
     return null;

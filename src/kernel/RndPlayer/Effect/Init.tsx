@@ -22,6 +22,7 @@ const Init = () => {
             rndPlayerStoreDispatch({
                 position,
                 rndWidth: minWidth,
+                rndHeight: minHeight,
                 rndMinWidth: minWidth,
                 rndMinHeight: minHeight,
                 videoMinWidth,
