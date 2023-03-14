@@ -12,6 +12,8 @@ type Option = {
 interface SelectorProps {
     value?: string[] | string;
     onChange?: (value: string[] | string) => void;
+    onSelect?: (value: string) => void;
+    onDeselect?: (value: string) => void;
     options?: Option[];
     open?: boolean;
     onDropdownVisibleChange?: (open: boolean) => void;
@@ -22,6 +24,8 @@ const Selector: FC<SelectorProps> = (
     {
         options = [],
         onChange,
+        onSelect,
+        onDeselect,
         value,
         open,
         mode,
@@ -34,10 +38,11 @@ const Selector: FC<SelectorProps> = (
                 value={value}
                 size={'small'}
                 open={open}
-                placeholder={'请选择'}
                 mode={mode}
                 showArrow
                 onChange={onChange}
+                onSelect={onSelect}
+                onDeselect={onDeselect}
                 suffixIcon={<Icon name={'point'} size={12} />}
                 onDropdownVisibleChange={onDropdownVisibleChange}
                 getPopupContainer={() => document.getElementById('ws-selector') as HTMLElement}

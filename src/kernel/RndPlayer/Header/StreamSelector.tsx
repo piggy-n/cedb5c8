@@ -7,6 +7,7 @@ const StreamSelector = () => {
         rndPlayerStoreDispatch,
         rndPlayerStore: {
             mode,
+            players,
             streamSelectorList,
             selectedStreamList,
         },
@@ -14,7 +15,7 @@ const StreamSelector = () => {
 
     const [open, setOpen] = useState<boolean>(false);
 
-    const selectorChangeHandler = (val: string[]) => {
+    const changeHandler = (val: string[]) => {
         setOpen(false);
         if (val.length === 0) return;
 
@@ -29,12 +30,63 @@ const StreamSelector = () => {
         });
     };
 
+    const selectHandler = (val: string) => {
+        const copyPlayers = [...players];
+        const mainPlayer = copyPlayers.find(player => player.isMainPlayer);
+        const subPlayer = copyPlayers.find(player => !player.isMainPlayer);
+
+        if (mode === 'sg' && mainPlayer) {
+            mainPlayer.url = val;
+            return rndPlayerStoreDispatch({
+                players: copyPlayers,
+            });
+        }
+
+        if (mainPlayer && !mainPlayer.url) {
+            mainPlayer.url = val;
+            return rndPlayerStoreDispatch({
+                players: copyPlayers,
+            });
+        }
+
+        if (subPlayer && !subPlayer.url) {
+            subPlayer.url = val;
+            return rndPlayerStoreDispatch({
+                players: copyPlayers,
+            });
+        }
+    };
+
+    const deselectHandler = (val: string) => {
+        const copyPlayers = [...players];
+        const player = copyPlayers.find(item => item.url === val);
+        const playersUrlListLength = players.map(item => item.url).filter(item => item).length;
+
+        if (mode === 'sg' || playersUrlListLength <= 1) return;
+        if (player) {
+            player.url = '';
+            const { isMainPlayer } = player;
+            if (isMainPlayer) {
+                const subPlayer = copyPlayers.find(item => !item.isMainPlayer);
+                if (subPlayer) {
+                    player.isMainPlayer = false;
+                    subPlayer.isMainPlayer = true;
+                }
+            }
+            return rndPlayerStoreDispatch({
+                players: copyPlayers,
+            });
+        }
+    };
+
     if (streamSelectorList.length === 0) return null;
     return (
         <Selector
             mode={'multiple'}
             value={selectedStreamList.filter(item => item !== '')}
-            onChange={selectorChangeHandler}
+            onChange={changeHandler}
+            onSelect={selectHandler}
+            onDeselect={deselectHandler}
             options={streamSelectorList}
             open={open}
             onDropdownVisibleChange={val => setOpen(val)}
