@@ -3,7 +3,7 @@ import s from './styles/item.scss';
 import Player from '@/kernel/Player';
 import Draggable from 'react-draggable';
 import type { FC } from 'react';
-import { useContext, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { RndPlayerContext } from '@/utils/hooks/data/useRndPlayerContext';
 
 export interface ItemProps {
@@ -36,7 +36,10 @@ const Item: FC<ItemProps> = (
         [mode, isMainPlayer],
     );
     const playersUrlListLength = useMemo(
-        () => players.map((item) => item.url).filter((item) => item).length,
+        () => players
+            .map(item => item.url)
+            .filter(item => item)
+            .length,
         [players],
     );
 
@@ -77,6 +80,11 @@ const Item: FC<ItemProps> = (
             250,
         );
     };
+
+    useEffect(
+        () => setPosition({ x: 0, y: 0 }),
+        [isPipPlayer],
+    );
 
     if (!url && !isMainPlayer) return null;
     return (

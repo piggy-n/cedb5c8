@@ -66,7 +66,7 @@ const StylesHandler = () => {
             }
             if (listLengthChangeStatus === 'shrink') {
                 if (mode === 'db') return shrink();
-                if (prevMode === 'db' && (mode === 'sg' || mode === 'pip')) return shrink();
+                if (mode === 'sg' && prevMode === 'db') return shrink();
             }
         },
         [listLengthChangeStatus],
