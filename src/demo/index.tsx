@@ -2,6 +2,7 @@ import { render } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@/index.d';
 import RndPlayer from '@/kernel/RndPlayer';
+import { devOnlinePrefix } from '@/services/config';
 // import { Player } from '@/index';
 
 const Demo = () => {
@@ -95,9 +96,10 @@ const Demo = () => {
                 </div>
                 <br />
                 <RndPlayer deviceOpts={{
-                    deviceId: '1528707544984326145',
+                    deviceId: '1560452002057740289',
                     deviceName: '测试设备',
                     deviceStatus: 'online',
+                    urlPrefix: devOnlinePrefix,
                 }} />
                 {/*<Player videoContainerEleOpts={{ style: { width: '480px', height: '270px' } }} />*/}
             </div>
