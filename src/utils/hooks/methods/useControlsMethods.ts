@@ -9,7 +9,6 @@ import type { ControlsStoreState } from '@/utils/hooks/data/useControlsStore';
 const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStoreState>>) => {
     const {
         videoContainerEle,
-        playerStoreDispatch,
         playerStore: {
             url = '',
             canplay,
@@ -82,11 +81,7 @@ const useControlsMethods = (controlsStoreDispatch: Dispatch<Partial<ControlsStor
                 }
 
                 if (wrapperClickCountRef.current === 2) {
-                    const isFullscreen = await fullscreen(videoContainerEle);
-
-                    playerStoreDispatch({
-                        isFullscreen,
-                    });
+                    await fullscreen(videoContainerEle);
                 }
 
                 wrapperClickCountRef.current = 0;

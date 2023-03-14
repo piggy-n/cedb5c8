@@ -15,7 +15,7 @@ const SingleGridBtn = () => {
     const clickHandler = () => {
         const copyPlayers = [...players];
         const copySelectedStreamList = [...selectedStreamList];
-        const subPlayer = copyPlayers.find((item) => !item.isMainPlayer);
+        const subPlayer = copyPlayers.find(item => !item.isMainPlayer);
 
         if (subPlayer) {
             const index = copySelectedStreamList.findIndex(item => item === subPlayer.url);

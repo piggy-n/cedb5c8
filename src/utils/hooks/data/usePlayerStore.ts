@@ -20,7 +20,6 @@ import type { VideoType, PlayerMethods, VideoEleAttributes } from '@/index.d';
 export interface PlayerStoreState extends VideoEleAttributes {
     url?: string;
     videoType?: VideoType;
-    isFullscreen?: boolean;
     loading?: boolean;
     mime?: string;
     transmissionRate?: number;

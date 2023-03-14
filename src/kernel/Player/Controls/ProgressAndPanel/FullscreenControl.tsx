@@ -4,24 +4,12 @@ import { PlayerContext } from '@/utils/hooks/data/usePlayerContext';
 import { isBoolean, isObject } from 'ahooks/es/utils';
 import { fullscreen } from '@/utils/methods/common/fullscreen';
 import Icon from '@/components/Icon';
+import { isFullscreen } from 'screenfull';
 
 const FullscreenControl = () => {
-    const {
-        controlsOpts,
-        videoContainerEle,
-        playerStoreDispatch,
-        playerStore: {
-            isFullscreen,
-        },
-    } = useContext(PlayerContext);
+    const { controlsOpts, videoContainerEle } = useContext(PlayerContext);
 
-    const clickHandler = async () => {
-        const isFullscreen = await fullscreen(videoContainerEle);
-
-        playerStoreDispatch({
-            isFullscreen,
-        });
-    };
+    const clickHandler = async () => await fullscreen(videoContainerEle);
 
     if (
         isObject(controlsOpts) &&
