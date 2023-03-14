@@ -13,6 +13,8 @@ const StylesHandler = () => {
             players,
             rndWidth,
             rndHeight,
+            rndMinWidth,
+            rndMinHeight,
             videoMinWidth,
         },
     } = useContext(RndPlayerContext);
@@ -36,13 +38,22 @@ const StylesHandler = () => {
     );
 
     const expand = () => {
-        if (!rndWidth || !rndHeight || !videoMinWidth) return;
+        if (!rndWidth || !rndHeight || !rndMinWidth || !videoMinWidth) return;
+
+        const width = (rndWidth - borderWidth) * 2 + borderWidth > innerWidth
+            ? (rndMinWidth - borderWidth) * 2 + borderWidth
+            : (rndWidth - borderWidth) * 2 + borderWidth;
+        const height = (rndWidth - borderWidth) * 2 + borderWidth > innerWidth
+            ? rndMinHeight
+            : rndHeight;
+
         rndEle.updateSize({
-            width: (rndWidth - borderWidth) * 2 + borderWidth,
-            height: rndHeight,
+            width,
+            height,
         });
         rndPlayerStoreDispatch({
             rndWidth: (rndWidth - borderWidth) * 2 + borderWidth,
+            rndHeight: height,
             rndMinWidth: videoMinWidth * 2 + borderWidth,
         });
     };
