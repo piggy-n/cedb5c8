@@ -19,14 +19,14 @@ const StylesHandler = () => {
 
     const playersUrlListLength = useMemo(
         () => players
-            .map((item) => item.url)
-            .filter((item) => item)
+            .map(item => item.url)
+            .filter(item => item)
             .length,
         [players],
     );
     const prevMode = usePrevious(mode);
     const prevPlayersUrlListLength = usePrevious(playersUrlListLength);
-    const lengthChangeStatus = useMemo(
+    const listLengthChangeStatus = useMemo(
         () => {
             if (prevPlayersUrlListLength === 1 && playersUrlListLength === 2) return 'expand';
             if (prevPlayersUrlListLength === 2 && playersUrlListLength === 1) return 'shrink';
@@ -61,15 +61,15 @@ const StylesHandler = () => {
 
     useEffect(
         () => {
-            if (lengthChangeStatus === 'expand') {
+            if (listLengthChangeStatus === 'expand') {
                 if (mode === 'db') return expand();
             }
-            if (lengthChangeStatus === 'shrink') {
+            if (listLengthChangeStatus === 'shrink') {
                 if (mode === 'db') return shrink();
                 if (prevMode === 'db' && (mode === 'sg' || mode === 'pip')) return shrink();
             }
         },
-        [lengthChangeStatus],
+        [listLengthChangeStatus],
     );
 
     useEffect(
